@@ -1,0 +1,344 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30E0F77E16D545F7001949EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F77D16D545F7001949EA /* UIKit.framework */; };
+		30E0F78016D545F7001949EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F77F16D545F7001949EA /* Foundation.framework */; };
+		30E0F78216D545F7001949EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F78116D545F7001949EA /* CoreGraphics.framework */; };
+		30E0F78816D545F7001949EA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F78616D545F7001949EA /* InfoPlist.strings */; };
+		30E0F78A16D545F7001949EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F78916D545F7001949EA /* main.m */; };
+		30E0F78E16D545F7001949EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F78D16D545F7001949EA /* AppDelegate.m */; };
+		30E0F79016D545F7001949EA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F78F16D545F7001949EA /* Default.png */; };
+		30E0F79216D545F7001949EA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F79116D545F7001949EA /* Default@2x.png */; };
+		30E0F79416D545F7001949EA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F79316D545F7001949EA /* Default-568h@2x.png */; };
+		30E0F79E16D54610001949EA /* Icon_Activity@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F79A16D54610001949EA /* Icon_Activity@2x.png */; };
+		30E0F79F16D54610001949EA /* Icon_Explore@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F79B16D54610001949EA /* Icon_Explore@2x.png */; };
+		30E0F7A016D54610001949EA /* Icon_Home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F79C16D54610001949EA /* Icon_Home@2x.png */; };
+		30E0F7A116D54610001949EA /* Icon_Profile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F79D16D54610001949EA /* Icon_Profile@2x.png */; };
+		30E0F7A416D5462E001949EA /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7A316D5462E001949EA /* RootViewController.m */; };
+		30E0F7AC16D54641001949EA /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7A716D54641001949EA /* REMenu.m */; };
+		30E0F7AD16D54641001949EA /* REMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7A916D54641001949EA /* REMenuItem.m */; };
+		30E0F7AE16D54641001949EA /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7AB16D54641001949EA /* REMenuItemView.m */; };
+		30E0F7B116D54CE0001949EA /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7B016D54CE0001949EA /* REMenuContainerView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		30E0F77A16D545F7001949EA /* REMenuExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMenuExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E0F77D16D545F7001949EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		30E0F77F16D545F7001949EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		30E0F78116D545F7001949EA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		30E0F78516D545F7001949EA /* REMenuExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "REMenuExample-Info.plist"; sourceTree = "<group>"; };
+		30E0F78716D545F7001949EA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		30E0F78916D545F7001949EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		30E0F78B16D545F7001949EA /* REMenuExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "REMenuExample-Prefix.pch"; sourceTree = "<group>"; };
+		30E0F78C16D545F7001949EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		30E0F78D16D545F7001949EA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		30E0F78F16D545F7001949EA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		30E0F79116D545F7001949EA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		30E0F79316D545F7001949EA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		30E0F79A16D54610001949EA /* Icon_Activity@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon_Activity@2x.png"; sourceTree = "<group>"; };
+		30E0F79B16D54610001949EA /* Icon_Explore@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon_Explore@2x.png"; sourceTree = "<group>"; };
+		30E0F79C16D54610001949EA /* Icon_Home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon_Home@2x.png"; sourceTree = "<group>"; };
+		30E0F79D16D54610001949EA /* Icon_Profile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon_Profile@2x.png"; sourceTree = "<group>"; };
+		30E0F7A216D5462E001949EA /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		30E0F7A316D5462E001949EA /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		30E0F7A616D54641001949EA /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
+		30E0F7A716D54641001949EA /* REMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenu.m; sourceTree = "<group>"; };
+		30E0F7A816D54641001949EA /* REMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItem.h; sourceTree = "<group>"; };
+		30E0F7A916D54641001949EA /* REMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItem.m; sourceTree = "<group>"; };
+		30E0F7AA16D54641001949EA /* REMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItemView.h; sourceTree = "<group>"; };
+		30E0F7AB16D54641001949EA /* REMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItemView.m; sourceTree = "<group>"; };
+		30E0F7AF16D54CE0001949EA /* REMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuContainerView.h; sourceTree = "<group>"; };
+		30E0F7B016D54CE0001949EA /* REMenuContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuContainerView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30E0F77716D545F7001949EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30E0F77E16D545F7001949EA /* UIKit.framework in Frameworks */,
+				30E0F78016D545F7001949EA /* Foundation.framework in Frameworks */,
+				30E0F78216D545F7001949EA /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30E0F77116D545F7001949EA = {
+			isa = PBXGroup;
+			children = (
+				30E0F7A516D54641001949EA /* REMenu */,
+				30E0F78316D545F7001949EA /* REMenuExample */,
+				30E0F77C16D545F7001949EA /* Frameworks */,
+				30E0F77B16D545F7001949EA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		30E0F77B16D545F7001949EA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30E0F77A16D545F7001949EA /* REMenuExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30E0F77C16D545F7001949EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				30E0F77D16D545F7001949EA /* UIKit.framework */,
+				30E0F77F16D545F7001949EA /* Foundation.framework */,
+				30E0F78116D545F7001949EA /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		30E0F78316D545F7001949EA /* REMenuExample */ = {
+			isa = PBXGroup;
+			children = (
+				30E0F78C16D545F7001949EA /* AppDelegate.h */,
+				30E0F78D16D545F7001949EA /* AppDelegate.m */,
+				30E0F7A216D5462E001949EA /* RootViewController.h */,
+				30E0F7A316D5462E001949EA /* RootViewController.m */,
+				30E0F78416D545F7001949EA /* Supporting Files */,
+			);
+			path = REMenuExample;
+			sourceTree = "<group>";
+		};
+		30E0F78416D545F7001949EA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				30E0F78516D545F7001949EA /* REMenuExample-Info.plist */,
+				30E0F78616D545F7001949EA /* InfoPlist.strings */,
+				30E0F78916D545F7001949EA /* main.m */,
+				30E0F78B16D545F7001949EA /* REMenuExample-Prefix.pch */,
+				30E0F78F16D545F7001949EA /* Default.png */,
+				30E0F79116D545F7001949EA /* Default@2x.png */,
+				30E0F79316D545F7001949EA /* Default-568h@2x.png */,
+				30E0F79A16D54610001949EA /* Icon_Activity@2x.png */,
+				30E0F79B16D54610001949EA /* Icon_Explore@2x.png */,
+				30E0F79C16D54610001949EA /* Icon_Home@2x.png */,
+				30E0F79D16D54610001949EA /* Icon_Profile@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		30E0F7A516D54641001949EA /* REMenu */ = {
+			isa = PBXGroup;
+			children = (
+				30E0F7A616D54641001949EA /* REMenu.h */,
+				30E0F7A716D54641001949EA /* REMenu.m */,
+				30E0F7A816D54641001949EA /* REMenuItem.h */,
+				30E0F7A916D54641001949EA /* REMenuItem.m */,
+				30E0F7AA16D54641001949EA /* REMenuItemView.h */,
+				30E0F7AB16D54641001949EA /* REMenuItemView.m */,
+				30E0F7AF16D54CE0001949EA /* REMenuContainerView.h */,
+				30E0F7B016D54CE0001949EA /* REMenuContainerView.m */,
+			);
+			name = REMenu;
+			path = ../REMenu;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30E0F77916D545F7001949EA /* REMenuExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30E0F79716D545F7001949EA /* Build configuration list for PBXNativeTarget "REMenuExample" */;
+			buildPhases = (
+				30E0F77616D545F7001949EA /* Sources */,
+				30E0F77716D545F7001949EA /* Frameworks */,
+				30E0F77816D545F7001949EA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = REMenuExample;
+			productName = REMenuExample;
+			productReference = 30E0F77A16D545F7001949EA /* REMenuExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30E0F77216D545F7001949EA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Roman Efimov";
+			};
+			buildConfigurationList = 30E0F77516D545F7001949EA /* Build configuration list for PBXProject "REMenuExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 30E0F77116D545F7001949EA;
+			productRefGroup = 30E0F77B16D545F7001949EA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30E0F77916D545F7001949EA /* REMenuExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30E0F77816D545F7001949EA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30E0F78816D545F7001949EA /* InfoPlist.strings in Resources */,
+				30E0F79016D545F7001949EA /* Default.png in Resources */,
+				30E0F79216D545F7001949EA /* Default@2x.png in Resources */,
+				30E0F79416D545F7001949EA /* Default-568h@2x.png in Resources */,
+				30E0F79E16D54610001949EA /* Icon_Activity@2x.png in Resources */,
+				30E0F79F16D54610001949EA /* Icon_Explore@2x.png in Resources */,
+				30E0F7A016D54610001949EA /* Icon_Home@2x.png in Resources */,
+				30E0F7A116D54610001949EA /* Icon_Profile@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30E0F77616D545F7001949EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30E0F78A16D545F7001949EA /* main.m in Sources */,
+				30E0F78E16D545F7001949EA /* AppDelegate.m in Sources */,
+				30E0F7A416D5462E001949EA /* RootViewController.m in Sources */,
+				30E0F7AC16D54641001949EA /* REMenu.m in Sources */,
+				30E0F7AD16D54641001949EA /* REMenuItem.m in Sources */,
+				30E0F7AE16D54641001949EA /* REMenuItemView.m in Sources */,
+				30E0F7B116D54CE0001949EA /* REMenuContainerView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		30E0F78616D545F7001949EA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30E0F78716D545F7001949EA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		30E0F79516D545F7001949EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		30E0F79616D545F7001949EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		30E0F79816D545F7001949EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "REMenuExample/REMenuExample-Prefix.pch";
+				INFOPLIST_FILE = "REMenuExample/REMenuExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		30E0F79916D545F7001949EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "REMenuExample/REMenuExample-Prefix.pch";
+				INFOPLIST_FILE = "REMenuExample/REMenuExample-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30E0F77516D545F7001949EA /* Build configuration list for PBXProject "REMenuExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30E0F79516D545F7001949EA /* Debug */,
+				30E0F79616D545F7001949EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30E0F79716D545F7001949EA /* Build configuration list for PBXNativeTarget "REMenuExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30E0F79816D545F7001949EA /* Debug */,
+				30E0F79916D545F7001949EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30E0F77216D545F7001949EA /* Project object */;
+}
