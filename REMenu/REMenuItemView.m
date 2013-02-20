@@ -50,7 +50,7 @@
     [super layoutSubviews];
     CGFloat imageOffset = (self.frame.size.height - _item.image.size.height) / 2.0;
     _imageView.image = _item.image;
-    _imageView.frame = CGRectMake(imageOffset, imageOffset, _item.image.size.height, _item.image.size.height);
+    _imageView.frame = CGRectMake(imageOffset, imageOffset, _item.image.size.width, _item.image.size.height);
     
     _titleLabel.font = _menu.font;
     _titleLabel.text = _item.title;
