@@ -35,4 +35,6 @@
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) REMenuItem *item;
 
+- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu;
+
 @end

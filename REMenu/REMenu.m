@@ -48,6 +48,7 @@
     self.itemHeight = 48;
     self.separatorHeight = 2;
     
+    self.textOffset = CGSizeMake(0, 0);
     self.font = [UIFont boldSystemFontOfSize:24];
     
     self.backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1];
@@ -80,10 +81,9 @@
         separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [_menuView addSubview:separatorView];
         
-        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight)];
+        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight) menu:self];
         itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         itemView.item = item;
-        itemView.menu = self;
         itemView.separatorView = separatorView;
         itemView.autoresizesSubviews = YES;
         [_menuView addSubview:itemView];

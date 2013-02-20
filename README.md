@@ -32,7 +32,7 @@ Edit your Podfile and add REMenu:
 ``` bash
 $ edit Podfile
 platform :ios, '5.0'
-pod 'REMenu', '~> 1.0'
+pod 'REMenu', '~> 1.0.1'
 ```
 
 Install into your Xcode project:
@@ -94,6 +94,7 @@ You can customize the following properties of `REMenu`:
 @property (assign, readwrite, nonatomic) CGFloat separatorHeight;
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
+@property (assign, readwrite, nonatomic) CGSize textOffset;
 @property (strong, readwrite, nonatomic) UIColor *textShadowColor;
 @property (assign, readwrite, nonatomic) CGSize textShadowOffset;
 @property (strong, readwrite, nonatomic) UIColor *highligtedBackgroundColor;

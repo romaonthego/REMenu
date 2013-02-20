@@ -55,6 +55,7 @@
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
 @property (strong, readwrite, nonatomic) UIColor *textShadowColor;
+@property (assign, readwrite, nonatomic) CGSize textOffset;
 @property (assign, readwrite, nonatomic) CGSize textShadowOffset;
 @property (strong, readwrite, nonatomic) UIColor *highligtedBackgroundColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedSeparatorColor;

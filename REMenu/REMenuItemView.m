@@ -27,11 +27,12 @@
 
 @implementation REMenuItemView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, frame.size.height)];
+        _menu = menu;
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(_menu.textOffset.width, _menu.textOffset.height, 0, frame.size.height)];
         _titleLabel.contentMode = UIViewContentModeCenter;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.backgroundColor = [UIColor clearColor];
