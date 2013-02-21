@@ -62,8 +62,9 @@
     _menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
     _menu.cornerRadius = 4;
     _menu.shadowColor = [UIColor blackColor];
-    _menu.shadowOffset = CGSizeMake(0, 2);
-    _menu.shadowOpacity = 0.7;
+    _menu.shadowOffset = CGSizeMake(0, 1);
+    _menu.shadowOpacity = 1;
+    _menu.imageOffset = CGSizeMake(5, -1);
     
     [_menu showFromNavigationController:self.navigationController];
 }

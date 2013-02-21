@@ -55,6 +55,7 @@
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
 @property (strong, readwrite, nonatomic) UIColor *textShadowColor;
+@property (assign, readwrite, nonatomic) CGSize imageOffset;
 @property (assign, readwrite, nonatomic) CGSize textOffset;
 @property (assign, readwrite, nonatomic) CGSize textShadowOffset;
 @property (strong, readwrite, nonatomic) UIColor *highligtedBackgroundColor;
@@ -62,6 +63,8 @@
 @property (strong, readwrite, nonatomic) UIColor *highlighedTextColor;
 @property (strong, readwrite, nonatomic) UIColor *highlighedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize highlighedTextShadowOffset;
+@property (assign, readwrite, nonatomic) CGFloat borderWidth;
+@property (strong, readwrite, nonatomic) UIColor *borderColor;
 
 - (id)initWithItems:(NSArray *)items;
 - (void)showFromNavigationController:(UINavigationController *)navigationController;

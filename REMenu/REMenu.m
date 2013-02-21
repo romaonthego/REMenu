@@ -63,6 +63,9 @@
     self.highlighedTextShadowColor = [UIColor blackColor];
     self.highlighedTextShadowOffset = CGSizeMake(0, -1);
     
+    self.borderWidth = 1;
+    self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
+    
     return self;
 }
 
@@ -96,6 +99,7 @@
     
     _menuView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
     
     _containerView = [[REMenuContainerView alloc] initWithFrame:CGRectMake(0, navigationController.navigationBar.frame.origin.y + navigationController.navigationBar.frame.size.height, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height - navigationController.navigationBar.frame.origin.y - navigationController.navigationBar.frame.size.height)];
     _containerView.bar = navigationController.navigationBar;
@@ -189,7 +193,20 @@
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
+    _backgroundColor = backgroundColor;
     _menuView.backgroundColor = backgroundColor;
+}
+
+- (void)setBorderColor:(UIColor *)borderColor
+{
+    _borderColor = borderColor;
+    _menuView.layer.borderColor = borderColor.CGColor;
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth
+{
+    _borderWidth = borderWidth;
+    _menuView.layer.borderWidth = borderWidth;
 }
 
 @end
