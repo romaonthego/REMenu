@@ -94,6 +94,7 @@ You can customize the following properties of `REMenu`:
 @property (assign, readwrite, nonatomic) CGFloat separatorHeight;
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
+@property (assign, readwrite, nonatomic) CGSize imageOffset;
 @property (assign, readwrite, nonatomic) CGSize textOffset;
 @property (strong, readwrite, nonatomic) UIColor *textShadowColor;
 @property (assign, readwrite, nonatomic) CGSize textShadowOffset;
