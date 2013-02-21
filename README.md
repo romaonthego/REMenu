@@ -102,6 +102,8 @@ You can customize the following properties of `REMenu`:
 @property (strong, readwrite, nonatomic) UIColor *highlighedTextColor;
 @property (strong, readwrite, nonatomic) UIColor *highlighedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize highlighedTextShadowOffset;
+@property (assign, readwrite, nonatomic) CGFloat borderWidth;
+@property (strong, readwrite, nonatomic) UIColor *borderColor;
 ```
 
 ## Contact
