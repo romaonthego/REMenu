@@ -88,6 +88,7 @@ You can customize the following properties of `REMenu`:
 @property (strong, readwrite, nonatomic) UIColor *shadowColor;
 @property (assign, readwrite, nonatomic) CGSize shadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat shadowOpacity;
+@property (assign, readwrite, nonatomic) CGFloat shadowRadius;
 @property (assign, readwrite, nonatomic) CGFloat itemHeight;
 @property (strong, readwrite, nonatomic) UIColor *backgroundColor;
 @property (strong, readwrite, nonatomic) UIColor *separatorColor;
