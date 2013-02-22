@@ -170,7 +170,6 @@
 {
     _cornerRadius = cornerRadius;
     _menuView.layer.cornerRadius = cornerRadius;
-    _menuWrapperView.layer.shadowRadius = cornerRadius;
 }
 
 - (void)setShadowColor:(UIColor *)shadowColor
