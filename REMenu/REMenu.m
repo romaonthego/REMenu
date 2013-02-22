@@ -191,6 +191,12 @@
     _menuWrapperView.layer.shadowOpacity = shadowOpacity;
 }
 
+- (void)setShadowRadius:(CGFloat)shadowRadius
+{
+    _shadowRadius = shadowRadius;
+    _menuWrapperView.layer.shadowRadius = shadowRadius;
+}
+
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     _backgroundColor = backgroundColor;
