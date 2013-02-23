@@ -66,14 +66,14 @@
 @property (assign, readwrite, nonatomic) CGSize highlighedTextShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
-@property (strong, readwrite, nonatomic) UIFont *subTitleFont;
-@property (strong, readwrite, nonatomic) UIColor *subTitleTextColor;
-@property (strong, readwrite, nonatomic) UIColor *subTitleTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize subTitleTextOffset;
-@property (assign, readwrite, nonatomic) CGSize subTitleTextShadowOffset;
-@property (strong, readwrite, nonatomic) UIColor *subTitleHighlighedTextColor;
-@property (strong, readwrite, nonatomic) UIColor *subTitleHighlighedTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize subTitleHighlighedTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIFont *subtitleFont;
+@property (strong, readwrite, nonatomic) UIColor *subtitleTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subtitleTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subtitleTextOffset;
+@property (assign, readwrite, nonatomic) CGSize subtitleTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subtitleHighlighedTextShadowOffset;
 
 
 - (id)initWithItems:(NSArray *)items;

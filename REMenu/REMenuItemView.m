@@ -27,26 +27,26 @@
 
 @implementation REMenuItemView
 
-- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hasSubTitle:(BOOL)hasSubTitle
+- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hassubtitle:(BOOL)hassubtitle
 {
     self = [super initWithFrame:frame];
     
     if (self) {
         _menu = menu;
         
-        if (hasSubTitle) {
+        if (hassubtitle) {
             //dividing lines at 1/1.725 (vs 1/2.000) results in labels about 28-top 20-bottom or 60/40 title/subtitle (for a 48 frame height)
             CGRect titleFrame = CGRectMake(_menu.textOffset.width, _menu.textOffset.height, 0, floorf(frame.size.height / 1.725));
             _titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
             
-            CGRect subTitleFrame = CGRectMake(_menu.subTitleTextOffset.width, _menu.subTitleTextOffset.height + _titleLabel.frame.size.height, 0, floorf(frame.size.height * (1.0 - 1.0 / 1.725)));
-            _subTitleLabel = [[UILabel alloc] initWithFrame:subTitleFrame];
+            CGRect subtitleFrame = CGRectMake(_menu.subtitleTextOffset.width, _menu.subtitleTextOffset.height + _titleLabel.frame.size.height, 0, floorf(frame.size.height * (1.0 - 1.0 / 1.725)));
+            _subtitleLabel = [[UILabel alloc] initWithFrame:subtitleFrame];
             
-            _subTitleLabel.contentMode = UIViewContentModeCenter;
-            _subTitleLabel.textAlignment = NSTextAlignmentCenter;
-            _subTitleLabel.backgroundColor = [UIColor clearColor];
-            _subTitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-            [self addSubview:_subTitleLabel];
+            _subtitleLabel.contentMode = UIViewContentModeCenter;
+            _subtitleLabel.textAlignment = NSTextAlignmentCenter;
+            _subtitleLabel.backgroundColor = [UIColor clearColor];
+            _subtitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [self addSubview:_subtitleLabel];
         } else {
             CGRect titleFrame = CGRectMake(_menu.textOffset.width, _menu.textOffset.height, 0, frame.size.height);
             _titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
@@ -77,11 +77,11 @@
     _titleLabel.textColor = _menu.textColor;
     _titleLabel.shadowColor = _menu.textShadowColor;
     _titleLabel.shadowOffset = _menu.textShadowOffset;
-    _subTitleLabel.font = _menu.subTitleFont;
-    _subTitleLabel.text = _item.subTitle;
-    _subTitleLabel.textColor = _menu.subTitleTextColor;
-    _subTitleLabel.shadowColor = _menu.subTitleTextShadowColor;
-    _subTitleLabel.shadowOffset = _menu.subTitleTextShadowOffset;
+    _subtitleLabel.font = _menu.subtitleFont;
+    _subtitleLabel.text = _item.subtitle;
+    _subtitleLabel.textColor = _menu.subtitleTextColor;
+    _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
+    _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -92,9 +92,9 @@
     _titleLabel.textColor = _menu.highlighedTextColor;
     _titleLabel.shadowColor = _menu.highlighedTextShadowColor;
     _titleLabel.shadowOffset = _menu.highlighedTextShadowOffset;
-    _subTitleLabel.textColor = _menu.subTitleHighlighedTextColor;
-    _subTitleLabel.shadowColor = _menu.subTitleHighlighedTextShadowColor;
-    _subTitleLabel.shadowOffset = _menu.subTitleHighlighedTextShadowOffset;
+    _subtitleLabel.textColor = _menu.subtitleHighlighedTextColor;
+    _subtitleLabel.shadowColor = _menu.subtitleHighlighedTextShadowColor;
+    _subtitleLabel.shadowOffset = _menu.subtitleHighlighedTextShadowOffset;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
@@ -105,9 +105,9 @@
     _titleLabel.textColor = _menu.textColor;
     _titleLabel.shadowColor = _menu.textShadowColor;
     _titleLabel.shadowOffset = _menu.textShadowOffset;
-    _subTitleLabel.textColor = _menu.subTitleTextColor;
-    _subTitleLabel.shadowColor = _menu.subTitleTextShadowColor;
-    _subTitleLabel.shadowOffset = _menu.subTitleTextShadowOffset;
+    _subtitleLabel.textColor = _menu.subtitleTextColor;
+    _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
+    _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
     
 }
 
@@ -119,9 +119,9 @@
     _titleLabel.textColor = _menu.textColor;
     _titleLabel.shadowColor = _menu.textShadowColor;
     _titleLabel.shadowOffset = _menu.textShadowOffset;
-    _subTitleLabel.textColor = _menu.subTitleTextColor;
-    _subTitleLabel.shadowColor = _menu.subTitleTextShadowColor;
-    _subTitleLabel.shadowOffset = _menu.subTitleTextShadowOffset;
+    _subtitleLabel.textColor = _menu.subtitleTextColor;
+    _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
+    _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
     [_menu close];
     
     if (_item.action) {

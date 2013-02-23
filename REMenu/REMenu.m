@@ -49,9 +49,9 @@
     self.separatorHeight = 2;
     
     self.textOffset = CGSizeMake(0, 0);
-    self.subTitleTextOffset = CGSizeMake(0, 0);
+    self.subtitleTextOffset = CGSizeMake(0, 0);
     self.font = [UIFont boldSystemFontOfSize:21];
-    self.subTitleFont = [UIFont systemFontOfSize:14];
+    self.subtitleFont = [UIFont systemFontOfSize:14];
     
     self.backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1];
     self.separatorColor = [UIColor colorWithPatternImage:self.separatorImage];
@@ -65,12 +65,12 @@
     self.highlighedTextShadowColor = [UIColor blackColor];
     self.highlighedTextShadowOffset = CGSizeMake(0, -1);
     
-    self.subTitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
-    self.subTitleTextShadowColor = [UIColor blackColor];
-    self.subTitleTextShadowOffset = CGSizeMake(0, -1);
-    self.subTitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];;
-	self.subTitleHighlighedTextShadowColor = [UIColor blackColor];
-	self.subTitleHighlighedTextShadowOffset = CGSizeMake(0, -1);
+    self.subtitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
+    self.subtitleTextShadowColor = [UIColor blackColor];
+    self.subtitleTextShadowOffset = CGSizeMake(0, -1);
+    self.subtitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];;
+	self.subtitleHighlighedTextShadowColor = [UIColor blackColor];
+	self.subtitleHighlighedTextShadowOffset = CGSizeMake(0, -1);
     
     self.borderWidth = 1;
     self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
@@ -93,7 +93,7 @@
         separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [_menuView addSubview:separatorView];
         
-        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight) menu:self hasSubTitle:item.subTitle.length > 0];
+        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight) menu:self hassubtitle:item.subtitle.length > 0];
         itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         itemView.item = item;
         itemView.separatorView = separatorView;

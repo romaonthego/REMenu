@@ -41,14 +41,14 @@
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title subTitle:(NSString *)subTitle image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action
 {
     self = [super init];
     if (!self)
         return nil;
     
     self.title = title;
-    self.subTitle = subTitle;
+    self.subtitle = subtitle;
     self.image = image;
     self.higlightedImage = higlightedImage;
     self.action = action;
@@ -58,7 +58,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<title: %@; subTitle: %@; tag: %i>", self.title, self.subTitle, self.tag];
+    return [NSString stringWithFormat:@"<title: %@; subtitle: %@; tag: %i>", self.title, self.subtitle, self.tag];
 }
 
 @end

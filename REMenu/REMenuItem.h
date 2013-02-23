@@ -28,13 +28,13 @@
 @interface REMenuItem : NSObject
 
 @property (copy, readwrite, nonatomic) NSString *title;
-@property (copy, readwrite, nonatomic) NSString *subTitle;
+@property (copy, readwrite, nonatomic) NSString *subtitle;
 @property (strong, readwrite, nonatomic) UIImage *image;
 @property (strong, readwrite, nonatomic) UIImage *higlightedImage;
 @property (copy, readwrite, nonatomic) void (^action)(REMenuItem *item);
 @property (assign, readwrite, nonatomic) NSInteger tag;
 
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action;
-- (id)initWithTitle:(NSString *)title subTitle:(NSString *)subTitle image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action;
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action;
 
 @end
