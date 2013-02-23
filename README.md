@@ -32,7 +32,7 @@ Edit your Podfile and add REMenu:
 ``` bash
 $ edit Podfile
 platform :ios, '5.0'
-pod 'REMenu', '~> 1.0'
+pod 'REMenu', '~> 1.1'
 ```
 
 Install into your Xcode project:
@@ -49,13 +49,15 @@ All you need to do is drop `REMenu` files into your project, and add `#include "
 
 ``` objective-c
 REMenuItem *homeItem = [[REMenuItem alloc] initWithTitle:@"Home"
-                                                   image:[UIImage imageNamed:@"Icon_Home"]
-                                        highlightedImage:nil
-                                                  action:^(REMenuItem *item) {
-                                                      NSLog(@"Item: %@", item);
-                                                  }];
+                                                  subTitle:@"Return to Home Screen"
+                                                     image:[UIImage imageNamed:@"Icon_Home"]
+                                          highlightedImage:nil
+                                                    action:^(REMenuItem *item) {
+                                                        NSLog(@"Item: %@", item);
+                                                    }];
 
 REMenuItem *exploreItem = [[REMenuItem alloc] initWithTitle:@"Explore"
+                                                   subTitle:@"Explore 47 additional options"
                                                       image:[UIImage imageNamed:@"Icon_Explore"]
                                            highlightedImage:nil
                                                      action:^(REMenuItem *item) {
@@ -63,6 +65,7 @@ REMenuItem *exploreItem = [[REMenuItem alloc] initWithTitle:@"Explore"
                                                      }];
 
 REMenuItem *activityItem = [[REMenuItem alloc] initWithTitle:@"Activity"
+                                                    subTitle:@"Perform 3 additional activities"
                                                        image:[UIImage imageNamed:@"Icon_Activity"]
                                             highlightedImage:nil
                                                       action:^(REMenuItem *item) {
@@ -75,6 +78,7 @@ REMenuItem *profileItem = [[REMenuItem alloc] initWithTitle:@"Profile"
                                                      action:^(REMenuItem *item) {
                                                          NSLog(@"Item: %@", item);
                                                      }];
+
 _menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
 [_menu showFromNavigationController:self.navigationController];
 ```
@@ -106,6 +110,14 @@ You can customize the following properties of `REMenu`:
 @property (assign, readwrite, nonatomic) CGSize highlighedTextShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
+@property (strong, readwrite, nonatomic) UIFont *subTitleFont;
+@property (strong, readwrite, nonatomic) UIColor *subTitleTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subTitleTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subTitleTextOffset;
+@property (assign, readwrite, nonatomic) CGSize subTitleTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIColor *subTitleHighlighedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subTitleHighlighedTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subTitleHighlighedTextShadowOffset;
 ```
 
 ## Contact
