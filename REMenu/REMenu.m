@@ -68,7 +68,7 @@
     self.subtitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
     self.subtitleTextShadowColor = [UIColor blackColor];
     self.subtitleTextShadowOffset = CGSizeMake(0, -1);
-    self.subtitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];;
+    self.subtitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
 	self.subtitleHighlighedTextShadowColor = [UIColor blackColor];
 	self.subtitleHighlighedTextShadowOffset = CGSizeMake(0, -1);
     
