@@ -66,7 +66,6 @@
 @property (assign, readwrite, nonatomic) CGSize highlighedTextShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
-
 @property (strong, readwrite, nonatomic) UIFont *subTitleFont;
 @property (strong, readwrite, nonatomic) UIColor *subTitleTextColor;
 @property (strong, readwrite, nonatomic) UIColor *subTitleTextShadowColor;
