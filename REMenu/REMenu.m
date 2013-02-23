@@ -49,9 +49,9 @@
     self.separatorHeight = 2;
     
     self.textOffset = CGSizeMake(0, 0);
- 	self.subTitleTextOffset = CGSizeMake(0, 0);
+    self.subTitleTextOffset = CGSizeMake(0, 0);
     self.font = [UIFont boldSystemFontOfSize:21];
-	self.subTitleFont = [UIFont systemFontOfSize:14];
+    self.subTitleFont = [UIFont systemFontOfSize:14];
     
     self.backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1];
     self.separatorColor = [UIColor colorWithPatternImage:self.separatorImage];
@@ -64,11 +64,11 @@
     self.highlighedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1];
     self.highlighedTextShadowColor = [UIColor blackColor];
     self.highlighedTextShadowOffset = CGSizeMake(0, -1);
-	
-	self.subTitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
-	self.subTitleTextShadowColor = [UIColor blackColor];
-	self.subTitleTextShadowOffset = CGSizeMake(0, -1);
-	self.subTitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];;
+    
+    self.subTitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
+    self.subTitleTextShadowColor = [UIColor blackColor];
+    self.subTitleTextShadowOffset = CGSizeMake(0, -1);
+    self.subTitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];;
 	self.subTitleHighlighedTextShadowColor = [UIColor blackColor];
 	self.subTitleHighlighedTextShadowOffset = CGSizeMake(0, -1);
     

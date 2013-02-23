@@ -15,7 +15,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.000];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self action:@selector(showMenu)];
 }
 
 - (void)showMenu
@@ -27,7 +27,7 @@
     //
     
     REMenuItem *homeItem = [[REMenuItem alloc] initWithTitle:@"Home"
-													subTitle:@"Return to Home Screen" 
+                                                    subTitle:@"Return to Home Screen" 
                                                        image:[UIImage imageNamed:@"Icon_Home"]
                                             highlightedImage:nil
                                                       action:^(REMenuItem *item) {
@@ -35,7 +35,7 @@
                                                       }];
     
     REMenuItem *exploreItem = [[REMenuItem alloc] initWithTitle:@"Explore"
-													   subTitle:@"Explore 47 additional options"
+                                                       subTitle:@"Explore 47 additional options"
                                                           image:[UIImage imageNamed:@"Icon_Explore"]
                                                highlightedImage:nil
                                                          action:^(REMenuItem *item) {
@@ -43,7 +43,7 @@
                                                          }];
     
     REMenuItem *activityItem = [[REMenuItem alloc] initWithTitle:@"Activity"
-														subTitle:@"Perform 3 additional activities"
+                                                        subTitle:@"Perform 3 additional activities"
                                                            image:[UIImage imageNamed:@"Icon_Activity"]
                                                 highlightedImage:nil
                                                           action:^(REMenuItem *item) {
@@ -51,7 +51,7 @@
                                                           }];
     
     REMenuItem *profileItem = [[REMenuItem alloc] initWithTitle:@"Profile"
-													   subTitle:nil                                                          image:[UIImage imageNamed:@"Icon_Profile"]
+                                                       subTitle:nil                                                          image:[UIImage imageNamed:@"Icon_Profile"]
                                                highlightedImage:nil
                                                          action:^(REMenuItem *item) {
                                                              NSLog(@"Item: %@", item);

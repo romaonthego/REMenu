@@ -27,20 +27,21 @@
 
 @implementation REMenuItemView
 
--(id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hasSubTitle:(BOOL)hasSubTitle {
+- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hasSubTitle:(BOOL)hasSubTitle
+{
     self = [super initWithFrame:frame];
-	
+    
     if (self) {
         _menu = menu;
-		
+        
         if (hasSubTitle) {
             //dividing lines at 1/1.725 (vs 1/2.000) results in labels about 28-top 20-bottom or 60/40 title/subtitle (for a 48 frame height)
             CGRect titleFrame = CGRectMake(_menu.textOffset.width, _menu.textOffset.height, 0, floorf(frame.size.height / 1.725));
             _titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
-			
+            
             CGRect subTitleFrame = CGRectMake(_menu.subTitleTextOffset.width, _menu.subTitleTextOffset.height + _titleLabel.frame.size.height, 0, floorf(frame.size.height * (1.0 - 1.0 / 1.725)));
             _subTitleLabel = [[UILabel alloc] initWithFrame:subTitleFrame];
-			
+            
             _subTitleLabel.contentMode = UIViewContentModeCenter;
             _subTitleLabel.textAlignment = NSTextAlignmentCenter;
             _subTitleLabel.backgroundColor = [UIColor clearColor];
@@ -50,26 +51,27 @@
             CGRect titleFrame = CGRectMake(_menu.textOffset.width, _menu.textOffset.height, 0, frame.size.height);
             _titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
         }
-		
+        
         _titleLabel.contentMode = UIViewContentModeCenter;
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:_titleLabel];
-		
+        
         _imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
         [self addSubview:_imageView];
     }
-	
+    
     return self;
 }
 
--(void)layoutSubviews {
+- (void)layoutSubviews
+{
     [super layoutSubviews];
     CGFloat imageOffset = (self.frame.size.height - _item.image.size.height) / 2.0;
     _imageView.image = _item.image;
     _imageView.frame = CGRectMake(imageOffset + _menu.imageOffset.width, imageOffset + _menu.imageOffset.height, _item.image.size.width, _item.image.size.height);
-	
+    
     _titleLabel.font = _menu.font;
     _titleLabel.text = _item.title;
     _titleLabel.textColor = _menu.textColor;
@@ -82,7 +84,8 @@
     _subTitleLabel.shadowOffset = _menu.subTitleTextShadowOffset;
 }
 
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     self.backgroundColor = _menu.highligtedBackgroundColor;
     _separatorView.backgroundColor = _menu.highlightedSeparatorColor;
     _imageView.image = _item.higlightedImage ? _item.higlightedImage : _item.image;
@@ -94,7 +97,8 @@
     _subTitleLabel.shadowOffset = _menu.subTitleHighlighedTextShadowOffset;
 }
 
--(void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
     self.backgroundColor = [UIColor clearColor];
     _separatorView.backgroundColor = _menu.separatorColor;
     _imageView.image = _item.image;
@@ -104,10 +108,11 @@
     _subTitleLabel.textColor = _menu.subTitleTextColor;
     _subTitleLabel.shadowColor = _menu.subTitleTextShadowColor;
     _subTitleLabel.shadowOffset = _menu.subTitleTextShadowOffset;
-	
+    
 }
 
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
     self.backgroundColor = [UIColor clearColor];
     _separatorView.backgroundColor = _menu.separatorColor;
     _imageView.image = _item.image;
@@ -118,7 +123,7 @@
     _subTitleLabel.shadowColor = _menu.subTitleTextShadowColor;
     _subTitleLabel.shadowOffset = _menu.subTitleTextShadowOffset;
     [_menu close];
-	
+    
     if (_item.action) {
         _item.action(_item);
     }

@@ -34,7 +34,7 @@
         return nil;
     
     self.title = title;
-	self.subTitle = subTitle;
+    self.subTitle = subTitle;
     self.image = image;
     self.higlightedImage = higlightedImage;
     self.action = action;
