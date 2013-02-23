@@ -34,6 +34,7 @@
 @property (copy, readwrite, nonatomic) void (^action)(REMenuItem *item);
 @property (assign, readwrite, nonatomic) NSInteger tag;
 
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action;
 - (id)initWithTitle:(NSString *)title subTitle:(NSString *)subTitle image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action;
 
 @end
