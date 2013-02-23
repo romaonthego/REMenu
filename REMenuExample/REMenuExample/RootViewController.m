@@ -51,7 +51,7 @@
                                                           }];
     
     REMenuItem *profileItem = [[REMenuItem alloc] initWithTitle:@"Profile"
-                                                       subTitle:nil                                                          image:[UIImage imageNamed:@"Icon_Profile"]
+                                                          image:[UIImage imageNamed:@"Icon_Profile"]
                                                highlightedImage:nil
                                                          action:^(REMenuItem *item) {
                                                              NSLog(@"Item: %@", item);
