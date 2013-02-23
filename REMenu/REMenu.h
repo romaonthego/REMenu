@@ -67,6 +67,16 @@
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
 
+@property (strong, readwrite, nonatomic) UIFont *subTitleFont;
+@property (strong, readwrite, nonatomic) UIColor *subTitleTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subTitleTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subTitleTextOffset;
+@property (assign, readwrite, nonatomic) CGSize subTitleTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIColor *subTitleHighlighedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subTitleHighlighedTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subTitleHighlighedTextShadowOffset;
+
+
 - (id)initWithItems:(NSArray *)items;
 - (void)showFromNavigationController:(UINavigationController *)navigationController;
 - (void)close;
