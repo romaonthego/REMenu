@@ -32,9 +32,10 @@
 @property (weak, nonatomic) REMenu *menu;
 @property (weak, nonatomic) UIView *separatorView;
 @property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UILabel *subTitleLabel;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) REMenuItem *item;
 
-- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu;
+- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hasSubTitle:(BOOL)hasSubTitle;
 
 @end
