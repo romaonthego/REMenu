@@ -69,8 +69,8 @@
     self.subtitleTextShadowColor = [UIColor blackColor];
     self.subtitleTextShadowOffset = CGSizeMake(0, -1);
     self.subtitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
-	self.subtitleHighlighedTextShadowColor = [UIColor blackColor];
-	self.subtitleHighlighedTextShadowOffset = CGSizeMake(0, -1);
+    self.subtitleHighlighedTextShadowColor = [UIColor blackColor];
+    self.subtitleHighlighedTextShadowOffset = CGSizeMake(0, -1);
     
     self.borderWidth = 1;
     self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
@@ -161,16 +161,16 @@
 
 - (UIImage *)separatorImage
 {
-	UIGraphicsBeginImageContext(CGSizeMake(1, 4));
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	UIGraphicsPushContext(context);
-	CGContextSetFillColorWithColor(context, [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1].CGColor);
+    UIGraphicsBeginImageContext(CGSizeMake(1, 4));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIGraphicsPushContext(context);
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1].CGColor);
     CGContextFillRect(context, CGRectMake(0, 0, 1, 2));
     CGContextSetFillColorWithColor(context, [UIColor colorWithRed:79/255.0 green:79/255.0 blue:77/255.0 alpha:1].CGColor);
     CGContextFillRect(context, CGRectMake(0, 3, 1, 2));
-	UIGraphicsPopContext();
-	UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
-	UIGraphicsEndImageContext();
+    UIGraphicsPopContext();
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
     return [UIImage imageWithCGImage:outputImage.CGImage scale:2.0 orientation:UIImageOrientationUp];
 }
