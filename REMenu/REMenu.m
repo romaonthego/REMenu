@@ -27,6 +27,11 @@
 #import "REMenuItem.h"
 #import "REMenuItemView.h"
 
+
+@interface REMenuItem ()
+@property (assign, nonatomic) REMenuItemView *itemView;
+@end
+
 @implementation REMenu
 
 - (id)initWithItems:(NSArray *)items
@@ -58,6 +63,7 @@
     self.textColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1];
     self.textShadowColor = [UIColor blackColor];
     self.textShadowOffset = CGSizeMake(0, -1);
+    self.textAlignment = NSTextAlignmentCenter;
     
     self.highligtedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
     self.highlightedSeparatorColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
@@ -71,6 +77,7 @@
     self.subtitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
     self.subtitleHighlighedTextShadowColor = [UIColor blackColor];
     self.subtitleHighlighedTextShadowOffset = CGSizeMake(0, -1);
+    self.subtitleTextAlignment = NSTextAlignmentCenter;
     
     self.borderWidth = 1;
     self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
@@ -96,6 +103,7 @@
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight) menu:self hassubtitle:item.subtitle.length > 0];
         itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         itemView.item = item;
+        item.itemView = itemView;
         itemView.separatorView = separatorView;
         itemView.autoresizesSubviews = YES;
         [_menuView addSubview:itemView];
