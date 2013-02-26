@@ -36,6 +36,6 @@
 @property (strong, nonatomic) UIImageView *imageView;
 @property (strong, nonatomic) REMenuItem *item;
 
-- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hassubtitle:(BOOL)hassubtitle;
+- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hasSubtitle:(BOOL)hasSubtitle;
 
 @end

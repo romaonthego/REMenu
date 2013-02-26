@@ -100,7 +100,9 @@
         separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [_menuView addSubview:separatorView];
         
-        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight) menu:self hassubtitle:item.subtitle.length > 0];
+        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight)
+                                                                    menu:self
+                                                             hasSubtitle:item.subtitle.length > 0];
         itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         itemView.item = item;
         item.itemView = itemView;
