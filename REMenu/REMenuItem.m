@@ -24,6 +24,12 @@
 //
 
 #import "REMenuItem.h"
+#import "REMenuItemView.h"
+
+@interface REMenuItem ()
+@property (assign, nonatomic) REMenuItemView *itemView;
+@end
+
 
 @implementation REMenuItem
 
@@ -60,5 +66,24 @@
 {
     return [NSString stringWithFormat:@"<title: %@; subtitle: %@; tag: %i>", self.title, self.subtitle, self.tag];
 }
+
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    _itemView.titleLabel.text = title;
+}
+
+- (void)setSubtitle:(NSString *)subtitle
+{
+    _subtitle = subtitle;
+    _itemView.subtitleLabel.text = subtitle;
+}
+
+- (void)setImage:(UIImage *)image
+{
+    _image = image;
+    _itemView.imageView.image = image;
+}
+
 
 @end
