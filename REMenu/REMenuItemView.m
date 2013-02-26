@@ -133,11 +133,13 @@
     _subtitleLabel.textColor = _menu.subtitleTextColor;
     _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
     _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
-    [_menu close];
     
-    if (_item.action) {
-        _item.action(_item);
-    }
+    __typeof (&*self) __weak weakSelf = self;
+    [_menu closeWithCompletion:^{
+        if (weakSelf.item.action) {
+            weakSelf.item.action(weakSelf.item);
+        }
+    }];
 }
 
 @end

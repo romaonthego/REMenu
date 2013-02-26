@@ -80,6 +80,7 @@
 
 - (id)initWithItems:(NSArray *)items;
 - (void)showFromNavigationController:(UINavigationController *)navigationController;
+- (void)closeWithCompletion:(void (^)(void))completion;
 - (void)close;
 
 @end

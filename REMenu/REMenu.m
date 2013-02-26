@@ -146,7 +146,7 @@
     _isOpen = YES;
 }
 
-- (void)close
+- (void)closeWithCompletion:(void (^)(void))completion
 {
     _isOpen = NO;
     [UIView animateWithDuration:0.2 animations:^{
@@ -160,8 +160,15 @@
             _menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
             [_containerView removeFromSuperview];
+            if (completion)
+                completion();
         }];
     }];
+}
+
+- (void)close
+{
+    [self closeWithCompletion:nil];
 }
 
 - (CGFloat)combinedHeight
