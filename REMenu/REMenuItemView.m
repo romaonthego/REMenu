@@ -43,7 +43,7 @@
             _subtitleLabel = [[UILabel alloc] initWithFrame:subtitleFrame];
             
             _subtitleLabel.contentMode = UIViewContentModeCenter;
-            _subtitleLabel.textAlignment = NSTextAlignmentCenter;
+            _subtitleLabel.textAlignment = _menu.subtitleTextAlignment;
             _subtitleLabel.backgroundColor = [UIColor clearColor];
             _subtitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             [self addSubview:_subtitleLabel];
@@ -53,7 +53,7 @@
         }
         
         _titleLabel.contentMode = UIViewContentModeCenter;
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.textAlignment = _menu.textAlignment;
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:_titleLabel];

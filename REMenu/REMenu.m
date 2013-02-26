@@ -27,6 +27,11 @@
 #import "REMenuItem.h"
 #import "REMenuItemView.h"
 
+
+@interface REMenuItem ()
+@property (assign, nonatomic) REMenuItemView *itemView;
+@end
+
 @implementation REMenu
 
 - (id)initWithItems:(NSArray *)items
@@ -98,6 +103,7 @@
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight) menu:self hassubtitle:item.subtitle.length > 0];
         itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         itemView.item = item;
+        item.itemView = itemView;
         itemView.separatorView = separatorView;
         itemView.autoresizesSubviews = YES;
         [_menuView addSubview:itemView];
