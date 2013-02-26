@@ -71,12 +71,14 @@
 {
     _title = title;
     _itemView.titleLabel.text = title;
+    _itemView.accessibilityLabel = title;
 }
 
 - (void)setSubtitle:(NSString *)subtitle
 {
     _subtitle = subtitle;
     _itemView.subtitleLabel.text = subtitle;
+    _itemView.accessibilityLabel = [NSString stringWithFormat:@"%@, %@", _itemView.titleLabel.text, subtitle];
 }
 
 - (void)setImage:(UIImage *)image

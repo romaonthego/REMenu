@@ -32,6 +32,10 @@
     self = [super initWithFrame:frame];
     
     if (self) {
+        self.isAccessibilityElement = YES;
+        self.accessibilityTraits = UIAccessibilityTraitButton;
+        self.accessibilityHint = NSLocalizedString(@"Double tap to choose", @"Double tap to choose");
+        
         _menu = menu;
         
         if (hasSubtitle) {
@@ -46,12 +50,14 @@
             _subtitleLabel.textAlignment = _menu.subtitleTextAlignment;
             _subtitleLabel.backgroundColor = [UIColor clearColor];
             _subtitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            _subtitleLabel.isAccessibilityElement = NO;
             [self addSubview:_subtitleLabel];
         } else {
             CGRect titleFrame = CGRectMake(_menu.textOffset.width, _menu.textOffset.height, 0, frame.size.height);
             _titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
         }
         
+        _titleLabel.isAccessibilityElement = NO;
         _titleLabel.contentMode = UIViewContentModeCenter;
         _titleLabel.textAlignment = _menu.textAlignment;
         _titleLabel.backgroundColor = [UIColor clearColor];
@@ -84,6 +90,9 @@
     _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
     _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
     _subtitleLabel.textAlignment = _menu.subtitleTextAlignment;
+    self.accessibilityLabel = _titleLabel.text;
+    if (_subtitleLabel.text)
+        self.accessibilityLabel = [NSString stringWithFormat:@"%@, %@", _titleLabel.text, _subtitleLabel.text];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

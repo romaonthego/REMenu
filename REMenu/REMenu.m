@@ -127,6 +127,8 @@
     _containerView.clipsToBounds = YES;
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.accessibilityLabel = NSLocalizedString(@"Menu background", @"Menu background");
+    button.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
     button.frame = _containerView.bounds;
     [button addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     [_containerView addSubview:button];
