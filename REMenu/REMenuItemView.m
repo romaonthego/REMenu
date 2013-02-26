@@ -77,11 +77,13 @@
     _titleLabel.textColor = _menu.textColor;
     _titleLabel.shadowColor = _menu.textShadowColor;
     _titleLabel.shadowOffset = _menu.textShadowOffset;
+    _titleLabel.textAlignment = _menu.textAlignment;
     _subtitleLabel.font = _menu.subtitleFont;
     _subtitleLabel.text = _item.subtitle;
     _subtitleLabel.textColor = _menu.subtitleTextColor;
     _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
     _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
+    _subtitleLabel.textAlignment = _menu.subtitleTextAlignment;
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
