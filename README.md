@@ -110,6 +110,7 @@ You can customize the following properties of `REMenu`:
 @property (assign, readwrite, nonatomic) CGSize highlighedTextShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
+@property (assign, readwrite, nonatomic) NSTextAlignment textAlignment;
 @property (strong, readwrite, nonatomic) UIFont *subtitleFont;
 @property (strong, readwrite, nonatomic) UIColor *subtitleTextColor;
 @property (strong, readwrite, nonatomic) UIColor *subtitleTextShadowColor;
@@ -118,6 +119,7 @@ You can customize the following properties of `REMenu`:
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextColor;
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlighedTextShadowOffset;
+@property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 ```
 
 ## Contact
