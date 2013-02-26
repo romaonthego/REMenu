@@ -81,6 +81,7 @@
     
     self.borderWidth = 1;
     self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
+    self.animationDuration = 0.3;
     
     return self;
 }
@@ -134,7 +135,7 @@
     
     [navigationController.view addSubview:_containerView];
     
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView animateWithDuration:_animationDuration animations:^{
         CGRect frame = _menuView.frame;
         frame.origin.y = -40 - _separatorHeight;
         _menuWrapperView.frame = frame;
@@ -151,7 +152,7 @@
         frame.origin.y = -20;
         _menuWrapperView.frame = frame;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:_animationDuration animations:^{
             CGRect frame = _menuView.frame;
             frame.origin.y = - self.combinedHeight;
             _menuWrapperView.frame = frame;

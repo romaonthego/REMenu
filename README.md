@@ -120,6 +120,7 @@ You can customize the following properties of `REMenu`:
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlighedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
+@property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 ```
 
 ## Contact

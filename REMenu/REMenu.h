@@ -76,7 +76,7 @@
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlighedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
-
+@property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 
 - (id)initWithItems:(NSArray *)items;
 - (void)showFromNavigationController:(UINavigationController *)navigationController;
