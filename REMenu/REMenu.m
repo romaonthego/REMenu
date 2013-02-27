@@ -65,18 +65,18 @@
     self.textShadowOffset = CGSizeMake(0, -1);
     self.textAlignment = NSTextAlignmentCenter;
     
-    self.highligtedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
+    self.highlightedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
     self.highlightedSeparatorColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
-    self.highlighedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1];
-    self.highlighedTextShadowColor = [UIColor blackColor];
-    self.highlighedTextShadowOffset = CGSizeMake(0, -1);
+    self.highlightedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1];
+    self.highlightedTextShadowColor = [UIColor blackColor];
+    self.highlightedTextShadowOffset = CGSizeMake(0, -1);
     
     self.subtitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
     self.subtitleTextShadowColor = [UIColor blackColor];
     self.subtitleTextShadowOffset = CGSizeMake(0, -1);
-    self.subtitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
-    self.subtitleHighlighedTextShadowColor = [UIColor blackColor];
-    self.subtitleHighlighedTextShadowOffset = CGSizeMake(0, -1);
+    self.subtitleHighlightedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
+    self.subtitleHighlightedTextShadowColor = [UIColor blackColor];
+    self.subtitleHighlightedTextShadowOffset = CGSizeMake(0, -1);
     self.subtitleTextAlignment = NSTextAlignmentCenter;
     
     self.borderWidth = 1;
@@ -110,7 +110,6 @@
         itemView.separatorView = separatorView;
         itemView.autoresizesSubviews = YES;
         [_menuView addSubview:itemView];
-        
     }
     
     _menuWrapperView.frame = CGRectMake(0, - self.combinedHeight, navigationController.navigationBar.frame.size.width, self.combinedHeight);
