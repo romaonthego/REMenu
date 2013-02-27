@@ -29,7 +29,18 @@
 
 
 @interface REMenuItem ()
+
 @property (assign, nonatomic) REMenuItemView *itemView;
+
+@end
+
+@interface REMenu ()
+
+@property (strong, nonatomic) UIView *menuView;
+@property (strong, nonatomic) UIView *menuWrapperView;
+@property (strong, nonatomic) REMenuContainerView *containerView;
+@property (strong, nonatomic) UIButton *backgroundButton;
+
 @end
 
 @implementation REMenu
@@ -109,9 +120,8 @@
         NSInteger index = [_items indexOfObject:item];
         
         CGFloat itemHeight = _itemHeight;
-        if (index == _items.count - 1) {
+        if (index == _items.count - 1)
             itemHeight += _cornerRadius;
-        }
         
         UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index) * _separatorHeight + 40, navigationController.navigationBar.frame.size.width, _separatorHeight)];
         separatorView.backgroundColor = _separatorColor;
@@ -154,30 +164,33 @@
     
     // Animate appearance
     //
+    __typeof (&*self) __weak weakSelf = self;
     [UIView animateWithDuration:_animationDuration animations:^{
-        CGRect frame = _menuView.frame;
+        CGRect frame = weakSelf.menuView.frame;
         frame.origin.y = -40 - _separatorHeight;
-        _menuWrapperView.frame = frame;
+        weakSelf.menuWrapperView.frame = frame;
     } completion:nil];
 }
 
 - (void)closeWithCompletion:(void (^)(void))completion
 {
     _isOpen = NO;
+    __typeof (&*self) __weak weakSelf = self;
+    
     [UIView animateWithDuration:0.2 animations:^{
         CGRect frame = _menuView.frame;
         frame.origin.y = -20;
-        _menuWrapperView.frame = frame;
+        weakSelf.menuWrapperView.frame = frame;
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:_animationDuration animations:^{
             CGRect frame = _menuView.frame;
-            frame.origin.y = - self.combinedHeight;
-            _menuWrapperView.frame = frame;
+            frame.origin.y = - weakSelf.combinedHeight;
+            weakSelf.menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
-            [_menuView removeFromSuperview];
-            [_menuWrapperView removeFromSuperview];
-            [_backgroundButton removeFromSuperview];
-            [_containerView removeFromSuperview];
+            [weakSelf.menuView removeFromSuperview];
+            [weakSelf.menuWrapperView removeFromSuperview];
+            [weakSelf.backgroundButton removeFromSuperview];
+            [weakSelf.containerView removeFromSuperview];
             if (completion)
                 completion();
         }];
