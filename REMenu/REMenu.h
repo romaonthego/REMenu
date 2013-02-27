@@ -59,11 +59,11 @@
 @property (assign, readwrite, nonatomic) CGSize imageOffset;
 @property (assign, readwrite, nonatomic) CGSize textOffset;
 @property (assign, readwrite, nonatomic) CGSize textShadowOffset;
-@property (strong, readwrite, nonatomic) UIColor *highligtedBackgroundColor;
+@property (strong, readwrite, nonatomic) UIColor *highlightedBackgroundColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedSeparatorColor;
-@property (strong, readwrite, nonatomic) UIColor *highlighedTextColor;
-@property (strong, readwrite, nonatomic) UIColor *highlighedTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize highlighedTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *highlightedTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize highlightedTextShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
 @property (assign, readwrite, nonatomic) NSTextAlignment textAlignment;
@@ -72,9 +72,9 @@
 @property (strong, readwrite, nonatomic) UIColor *subtitleTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize subtitleTextOffset;
 @property (assign, readwrite, nonatomic) CGSize subtitleTextShadowOffset;
-@property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextColor;
-@property (strong, readwrite, nonatomic) UIColor *subtitleHighlighedTextShadowColor;
-@property (assign, readwrite, nonatomic) CGSize subtitleHighlighedTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subtitleHighlightedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 
 
@@ -83,3 +83,4 @@
 - (void)close;
 
 @end
+

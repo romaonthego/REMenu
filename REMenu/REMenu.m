@@ -65,18 +65,18 @@
     self.textShadowOffset = CGSizeMake(0, -1);
     self.textAlignment = NSTextAlignmentCenter;
     
-    self.highligtedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
+    self.highlightedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
     self.highlightedSeparatorColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
-    self.highlighedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1];
-    self.highlighedTextShadowColor = [UIColor blackColor];
-    self.highlighedTextShadowOffset = CGSizeMake(0, -1);
+    self.highlightedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1];
+    self.highlightedTextShadowColor = [UIColor blackColor];
+    self.highlightedTextShadowOffset = CGSizeMake(0, -1);
     
     self.subtitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
     self.subtitleTextShadowColor = [UIColor blackColor];
     self.subtitleTextShadowOffset = CGSizeMake(0, -1);
-    self.subtitleHighlighedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
-    self.subtitleHighlighedTextShadowColor = [UIColor blackColor];
-    self.subtitleHighlighedTextShadowOffset = CGSizeMake(0, -1);
+    self.subtitleHighlightedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
+    self.subtitleHighlightedTextShadowColor = [UIColor blackColor];
+    self.subtitleHighlightedTextShadowOffset = CGSizeMake(0, -1);
     self.subtitleTextAlignment = NSTextAlignmentCenter;
     
     self.borderWidth = 1;
@@ -86,49 +86,50 @@
 }
 
 - (void)showFromNavigationController:(UINavigationController *)navigationController
-{   
-    for (REMenuItem *item in _items) {
-        NSInteger index = [_items indexOfObject:item];
-        
-        CGFloat itemHeight = _itemHeight;
-        if (index == _items.count - 1) {
-            itemHeight += _cornerRadius;
-        }
-        
-        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index) * _separatorHeight + 40, navigationController.view.frame.size.width, _separatorHeight)];
-        separatorView.backgroundColor = _separatorColor;
-        separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [_menuView addSubview:separatorView];
-        
-        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight) menu:self hassubtitle:item.subtitle.length > 0];
-        itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        itemView.item = item;
-        item.itemView = itemView;
-        itemView.separatorView = separatorView;
-        itemView.autoresizesSubviews = YES;
-        [_menuView addSubview:itemView];
-        
-    }
-    
-    _menuWrapperView.frame = CGRectMake(0, - self.combinedHeight, navigationController.navigationBar.frame.size.width, self.combinedHeight);
-    _menuView.frame = _menuWrapperView.bounds;
-    [_menuWrapperView addSubview:_menuView];
-    
-    _menuView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    
-    
-    _containerView = [[REMenuContainerView alloc] initWithFrame:CGRectMake(0, navigationController.navigationBar.frame.origin.y + navigationController.navigationBar.frame.size.height, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height - navigationController.navigationBar.frame.origin.y - navigationController.navigationBar.frame.size.height)];
-    _containerView.bar = navigationController.navigationBar;
-    _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _containerView.clipsToBounds = YES;
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = _containerView.bounds;
-    [button addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    [_containerView addSubview:button];
-    [_containerView addSubview:_menuWrapperView];
+{
+    if ([_containerView.subviews count] == 0) {
+        for (REMenuItem *item in _items) {
+            NSInteger index = [_items indexOfObject:item];
 
+            CGFloat itemHeight = _itemHeight;
+            if (index == _items.count - 1) {
+                itemHeight += _cornerRadius;
+            }
+
+            UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index) * _separatorHeight + 40, navigationController.view.frame.size.width, _separatorHeight)];
+            separatorView.backgroundColor = _separatorColor;
+            separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [_menuView addSubview:separatorView];
+
+            REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight) menu:self hassubtitle:item.subtitle.length > 0];
+            itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            itemView.item = item;
+            item.itemView = itemView;
+            itemView.separatorView = separatorView;
+            itemView.autoresizesSubviews = YES;
+            [_menuView addSubview:itemView];
+
+        }
+
+        _menuWrapperView.frame = CGRectMake(0, - self.combinedHeight, navigationController.navigationBar.frame.size.width, self.combinedHeight);
+        _menuView.frame = _menuWrapperView.bounds;
+        [_menuWrapperView addSubview:_menuView];
+
+        _menuView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        _menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
+
+        _containerView = [[REMenuContainerView alloc] initWithFrame:CGRectMake(0, navigationController.navigationBar.frame.origin.y + navigationController.navigationBar.frame.size.height, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height - navigationController.navigationBar.frame.origin.y - navigationController.navigationBar.frame.size.height)];
+        _containerView.bar = navigationController.navigationBar;
+        _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        _containerView.clipsToBounds = YES;
+
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = _containerView.bounds;
+        [button addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+        [_containerView addSubview:button];
+        [_containerView addSubview:_menuWrapperView];
+    }
     
     [navigationController.view addSubview:_containerView];
     
@@ -139,6 +140,7 @@
     } completion:nil];
     
     _isOpen = YES;
+
 }
 
 - (void)close

@@ -60,6 +60,7 @@
         
         _imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
         [self addSubview:_imageView];
+        
     }
     
     return self;
@@ -88,15 +89,15 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.backgroundColor = _menu.highligtedBackgroundColor;
+    self.backgroundColor = _menu.highlightedBackgroundColor;
     _separatorView.backgroundColor = _menu.highlightedSeparatorColor;
     _imageView.image = _item.higlightedImage ? _item.higlightedImage : _item.image;
-    _titleLabel.textColor = _menu.highlighedTextColor;
-    _titleLabel.shadowColor = _menu.highlighedTextShadowColor;
-    _titleLabel.shadowOffset = _menu.highlighedTextShadowOffset;
-    _subtitleLabel.textColor = _menu.subtitleHighlighedTextColor;
-    _subtitleLabel.shadowColor = _menu.subtitleHighlighedTextShadowColor;
-    _subtitleLabel.shadowOffset = _menu.subtitleHighlighedTextShadowOffset;
+    _titleLabel.textColor = _menu.highlightedTextColor;
+    _titleLabel.shadowColor = _menu.highlightedTextShadowColor;
+    _titleLabel.shadowOffset = _menu.highlightedTextShadowOffset;
+    _subtitleLabel.textColor = _menu.subtitleHighlightedTextColor;
+    _subtitleLabel.shadowColor = _menu.subtitleHighlightedTextShadowColor;
+    _subtitleLabel.shadowOffset = _menu.subtitleHighlightedTextShadowOffset;
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
