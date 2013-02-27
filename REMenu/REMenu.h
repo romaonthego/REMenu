@@ -35,6 +35,7 @@
     UIView *_menuWrapperView;
     REMenuContainerView *_containerView;
     NSMutableArray *_itemViews;
+    UIButton *_backgroundButton;
 }
 
 // Data

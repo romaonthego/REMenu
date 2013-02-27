@@ -46,8 +46,15 @@
     _menuView.layer.masksToBounds = YES;
     _menuView.layer.shouldRasterize = YES;
     _menuView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    _menuView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _menuWrapperView.layer.shouldRasterize = YES;
     _menuWrapperView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    _containerView = [[REMenuContainerView alloc] init];
+    _backgroundButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backgroundButton.accessibilityLabel = NSLocalizedString(@"Menu background", @"Menu background");
+    _backgroundButton.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
+    [_backgroundButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     
     self.items = items;
     self.itemHeight = 48;
@@ -82,12 +89,22 @@
     self.borderWidth = 1;
     self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
     self.animationDuration = 0.3;
+
     
     return self;
 }
 
 - (void)showFromNavigationController:(UINavigationController *)navigationController
-{   
+{
+    _isOpen = YES;
+    
+    // Remove item views from superview
+    //
+    for (UIView *view in _menuView.subviews)
+        [view removeFromSuperview];
+    
+    // Append new item views to REMenuView
+    //
     for (REMenuItem *item in _items) {
         NSInteger index = [_items indexOfObject:item];
         
@@ -96,12 +113,12 @@
             itemHeight += _cornerRadius;
         }
         
-        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index) * _separatorHeight + 40, navigationController.view.frame.size.width, _separatorHeight)];
+        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index) * _separatorHeight + 40, navigationController.navigationBar.frame.size.width, _separatorHeight)];
         separatorView.backgroundColor = _separatorColor;
         separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [_menuView addSubview:separatorView];
         
-        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.view.frame.size.width, itemHeight)
+        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0, index * _itemHeight + (index+1) * _separatorHeight + 40, navigationController.navigationBar.frame.size.width, itemHeight)
                                                                     menu:self
                                                              hasSubtitle:item.subtitle.length > 0];
         itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -112,37 +129,36 @@
         [_menuView addSubview:itemView];
     }
     
-    _menuWrapperView.frame = CGRectMake(0, - self.combinedHeight, navigationController.navigationBar.frame.size.width, self.combinedHeight);
+    // Set up frames
+    //
+    _menuWrapperView.frame = CGRectMake(0,
+                                        - self.combinedHeight,
+                                        navigationController.navigationBar.frame.size.width,
+                                        self.combinedHeight);
     _menuView.frame = _menuWrapperView.bounds;
-    [_menuWrapperView addSubview:_menuView];
-    
-    _menuView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    
-    
-    _containerView = [[REMenuContainerView alloc] initWithFrame:CGRectMake(0, navigationController.navigationBar.frame.origin.y + navigationController.navigationBar.frame.size.height, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height - navigationController.navigationBar.frame.origin.y - navigationController.navigationBar.frame.size.height)];
+    _containerView.frame = CGRectMake(0,
+                                      navigationController.navigationBar.frame.origin.y + navigationController.navigationBar.frame.size.height,
+                                      navigationController.navigationBar.frame.size.width,
+                                      navigationController.view.frame.size.height - navigationController.navigationBar.frame.origin.y - navigationController.navigationBar.frame.size.height);
     _containerView.bar = navigationController.navigationBar;
     _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _containerView.clipsToBounds = YES;
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.accessibilityLabel = NSLocalizedString(@"Menu background", @"Menu background");
-    button.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
-    button.frame = _containerView.bounds;
-    [button addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    [_containerView addSubview:button];
-    [_containerView addSubview:_menuWrapperView];
+    _backgroundButton.frame = _containerView.bounds;
 
-    
+    // Add subviews
+    //
+    [_menuWrapperView addSubview:_menuView];
+    [_containerView addSubview:_backgroundButton];
+    [_containerView addSubview:_menuWrapperView];
     [navigationController.view addSubview:_containerView];
     
+    // Animate appearance
+    //
     [UIView animateWithDuration:_animationDuration animations:^{
         CGRect frame = _menuView.frame;
         frame.origin.y = -40 - _separatorHeight;
         _menuWrapperView.frame = frame;
     } completion:nil];
-    
-    _isOpen = YES;
 }
 
 - (void)closeWithCompletion:(void (^)(void))completion
@@ -158,6 +174,9 @@
             frame.origin.y = - self.combinedHeight;
             _menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
+            [_menuView removeFromSuperview];
+            [_menuWrapperView removeFromSuperview];
+            [_backgroundButton removeFromSuperview];
             [_containerView removeFromSuperview];
             if (completion)
                 completion();
