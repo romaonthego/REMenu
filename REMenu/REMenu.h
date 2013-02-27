@@ -41,6 +41,7 @@
 //
 @property (strong, readwrite, nonatomic) NSArray *items;
 @property (assign, readonly, nonatomic) BOOL isOpen;
+@property (assign, readwrite, nonatomic) BOOL closeOnSelect;
 
 // Style
 //
@@ -76,6 +77,8 @@
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlightedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
+
+@property (strong, readwrite, nonatomic) void (^closeHandler)(REMenu *menu);
 
 
 - (id)initWithItems:(NSArray *)items;

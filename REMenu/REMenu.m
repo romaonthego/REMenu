@@ -50,6 +50,7 @@
     _menuWrapperView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     
     self.items = items;
+    self.closeOnSelect = YES;
     self.itemHeight = 48;
     self.separatorHeight = 2;
     
@@ -157,6 +158,7 @@
             _menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
             [_containerView removeFromSuperview];
+            if (_closeHandler) _closeHandler(self);
         }];
     }];
 }

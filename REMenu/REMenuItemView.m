@@ -125,8 +125,11 @@
     _subtitleLabel.textColor = _menu.subtitleTextColor;
     _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
     _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
-    [_menu close];
-    
+
+    if (_menu.closeOnSelect) {
+        [_menu close];
+    }
+
     if (_item.action) {
         _item.action(_item);
     }
