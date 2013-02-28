@@ -40,6 +40,7 @@
 @property (strong, nonatomic) UIView *menuWrapperView;
 @property (strong, nonatomic) REMenuContainerView *containerView;
 @property (strong, nonatomic) UIButton *backgroundButton;
+@property (assign, readwrite, nonatomic) BOOL isOpen;
 
 @end
 
@@ -181,7 +182,6 @@
 - (void)closeWithCompletion:(void (^)(void))completion
 {
     __typeof (&*self) __weak weakSelf = self;
-    
     [UIView animateWithDuration:0.2 animations:^{
         CGRect frame = _menuView.frame;
         frame.origin.y = -20;
@@ -196,7 +196,7 @@
             [weakSelf.menuWrapperView removeFromSuperview];
             [weakSelf.backgroundButton removeFromSuperview];
             [weakSelf.containerView removeFromSuperview];
-            _isOpen = NO;
+            weakSelf.isOpen = NO;
             if (completion)
                 completion();
         }];
