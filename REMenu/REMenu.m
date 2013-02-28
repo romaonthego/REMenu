@@ -180,7 +180,6 @@
 
 - (void)closeWithCompletion:(void (^)(void))completion
 {
-    _isOpen = NO;
     __typeof (&*self) __weak weakSelf = self;
     
     [UIView animateWithDuration:0.2 animations:^{
@@ -197,6 +196,7 @@
             [weakSelf.menuWrapperView removeFromSuperview];
             [weakSelf.backgroundButton removeFromSuperview];
             [weakSelf.containerView removeFromSuperview];
+            _isOpen = NO;
             if (completion)
                 completion();
         }];
