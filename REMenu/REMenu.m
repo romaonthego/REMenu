@@ -156,7 +156,7 @@
                                       navigationController.navigationBar.frame.origin.y + navigationController.navigationBar.frame.size.height,
                                       navigationController.navigationBar.frame.size.width,
                                       navigationController.view.frame.size.height - navigationController.navigationBar.frame.origin.y - navigationController.navigationBar.frame.size.height);
-    _containerView.bar = navigationController.navigationBar;
+    _containerView.navigationBar = navigationController.navigationBar;
     _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _containerView.clipsToBounds = YES;
     _backgroundButton.frame = _containerView.bounds;

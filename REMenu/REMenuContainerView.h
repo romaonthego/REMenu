@@ -27,6 +27,6 @@
 
 @interface REMenuContainerView : UIView
 
-@property (strong, nonatomic) UINavigationBar *bar;
+@property (strong, nonatomic) UINavigationBar *navigationBar;
 
 @end
