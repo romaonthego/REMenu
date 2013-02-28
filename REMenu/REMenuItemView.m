@@ -39,7 +39,8 @@
         _menu = menu;
         
         if (hasSubtitle) {
-            //dividing lines at 1/1.725 (vs 1/2.000) results in labels about 28-top 20-bottom or 60/40 title/subtitle (for a 48 frame height)
+            // Dividing lines at 1/1.725 (vs 1/2.000) results in labels about 28-top 20-bottom or 60/40 title/subtitle (for a 48 frame height)
+            //
             CGRect titleFrame = CGRectMake(_menu.textOffset.width, _menu.textOffset.height, 0, floorf(frame.size.height / 1.725));
             _titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
             
