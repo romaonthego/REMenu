@@ -42,6 +42,7 @@
 //
 @property (strong, readwrite, nonatomic) NSArray *items;
 @property (assign, readonly, nonatomic) BOOL isOpen;
+@property (assign, readwrite, nonatomic) BOOL waitUntilAnimationIsComplete;
 
 // Style
 //

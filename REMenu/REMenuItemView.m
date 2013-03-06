@@ -135,12 +135,19 @@
     _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
     _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
     
-    __typeof (&*self) __weak weakSelf = self;
-    [_menu closeWithCompletion:^{
-        if (weakSelf.item.action) {
-            weakSelf.item.action(weakSelf.item);
+    if (_menu.waitUntilAnimationIsComplete) {
+        __typeof (&*self) __weak weakSelf = self;
+        [_menu closeWithCompletion:^{
+            if (weakSelf.item.action) {
+                weakSelf.item.action(weakSelf.item);
+            }
+        }];
+    } else {
+        [_menu close];
+        if (self.item.action) {
+            self.item.action(self.item);
         }
-    }];
+    }
 }
 
 @end

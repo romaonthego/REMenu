@@ -71,6 +71,7 @@
     self.items = items;
     self.itemHeight = 48;
     self.separatorHeight = 2;
+    self.waitUntilAnimationIsComplete = YES;
     
     self.textOffset = CGSizeMake(0, 0);
     self.subtitleTextOffset = CGSizeMake(0, 0);
