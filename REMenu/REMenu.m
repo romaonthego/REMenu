@@ -200,6 +200,9 @@
             weakSelf.isOpen = NO;
             if (completion)
                 completion();
+          
+            if (self.closeCompletionHandler)
+                self.closeCompletionHandler();
         }];
     }];
 }
