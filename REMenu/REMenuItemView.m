@@ -135,7 +135,12 @@
     _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
     _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
     
-    if (_menu.waitUntilAnimationIsComplete) {
+	CGPoint endedPoint = [[touches anyObject] locationInView:self];
+	if (endedPoint.y < 0 ||
+		endedPoint.y > CGRectGetHeight(self.bounds))
+		return;
+	
+	if (_menu.waitUntilAnimationIsComplete) {
         __typeof (&*self) __weak weakSelf = self;
         [_menu closeWithCompletion:^{
             if (weakSelf.item.action) {
