@@ -75,7 +75,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    CGFloat imageOffset = (self.frame.size.height - _item.image.size.height) / 2.0;
+    CGFloat imageOffset = floor((self.frame.size.height - _item.image.size.height) / 2.0);
     _imageView.image = _item.image;
     _imageView.frame = CGRectMake(imageOffset + _menu.imageOffset.width, imageOffset + _menu.imageOffset.height, _item.image.size.width, _item.image.size.height);
     
