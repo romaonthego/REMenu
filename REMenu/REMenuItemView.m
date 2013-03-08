@@ -30,23 +30,23 @@
 - (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hasSubtitle:(BOOL)hasSubtitle
 {
     self = [super initWithFrame:frame];
-    
+
     if (self) {
         self.isAccessibilityElement = YES;
         self.accessibilityTraits = UIAccessibilityTraitButton;
         self.accessibilityHint = NSLocalizedString(@"Double tap to choose", @"Double tap to choose");
-        
+
         _menu = menu;
-        
+
         if (hasSubtitle) {
             // Dividing lines at 1/1.725 (vs 1/2.000) results in labels about 28-top 20-bottom or 60/40 title/subtitle (for a 48 frame height)
             //
             CGRect titleFrame = CGRectMake(_menu.textOffset.width, _menu.textOffset.height, 0, floorf(frame.size.height / 1.725));
             _titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
-            
+
             CGRect subtitleFrame = CGRectMake(_menu.subtitleTextOffset.width, _menu.subtitleTextOffset.height + _titleLabel.frame.size.height, 0, floorf(frame.size.height * (1.0 - 1.0 / 1.725)));
             _subtitleLabel = [[UILabel alloc] initWithFrame:subtitleFrame];
-            
+
             _subtitleLabel.contentMode = UIViewContentModeCenter;
             _subtitleLabel.textAlignment = _menu.subtitleTextAlignment;
             _subtitleLabel.backgroundColor = [UIColor clearColor];
@@ -57,18 +57,18 @@
             CGRect titleFrame = CGRectMake(_menu.textOffset.width, _menu.textOffset.height, 0, frame.size.height);
             _titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
         }
-        
+
         _titleLabel.isAccessibilityElement = NO;
         _titleLabel.contentMode = UIViewContentModeCenter;
         _titleLabel.textAlignment = _menu.textAlignment;
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self addSubview:_titleLabel];
-        
+
         _imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
         [self addSubview:_imageView];
     }
-    
+
     return self;
 }
 
@@ -78,7 +78,7 @@
     CGFloat imageOffset = floor((self.frame.size.height - _item.image.size.height) / 2.0);
     _imageView.image = _item.image;
     _imageView.frame = CGRectMake(imageOffset + _menu.imageOffset.width, imageOffset + _menu.imageOffset.height, _item.image.size.width, _item.image.size.height);
-    
+
     _titleLabel.font = _menu.font;
     _titleLabel.text = _item.title;
     _titleLabel.textColor = _menu.textColor;
@@ -120,7 +120,7 @@
     _subtitleLabel.textColor = _menu.subtitleTextColor;
     _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
     _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
-    
+
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -134,13 +134,12 @@
     _subtitleLabel.textColor = _menu.subtitleTextColor;
     _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
     _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
-    
-	CGPoint endedPoint = [[touches anyObject] locationInView:self];
-	if (endedPoint.y < 0 ||
-		endedPoint.y > CGRectGetHeight(self.bounds))
-		return;
-	
-	if (_menu.waitUntilAnimationIsComplete) {
+
+    CGPoint endedPoint = [[touches anyObject] locationInView:self];
+    if (endedPoint.y < 0 || endedPoint.y > CGRectGetHeight(self.bounds))
+        return;
+
+    if (_menu.waitUntilAnimationIsComplete) {
         __typeof (&*self) __weak weakSelf = self;
         [_menu closeWithCompletion:^{
             if (weakSelf.item.action) {
