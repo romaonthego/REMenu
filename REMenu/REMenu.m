@@ -201,8 +201,8 @@
             if (completion)
                 completion();
           
-            if (self.closeCompletionHandler)
-                self.closeCompletionHandler();
+            if (weakSelf.closeCompletionHandler)
+                weakSelf.closeCompletionHandler();
         }];
     }];
 }

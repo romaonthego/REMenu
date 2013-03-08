@@ -43,6 +43,7 @@
 @property (strong, readwrite, nonatomic) NSArray *items;
 @property (assign, readonly, nonatomic) BOOL isOpen;
 @property (assign, readwrite, nonatomic) BOOL waitUntilAnimationIsComplete;
+@property (copy, readwrite, nonatomic) void (^closeCompletionHandler)(void);
 
 // Style
 //
@@ -79,7 +80,6 @@
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlightedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
-@property (copy, readwrite, nonatomic) void (^closeCompletionHandler)(void);
 
 - (id)initWithItems:(NSArray *)items;
 - (void)showFromNavigationController:(UINavigationController *)navigationController;
