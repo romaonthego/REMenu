@@ -75,7 +75,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    CGFloat imageOffset = (self.frame.size.height - _item.image.size.height) / 2.0;
+    CGFloat imageOffset = floor((self.frame.size.height - _item.image.size.height) / 2.0);
     _imageView.image = _item.image;
     _imageView.frame = CGRectMake(imageOffset + _menu.imageOffset.width, imageOffset + _menu.imageOffset.height, _item.image.size.width, _item.image.size.height);
     
@@ -135,7 +135,12 @@
     _subtitleLabel.shadowColor = _menu.subtitleTextShadowColor;
     _subtitleLabel.shadowOffset = _menu.subtitleTextShadowOffset;
     
-    if (_menu.waitUntilAnimationIsComplete) {
+	CGPoint endedPoint = [[touches anyObject] locationInView:self];
+	if (endedPoint.y < 0 ||
+		endedPoint.y > CGRectGetHeight(self.bounds))
+		return;
+	
+	if (_menu.waitUntilAnimationIsComplete) {
         __typeof (&*self) __weak weakSelf = self;
         [_menu closeWithCompletion:^{
             if (weakSelf.item.action) {
