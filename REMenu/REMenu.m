@@ -181,8 +181,7 @@
 
 - (void)showInView:(UIView *)view
 {
-    [self showFromRect:view.bounds
-                inView:view];
+    [self showFromRect:view.bounds inView:view];
 }
 
 - (void)showFromNavigationController:(UINavigationController *)navigationController
