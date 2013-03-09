@@ -181,7 +181,7 @@
 
 - (void)showInView:(UIView *)view
 {
-    [self showFromRect:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)
+    [self showFromRect:view.bounds
                 inView:view];
 }
 
