@@ -28,6 +28,8 @@
 #import "REMenuItemView.h"
 #import "REGradientView.h"
 
+NSString *const REBackgroundBlackButtonClick = @"REBackgroundBlackButtonClick";
+
 
 @interface REMenuItem ()
 
@@ -68,7 +70,7 @@
     _backgroundButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _backgroundButton.accessibilityLabel = NSLocalizedString(@"Menu background", @"Menu background");
     _backgroundButton.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
-    [_backgroundButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    [_backgroundButton addTarget:self action:@selector(tapBackgroundClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.items = items;
     self.itemHeight = 48;
@@ -268,7 +270,7 @@
 }
 
 - (void)closeWithCompletion:(void (^)(void))completion
-{
+{   
     __typeof (&*self) __weak weakSelf = self;
     [UIView animateWithDuration:0.2 animations:^{
         CGRect frame = _menuView.frame;
@@ -286,6 +288,7 @@
             [weakSelf.backgroundBlack removeFromSuperview];
             [weakSelf.containerView removeFromSuperview];
             weakSelf.isOpen = NO;
+            
             if (completion)
                 completion();
           
@@ -298,6 +301,15 @@
 - (void)close
 {
     [self closeWithCompletion:nil];
+}
+
+- (void)tapBackgroundClick
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:REBackgroundBlackButtonClick
+                                                            object:self
+                                                          userInfo:nil];
+    });
 }
 
 - (CGFloat)combinedHeight
