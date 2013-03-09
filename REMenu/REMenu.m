@@ -180,6 +180,81 @@
     } completion:nil];
 }
 
+- (void)showInView:(UIView *)insideView aboveView:(UIView *)aboveView
+{
+    _isOpen = YES;
+    
+    // Remove item views from superview
+    //
+    for (UIView *view in _menuView.subviews)
+        [view removeFromSuperview];
+    
+    // Append new item views to REMenuView
+    //
+    for (REMenuItem *item in _items) {
+        NSInteger index = [_items indexOfObject:item];
+        
+        CGFloat itemHeight = _itemHeight;
+        if (index == _items.count - 1)
+            itemHeight += _cornerRadius;
+        
+        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                         index * _itemHeight + (index) * _separatorHeight + 40,
+                                                                         insideView.frame.size.width,
+                                                                         _separatorHeight)];
+        separatorView.backgroundColor = _separatorColor;
+        separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        [_menuView addSubview:separatorView];
+        
+        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
+                                                                                    index * _itemHeight + (index+1) * _separatorHeight + 40,
+                                                                                    insideView.frame.size.width,
+                                                                                    itemHeight)
+                                                                    menu:self
+                                                             hasSubtitle:item.subtitle.length > 0];
+        itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        itemView.item = item;
+        item.itemView = itemView;
+        itemView.separatorView = separatorView;
+        itemView.autoresizesSubviews = YES;
+        [_menuView addSubview:itemView];
+    }
+    
+    // Set up frames
+    //
+    _menuWrapperView.frame = CGRectMake(0,
+                                        - self.combinedHeight,
+                                        insideView.frame.size.width,
+                                        self.combinedHeight);
+    
+    _menuView.frame = _menuWrapperView.bounds;
+    _containerView.frame = CGRectMake(0,
+                                      aboveView.frame.origin.y + aboveView.frame.size.height,
+                                      insideView.frame.size.width,
+                                      insideView.frame.size.height - aboveView.frame.origin.y - aboveView.frame.size.height);
+    
+//    _containerView.navigationBar = navigationController.navigationBar;
+    _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _containerView.clipsToBounds = YES;
+    _backgroundButton.frame = _containerView.bounds;
+    
+    // Add subviews
+    //
+    [_menuWrapperView addSubview:_menuView];
+    [_containerView addSubview:_backgroundButton];
+    [_containerView addSubview:_menuWrapperView];
+    [insideView addSubview:_containerView];
+    
+    // Animate appearance
+    //
+    __typeof (&*self) __weak weakSelf = self;
+    [UIView animateWithDuration:_animationDuration animations:^{
+        CGRect frame = weakSelf.menuView.frame;
+        frame.origin.y = -40 - _separatorHeight;
+        weakSelf.menuWrapperView.frame = frame;
+    } completion:nil];
+}
+
 - (void)closeWithCompletion:(void (^)(void))completion
 {
     __typeof (&*self) __weak weakSelf = self;

@@ -83,6 +83,7 @@
 
 - (id)initWithItems:(NSArray *)items;
 - (void)showFromNavigationController:(UINavigationController *)navigationController;
+- (void)showInView:(UIView *)insideView aboveView:(UIView *)aboveView;
 - (void)closeWithCompletion:(void (^)(void))completion;
 - (void)close;
 
