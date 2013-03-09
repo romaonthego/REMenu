@@ -26,6 +26,7 @@
 #import "REMenu.h"
 #import "REMenuItem.h"
 #import "REMenuItemView.h"
+#import "REGradientView.h"
 
 
 @interface REMenuItem ()
@@ -40,6 +41,7 @@
 @property (strong, nonatomic) UIView *menuWrapperView;
 @property (strong, nonatomic) REMenuContainerView *containerView;
 @property (strong, nonatomic) UIButton *backgroundButton;
+@property (strong, nonatomic) REGradientView *backgroundBlack;
 @property (assign, readwrite, nonatomic) BOOL isOpen;
 
 @end
@@ -233,7 +235,6 @@
                                       insideView.frame.size.width,
                                       insideView.frame.size.height - aboveView.frame.origin.y - aboveView.frame.size.height);
     
-//    _containerView.navigationBar = navigationController.navigationBar;
     _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _containerView.clipsToBounds = YES;
     _backgroundButton.frame = _containerView.bounds;
@@ -241,6 +242,17 @@
     // Add subviews
     //
     [_menuWrapperView addSubview:_menuView];
+    
+    // Add GradientView
+    _backgroundBlack = [[REGradientView alloc]
+                        initWithFrame:CGRectMake(0,
+                                                 0,
+                                                 insideView.frame.size.width,
+                                                 insideView.frame.size.height)];
+    
+    [_backgroundBlack setOpaque:NO];
+    
+    [_containerView addSubview:_backgroundBlack];
     [_containerView addSubview:_backgroundButton];
     [_containerView addSubview:_menuWrapperView];
     [insideView addSubview:_containerView];
@@ -271,6 +283,7 @@
             [weakSelf.menuView removeFromSuperview];
             [weakSelf.menuWrapperView removeFromSuperview];
             [weakSelf.backgroundButton removeFromSuperview];
+            [weakSelf.backgroundBlack removeFromSuperview];
             [weakSelf.containerView removeFromSuperview];
             weakSelf.isOpen = NO;
             if (completion)
