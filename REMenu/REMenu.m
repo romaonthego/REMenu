@@ -26,6 +26,9 @@
 #import "REMenu.h"
 #import "REMenuItem.h"
 #import "REMenuItemView.h"
+#import "REGradientView.h"
+
+NSString *const REBackgroundBlackButtonClick = @"REBackgroundBlackButtonClick";
 
 
 @interface REMenuItem ()
@@ -40,6 +43,7 @@
 @property (strong, nonatomic) UIView *menuWrapperView;
 @property (strong, nonatomic) REMenuContainerView *containerView;
 @property (strong, nonatomic) UIButton *backgroundButton;
+@property (strong, nonatomic) REGradientView *backgroundBlack;
 @property (assign, readwrite, nonatomic) BOOL isOpen;
 
 @end
@@ -66,7 +70,7 @@
     _backgroundButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _backgroundButton.accessibilityLabel = NSLocalizedString(@"Menu background", @"Menu background");
     _backgroundButton.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
-    [_backgroundButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
+    [_backgroundButton addTarget:self action:@selector(tapBackgroundClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.items = items;
     self.itemHeight = 48;
@@ -180,6 +184,91 @@
     } completion:nil];
 }
 
+- (void)showInView:(UIView *)insideView aboveView:(UIView *)aboveView
+{
+    _isOpen = YES;
+    
+    // Remove item views from superview
+    //
+    for (UIView *view in _menuView.subviews)
+        [view removeFromSuperview];
+    
+    // Append new item views to REMenuView
+    //
+    for (REMenuItem *item in _items) {
+        NSInteger index = [_items indexOfObject:item];
+        
+        CGFloat itemHeight = _itemHeight;
+        if (index == _items.count - 1)
+            itemHeight += _cornerRadius;
+        
+        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                         index * _itemHeight + (index) * _separatorHeight + 40,
+                                                                         insideView.frame.size.width,
+                                                                         _separatorHeight)];
+        separatorView.backgroundColor = _separatorColor;
+        separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        [_menuView addSubview:separatorView];
+        
+        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
+                                                                                    index * _itemHeight + (index+1) * _separatorHeight + 40,
+                                                                                    insideView.frame.size.width,
+                                                                                    itemHeight)
+                                                                    menu:self
+                                                             hasSubtitle:item.subtitle.length > 0];
+        itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        itemView.item = item;
+        item.itemView = itemView;
+        itemView.separatorView = separatorView;
+        itemView.autoresizesSubviews = YES;
+        [_menuView addSubview:itemView];
+    }
+    
+    // Set up frames
+    //
+    _menuWrapperView.frame = CGRectMake(0,
+                                        - self.combinedHeight,
+                                        insideView.frame.size.width,
+                                        self.combinedHeight);
+    
+    _menuView.frame = _menuWrapperView.bounds;
+    _containerView.frame = CGRectMake(0,
+                                      aboveView.frame.origin.y + aboveView.frame.size.height,
+                                      insideView.frame.size.width,
+                                      insideView.frame.size.height - aboveView.frame.origin.y - aboveView.frame.size.height);
+    
+    _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _containerView.clipsToBounds = YES;
+    _backgroundButton.frame = _containerView.bounds;
+    
+    // Add subviews
+    //
+    [_menuWrapperView addSubview:_menuView];
+    
+    // Add GradientView
+    _backgroundBlack = [[REGradientView alloc]
+                        initWithFrame:CGRectMake(0,
+                                                 0,
+                                                 insideView.frame.size.width,
+                                                 insideView.frame.size.height)];
+    
+    [_backgroundBlack setOpaque:NO];
+    
+    [_containerView addSubview:_backgroundBlack];
+    [_containerView addSubview:_backgroundButton];
+    [_containerView addSubview:_menuWrapperView];
+    [insideView addSubview:_containerView];
+    
+    // Animate appearance
+    //
+    __typeof (&*self) __weak weakSelf = self;
+    [UIView animateWithDuration:_animationDuration animations:^{
+        CGRect frame = weakSelf.menuView.frame;
+        frame.origin.y = -40 - _separatorHeight;
+        weakSelf.menuWrapperView.frame = frame;
+    } completion:nil];
+}
+
 - (void)closeWithCompletion:(void (^)(void))completion
 {
     __typeof (&*self) __weak weakSelf = self;
@@ -196,6 +285,7 @@
             [weakSelf.menuView removeFromSuperview];
             [weakSelf.menuWrapperView removeFromSuperview];
             [weakSelf.backgroundButton removeFromSuperview];
+            [weakSelf.backgroundBlack removeFromSuperview];
             [weakSelf.containerView removeFromSuperview];
             weakSelf.isOpen = NO;
             if (completion)
@@ -210,6 +300,15 @@
 - (void)close
 {
     [self closeWithCompletion:nil];
+}
+
+- (void)tapBackgroundClick
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:REBackgroundBlackButtonClick
+                                                            object:self
+                                                          userInfo:nil];
+    });
 }
 
 - (CGFloat)combinedHeight

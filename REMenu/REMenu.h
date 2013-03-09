@@ -28,6 +28,9 @@
 #import "REMenuItem.h"
 #import "REMenuContainerView.h"
 
+/** Notification that gets posted when the user tap on the black screen behind the menu */
+extern NSString *const REBackgroundBlackButtonClick;
+
 @class REMenuItem;
 
 @interface REMenu : NSObject {
@@ -83,6 +86,7 @@
 
 - (id)initWithItems:(NSArray *)items;
 - (void)showFromNavigationController:(UINavigationController *)navigationController;
+- (void)showInView:(UIView *)insideView aboveView:(UIView *)aboveView;
 - (void)closeWithCompletion:(void (^)(void))completion;
 - (void)close;
 
