@@ -83,6 +83,13 @@ _menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, pro
 [_menu showFromNavigationController:self.navigationController];
 ```
 
+You can also present `REMenu` from a custom view, there are 2 specific tasks for that:
+
+``` objective-c
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view;
+- (void)showInView:(UIView *)view;
+```
+
 ## Customization
 
 You can customize the following properties of `REMenu`:
