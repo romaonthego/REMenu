@@ -82,6 +82,8 @@
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 
 - (id)initWithItems:(NSArray *)items;
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view;
+- (void)showInView:(UIView *)view;
 - (void)showFromNavigationController:(UINavigationController *)navigationController;
 - (void)closeWithCompletion:(void (^)(void))completion;
 - (void)close;

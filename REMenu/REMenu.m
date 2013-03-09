@@ -107,7 +107,7 @@
     return self;
 }
 
-- (void)showFromNavigationController:(UINavigationController *)navigationController
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view
 {
     _isOpen = YES;
     
@@ -127,7 +127,7 @@
         
         UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
                                                                          index * _itemHeight + (index) * _separatorHeight + 40,
-                                                                         navigationController.navigationBar.frame.size.width,
+                                                                         rect.size.width,
                                                                          _separatorHeight)];
         separatorView.backgroundColor = _separatorColor;
         separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -135,7 +135,7 @@
         
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
                                                                                     index * _itemHeight + (index+1) * _separatorHeight + 40,
-                                                                                    navigationController.navigationBar.frame.size.width,
+                                                                                    rect.size.width,
                                                                                     itemHeight)
                                                                     menu:self
                                                              hasSubtitle:item.subtitle.length > 0];
@@ -151,24 +151,23 @@
     //
     _menuWrapperView.frame = CGRectMake(0,
                                         - self.combinedHeight,
-                                        navigationController.navigationBar.frame.size.width,
+                                        rect.size.width,
                                         self.combinedHeight);
     _menuView.frame = _menuWrapperView.bounds;
-    _containerView.frame = CGRectMake(0,
-                                      navigationController.navigationBar.frame.origin.y + navigationController.navigationBar.frame.size.height,
-                                      navigationController.navigationBar.frame.size.width,
-                                      navigationController.view.frame.size.height - navigationController.navigationBar.frame.origin.y - navigationController.navigationBar.frame.size.height);
-    _containerView.navigationBar = navigationController.navigationBar;
+    _containerView.frame = CGRectMake(rect.origin.x,
+                                      rect.origin.y,
+                                      rect.size.width,
+                                      rect.size.height);
     _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _containerView.clipsToBounds = YES;
     _backgroundButton.frame = _containerView.bounds;
-
+    
     // Add subviews
     //
     [_menuWrapperView addSubview:_menuView];
     [_containerView addSubview:_backgroundButton];
     [_containerView addSubview:_menuWrapperView];
-    [navigationController.view addSubview:_containerView];
+    [view addSubview:_containerView];
     
     // Animate appearance
     //
@@ -178,6 +177,19 @@
         frame.origin.y = -40 - _separatorHeight;
         weakSelf.menuWrapperView.frame = frame;
     } completion:nil];
+}
+
+- (void)showInView:(UIView *)view
+{
+    [self showFromRect:CGRectMake(0, 0, view.frame.size.width, view.frame.size.height)
+                inView:view];
+}
+
+- (void)showFromNavigationController:(UINavigationController *)navigationController
+{
+    [self showFromRect:CGRectMake(0, 0, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height)
+                inView:navigationController.view];
+    _containerView.navigationBar = navigationController.navigationBar;
 }
 
 - (void)closeWithCompletion:(void (^)(void))completion
