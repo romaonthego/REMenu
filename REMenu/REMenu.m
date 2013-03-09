@@ -270,7 +270,7 @@ NSString *const REBackgroundBlackButtonClick = @"REBackgroundBlackButtonClick";
 }
 
 - (void)closeWithCompletion:(void (^)(void))completion
-{   
+{
     __typeof (&*self) __weak weakSelf = self;
     [UIView animateWithDuration:0.2 animations:^{
         CGRect frame = _menuView.frame;
@@ -288,7 +288,6 @@ NSString *const REBackgroundBlackButtonClick = @"REBackgroundBlackButtonClick";
             [weakSelf.backgroundBlack removeFromSuperview];
             [weakSelf.containerView removeFromSuperview];
             weakSelf.isOpen = NO;
-            
             if (completion)
                 completion();
           
