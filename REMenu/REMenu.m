@@ -46,7 +46,7 @@
 
 @implementation REMenu
 
-- (id)initWithItems:(NSArray *)items
+- (id)init
 {
     self = [super init];
     if (!self)
@@ -68,7 +68,6 @@
     _backgroundButton.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
     [_backgroundButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     
-    self.items = items;
     self.itemHeight = 48;
     self.separatorHeight = 2;
     self.waitUntilAnimationIsComplete = YES;
@@ -102,8 +101,19 @@
     self.borderWidth = 1;
     self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
     self.animationDuration = 0.3;
-
     
+    return self;
+}
+
+- (id)initWithItems:(NSArray *)items
+{
+    self = [self init];
+    if (!self)
+        return nil;
+    
+    self.items = items;
+
+
     return self;
 }
 
