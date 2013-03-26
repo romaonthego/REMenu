@@ -97,7 +97,6 @@
     
     self.items = items;
 
-
     return self;
 }
 
@@ -105,6 +104,8 @@
 {
     _isOpen = YES;
     
+    // Create views
+    //
     _containerView = [[REMenuContainerView alloc] init];
     _menuView = [[UIView alloc] init];
     _menuWrapperView = [[UIView alloc] init];
