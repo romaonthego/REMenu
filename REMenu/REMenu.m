@@ -55,6 +55,7 @@
     _containerView = [[REMenuContainerView alloc] init];
     _menuView = [[UIView alloc] init];
     _menuWrapperView = [[UIView alloc] init];
+    
     _menuView.layer.masksToBounds = YES;
     _menuView.layer.shouldRasterize = YES;
     _menuView.layer.rasterizationScale = [UIScreen mainScreen].scale;
@@ -62,7 +63,6 @@
     _menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _menuWrapperView.layer.shouldRasterize = YES;
     _menuWrapperView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    _containerView = [[REMenuContainerView alloc] init];
     _backgroundButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _backgroundButton.accessibilityLabel = NSLocalizedString(@"Menu background", @"Menu background");
     _backgroundButton.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
