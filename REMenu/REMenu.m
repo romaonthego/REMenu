@@ -52,22 +52,6 @@
     if (!self)
         return nil;
     
-    _containerView = [[REMenuContainerView alloc] init];
-    _menuView = [[UIView alloc] init];
-    _menuWrapperView = [[UIView alloc] init];
-    
-    _menuView.layer.masksToBounds = YES;
-    _menuView.layer.shouldRasterize = YES;
-    _menuView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    _menuView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _menuWrapperView.layer.shouldRasterize = YES;
-    _menuWrapperView.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    _backgroundButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    _backgroundButton.accessibilityLabel = NSLocalizedString(@"Menu background", @"Menu background");
-    _backgroundButton.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
-    [_backgroundButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    
     self.itemHeight = 48;
     self.separatorHeight = 2;
     self.waitUntilAnimationIsComplete = YES;
@@ -121,10 +105,35 @@
 {
     _isOpen = YES;
     
-    // Remove item views from superview
-    //
-    for (UIView *view in _menuView.subviews)
-        [view removeFromSuperview];
+    _containerView = [[REMenuContainerView alloc] init];
+    _menuView = [[UIView alloc] init];
+    _menuWrapperView = [[UIView alloc] init];
+    
+    _containerView.clipsToBounds = YES;
+    _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    _menuView.backgroundColor = self.backgroundColor;
+    _menuView.layer.cornerRadius = self.cornerRadius;
+    _menuView.layer.borderColor = self.borderColor.CGColor;
+    _menuView.layer.borderWidth = self.borderWidth;
+    _menuView.layer.masksToBounds = YES;
+    _menuView.layer.shouldRasterize = YES;
+    _menuView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    _menuView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    
+    _menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _menuWrapperView.layer.shadowColor = self.shadowColor.CGColor;
+    _menuWrapperView.layer.shadowOffset = self.shadowOffset;
+    _menuWrapperView.layer.shadowOpacity = self.shadowOpacity;
+    _menuWrapperView.layer.shadowRadius = self.shadowRadius;
+    _menuWrapperView.layer.shouldRasterize = YES;
+    _menuWrapperView.layer.rasterizationScale = [UIScreen mainScreen].scale;
+    
+    _backgroundButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _backgroundButton.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _backgroundButton.accessibilityLabel = NSLocalizedString(@"Menu background", @"Menu background");
+    _backgroundButton.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
+    [_backgroundButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
     
     // Append new item views to REMenuView
     //
@@ -164,12 +173,12 @@
                                         rect.size.width,
                                         self.combinedHeight);
     _menuView.frame = _menuWrapperView.bounds;
+    
     _containerView.frame = CGRectMake(rect.origin.x,
                                       rect.origin.y,
                                       rect.size.width,
                                       rect.size.height);
-    _containerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    _containerView.clipsToBounds = YES;
+    
     _backgroundButton.frame = _containerView.bounds;
     
     // Add subviews
@@ -255,54 +264,6 @@
     UIGraphicsEndImageContext();
     
     return [UIImage imageWithCGImage:outputImage.CGImage scale:2.0 orientation:UIImageOrientationUp];
-}
-
-- (void)setCornerRadius:(CGFloat)cornerRadius
-{
-    _cornerRadius = cornerRadius;
-    _menuView.layer.cornerRadius = cornerRadius;
-}
-
-- (void)setShadowColor:(UIColor *)shadowColor
-{
-    _shadowColor = shadowColor;
-    _menuWrapperView.layer.shadowColor = shadowColor.CGColor;
-}
-
-- (void)setShadowOffset:(CGSize)shadowOffset
-{
-    _shadowOffset = shadowOffset;
-    _menuWrapperView.layer.shadowOffset = shadowOffset;
-}
-
-- (void)setShadowOpacity:(CGFloat)shadowOpacity
-{
-    _shadowOpacity = shadowOpacity;
-    _menuWrapperView.layer.shadowOpacity = shadowOpacity;
-}
-
-- (void)setShadowRadius:(CGFloat)shadowRadius
-{
-    _shadowRadius = shadowRadius;
-    _menuWrapperView.layer.shadowRadius = shadowRadius;
-}
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor
-{
-    _backgroundColor = backgroundColor;
-    _menuView.backgroundColor = backgroundColor;
-}
-
-- (void)setBorderColor:(UIColor *)borderColor
-{
-    _borderColor = borderColor;
-    _menuView.layer.borderColor = borderColor.CGColor;
-}
-
-- (void)setBorderWidth:(CGFloat)borderWidth
-{
-    _borderWidth = borderWidth;
-    _menuView.layer.borderWidth = borderWidth;
 }
 
 @end
