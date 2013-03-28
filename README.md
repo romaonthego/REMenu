@@ -32,7 +32,7 @@ Edit your Podfile and add REMenu:
 ``` bash
 $ edit Podfile
 platform :ios, '5.0'
-pod 'REMenu', '~> 1.2.5'
+pod 'REMenu', '~> 1.3'
 ```
 
 Install into your Xcode project:
@@ -88,6 +88,17 @@ You can also present `REMenu` from a custom view, there are 2 specific tasks for
 ``` objective-c
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view;
 - (void)showInView:(UIView *)view;
+```
+
+Since version 1.3 you are able to assign custom view to your items, as show below:
+
+``` objective-c
+UIView *customView = [[UIView alloc] init];
+customView.backgroundColor = [UIColor blueColor];
+customView.alpha = 0.4;
+REMenuItem *customViewItem = [[REMenuItem alloc] initWithCustomView:customView action:^(REMenuItem *item) {
+    NSLog(@"Tap on customView");
+}];
 ```
 
 ## Customization

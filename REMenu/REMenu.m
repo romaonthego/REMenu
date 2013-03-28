@@ -164,6 +164,11 @@
         item.itemView = itemView;
         itemView.separatorView = separatorView;
         itemView.autoresizesSubviews = YES;
+        if (item.customView) {
+            item.customView.frame = itemView.bounds;
+            item.customView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            [itemView addSubview:item.customView];
+        }
         [_menuView addSubview:itemView];
     }
     

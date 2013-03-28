@@ -62,6 +62,18 @@
     return self;
 }
 
+- (id)initWithCustomView:(UIView *)customView action:(void (^)(REMenuItem *item))action
+{
+    self = [super init];
+    if (!self)
+        return nil;
+    
+    self.customView = customView;
+    self.action = action;
+    
+    return self;
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<title: %@; subtitle: %@; tag: %i>", self.title, self.subtitle, self.tag];

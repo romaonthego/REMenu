@@ -57,6 +57,19 @@
                                                              NSLog(@"Item: %@", item);
                                                          }];
     
+    // You can also assign custom view for items
+    // Uncomment the code below and add customViewItem to `initWithItems` array, e.g.
+    // [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem, customViewItem]]
+    //
+    /*
+    UIView *customView = [[UIView alloc] init];
+    customView.backgroundColor = [UIColor blueColor];
+    customView.alpha = 0.4;
+    REMenuItem *customViewItem = [[REMenuItem alloc] initWithCustomView:customView action:^(REMenuItem *item) {
+        NSLog(@"Tap on customView");
+    }];
+    */
+    
     homeItem.tag = 0;
     exploreItem.tag = 1;
     activityItem.tag = 2;
