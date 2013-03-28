@@ -74,6 +74,17 @@
     return self;
 }
 
+- (id)initWithCustomView:(UIView *)customView
+{
+    self = [super init];
+    if (!self)
+        return nil;
+    
+    self.customView = customView;
+    
+    return self;
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<title: %@; subtitle: %@; tag: %i>", self.title, self.subtitle, self.tag];

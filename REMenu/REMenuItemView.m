@@ -139,16 +139,14 @@
     if (endedPoint.y < 0 || endedPoint.y > CGRectGetHeight(self.bounds))
         return;
 
-    if (_menu.waitUntilAnimationIsComplete) {
-        __typeof (&*self) __weak weakSelf = self;
-        [_menu closeWithCompletion:^{
-            if (weakSelf.item.action) {
+    if (self.item.action) {
+        if (_menu.waitUntilAnimationIsComplete) {
+            __typeof (&*self) __weak weakSelf = self;
+            [_menu closeWithCompletion:^{
                 weakSelf.item.action(weakSelf.item);
-            }
-        }];
-    } else {
-        [_menu close];
-        if (self.item.action) {
+            }];
+        } else {
+            [_menu close];
             self.item.action(self.item);
         }
     }

@@ -38,5 +38,6 @@
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action;
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action;
 - (id)initWithCustomView:(UIView *)customView action:(void (^)(REMenuItem *item))action;
+- (id)initWithCustomView:(UIView *)customView;
 
 @end
