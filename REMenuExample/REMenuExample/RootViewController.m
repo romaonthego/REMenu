@@ -83,7 +83,7 @@
     _menu.shadowOpacity = 1;
     _menu.imageOffset = CGSizeMake(5, -1);
     
-    [_menu showFromNavigationController:self.navigationController];
+    [_menu showInView:self.view];
 }
 
 #pragma mark -

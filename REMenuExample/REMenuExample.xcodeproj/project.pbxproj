@@ -23,7 +23,6 @@
 		30E0F7A416D5462E001949EA /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7A316D5462E001949EA /* RootViewController.m */; };
 		30E0F7AC16D54641001949EA /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7A716D54641001949EA /* REMenu.m */; };
 		30E0F7AD16D54641001949EA /* REMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7A916D54641001949EA /* REMenuItem.m */; };
-		30E0F7AE16D54641001949EA /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7AB16D54641001949EA /* REMenuItemView.m */; };
 		30E0F7B116D54CE0001949EA /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7B016D54CE0001949EA /* REMenuContainerView.m */; };
 		30E0F7B616D56669001949EA /* Icon_Activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F7B216D56669001949EA /* Icon_Activity.png */; };
 		30E0F7B716D56669001949EA /* Icon_Explore.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E0F7B316D56669001949EA /* Icon_Explore.png */; };
@@ -55,8 +54,6 @@
 		30E0F7A716D54641001949EA /* REMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = REMenu.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		30E0F7A816D54641001949EA /* REMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItem.h; sourceTree = "<group>"; };
 		30E0F7A916D54641001949EA /* REMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = REMenuItem.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		30E0F7AA16D54641001949EA /* REMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItemView.h; sourceTree = "<group>"; };
-		30E0F7AB16D54641001949EA /* REMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = REMenuItemView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		30E0F7AF16D54CE0001949EA /* REMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuContainerView.h; sourceTree = "<group>"; };
 		30E0F7B016D54CE0001949EA /* REMenuContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuContainerView.m; sourceTree = "<group>"; };
 		30E0F7B216D56669001949EA /* Icon_Activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_Activity.png; sourceTree = "<group>"; };
@@ -148,8 +145,6 @@
 				30E0F7A716D54641001949EA /* REMenu.m */,
 				30E0F7A816D54641001949EA /* REMenuItem.h */,
 				30E0F7A916D54641001949EA /* REMenuItem.m */,
-				30E0F7AA16D54641001949EA /* REMenuItemView.h */,
-				30E0F7AB16D54641001949EA /* REMenuItemView.m */,
 				30E0F7AF16D54CE0001949EA /* REMenuContainerView.h */,
 				30E0F7B016D54CE0001949EA /* REMenuContainerView.m */,
 			);
@@ -235,7 +230,6 @@
 				30E0F7A416D5462E001949EA /* RootViewController.m in Sources */,
 				30E0F7AC16D54641001949EA /* REMenu.m in Sources */,
 				30E0F7AD16D54641001949EA /* REMenuItem.m in Sources */,
-				30E0F7AE16D54641001949EA /* REMenuItemView.m in Sources */,
 				30E0F7B116D54CE0001949EA /* REMenuContainerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

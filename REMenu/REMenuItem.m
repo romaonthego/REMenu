@@ -24,12 +24,10 @@
 //
 
 #import "REMenuItem.h"
-#import "REMenuItemView.h"
 
 @interface REMenuItem ()
-@property (assign, nonatomic) REMenuItemView *itemView;
-@end
 
+@end
 
 @implementation REMenuItem
 
@@ -62,29 +60,6 @@
     return self;
 }
 
-- (id)initWithCustomView:(UIView *)customView action:(void (^)(REMenuItem *item))action
-{
-    self = [super init];
-    if (!self)
-        return nil;
-    
-    self.customView = customView;
-    self.action = action;
-    
-    return self;
-}
-
-- (id)initWithCustomView:(UIView *)customView
-{
-    self = [super init];
-    if (!self)
-        return nil;
-    
-    self.customView = customView;
-    
-    return self;
-}
-
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<title: %@; subtitle: %@; tag: %i>", self.title, self.subtitle, self.tag];
@@ -93,22 +68,16 @@
 - (void)setTitle:(NSString *)title
 {
     _title = title;
-    _itemView.titleLabel.text = title;
-    _itemView.accessibilityLabel = title;
 }
 
 - (void)setSubtitle:(NSString *)subtitle
 {
     _subtitle = subtitle;
-    _itemView.subtitleLabel.text = subtitle;
-    _itemView.accessibilityLabel = [NSString stringWithFormat:@"%@, %@", _itemView.titleLabel.text, subtitle];
 }
 
 - (void)setImage:(UIImage *)image
 {
     _image = image;
-    _itemView.imageView.image = image;
 }
-
 
 @end

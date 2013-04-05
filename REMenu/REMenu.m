@@ -25,18 +25,14 @@
 
 #import "REMenu.h"
 #import "REMenuItem.h"
-#import "REMenuItemView.h"
-
 
 @interface REMenuItem ()
 
-@property (assign, nonatomic) REMenuItemView *itemView;
-
 @end
 
-@interface REMenu ()
+@interface REMenu () <UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) UIView *menuView;
+@property (strong, nonatomic) UITableView *menuView;
 @property (strong, nonatomic) UIView *menuWrapperView;
 @property (strong, nonatomic) REMenuContainerView *containerView;
 @property (strong, nonatomic) UIButton *backgroundButton;
@@ -63,7 +59,7 @@
     
     self.backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1];
     self.separatorColor = [UIColor colorWithPatternImage:self.separatorImage];
-    self.textColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1];
+    self.textColor = [UIColor lightGrayColor];
     self.textShadowColor = [UIColor blackColor];
     self.textShadowOffset = CGSizeMake(0, -1);
     self.textAlignment = NSTextAlignmentCenter;
@@ -107,7 +103,7 @@
     // Create views
     //
     _containerView = [[REMenuContainerView alloc] init];
-    _menuView = [[UIView alloc] init];
+    _menuView = [[UITableView alloc] init];
     _menuWrapperView = [[UIView alloc] init];
     
     _containerView.clipsToBounds = YES;
@@ -121,6 +117,10 @@
     _menuView.layer.shouldRasterize = YES;
     _menuView.layer.rasterizationScale = [UIScreen mainScreen].scale;
     _menuView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _menuView.dataSource = self;
+    _menuView.delegate = self;
+    _menuView.bounces = NO;
+    _menuView.separatorColor = _separatorColor;
     
     _menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _menuWrapperView.layer.shadowColor = self.shadowColor.CGColor;
@@ -135,49 +135,18 @@
     _backgroundButton.accessibilityLabel = NSLocalizedString(@"Menu background", @"Menu background");
     _backgroundButton.accessibilityHint = NSLocalizedString(@"Double tap to close", @"Double tap to close");
     [_backgroundButton addTarget:self action:@selector(close) forControlEvents:UIControlEventTouchUpInside];
-    
+
     // Append new item views to REMenuView
-    //
-    for (REMenuItem *item in _items) {
-        NSInteger index = [_items indexOfObject:item];
-        
-        CGFloat itemHeight = _itemHeight;
-        if (index == _items.count - 1)
-            itemHeight += _cornerRadius;
-        
-        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                         index * _itemHeight + (index) * _separatorHeight + 40,
-                                                                         rect.size.width,
-                                                                         _separatorHeight)];
-        separatorView.backgroundColor = _separatorColor;
-        separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [_menuView addSubview:separatorView];
-        
-        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
-                                                                                    index * _itemHeight + (index+1) * _separatorHeight + 40,
-                                                                                    rect.size.width,
-                                                                                    itemHeight)
-                                                                    menu:self
-                                                             hasSubtitle:item.subtitle.length > 0];
-        itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        itemView.item = item;
-        item.itemView = itemView;
-        itemView.separatorView = separatorView;
-        itemView.autoresizesSubviews = YES;
-        if (item.customView) {
-            item.customView.frame = itemView.bounds;
-            item.customView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-            [itemView addSubview:item.customView];
-        }
-        [_menuView addSubview:itemView];
-    }
+    [_menuView reloadData];
     
     // Set up frames
     //
+    float totalMenuHeight = self.items.count * _itemHeight + self.items.count * _separatorHeight;
+
     _menuWrapperView.frame = CGRectMake(0,
-                                        - self.combinedHeight,
+                                        - view.frame.size.height,
                                         rect.size.width,
-                                        self.combinedHeight);
+                                        MIN(view.frame.size.height, totalMenuHeight));
     _menuView.frame = _menuWrapperView.bounds;
     
     _containerView.frame = CGRectMake(rect.origin.x,
@@ -199,9 +168,73 @@
     __typeof (&*self) __weak weakSelf = self;
     [UIView animateWithDuration:_animationDuration animations:^{
         CGRect frame = weakSelf.menuView.frame;
-        frame.origin.y = -40 - _separatorHeight;
+        frame.origin.y = - _separatorHeight;
         weakSelf.menuWrapperView.frame = frame;
     } completion:nil];
+}
+
+- (int)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _items.count;
+}
+
+- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return _itemHeight + _separatorHeight;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"REMenuCellID";
+    
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"REMenuCellID"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        
+        cell.textLabel.font = self.font;
+        cell.textLabel.textColor = self.textColor;
+        cell.textLabel.shadowColor = self.textShadowColor;
+        cell.textLabel.shadowOffset = self.textShadowOffset;
+        cell.textLabel.textAlignment = self.textAlignment;
+
+        cell.detailTextLabel.font = self.subtitleFont;
+        cell.detailTextLabel.textColor = self.subtitleTextColor;
+        cell.detailTextLabel.shadowColor = self.subtitleTextShadowColor;
+        cell.detailTextLabel.shadowOffset = self.subtitleTextShadowOffset;
+        cell.detailTextLabel.textAlignment = self.subtitleTextAlignment;
+    }
+    
+    REMenuItem *item = self.items[indexPath.row];
+
+    cell.textLabel.text = item.title;
+    cell.detailTextLabel.text = item.subtitle;
+    cell.imageView.image = item.image;
+        
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    REMenuItem *item = self.items[indexPath.row];
+
+    if (self.waitUntilAnimationIsComplete) {
+        [self closeWithCompletion:^{
+            if (item.action) {
+                item.action(item);
+            }
+        }];
+    } else {
+        [self close];
+        if (item.action) {
+            item.action(item);
+        }
+    }
 }
 
 - (void)showInView:(UIView *)view
@@ -226,7 +259,7 @@
     } completion:^(BOOL finished) {
         [UIView animateWithDuration:_animationDuration animations:^{
             CGRect frame = _menuView.frame;
-            frame.origin.y = - weakSelf.combinedHeight;
+            frame.origin.y = - _menuView.frame.size.height;
             weakSelf.menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
             [weakSelf.menuView removeFromSuperview];
@@ -246,11 +279,6 @@
 - (void)close
 {
     [self closeWithCompletion:nil];
-}
-
-- (CGFloat)combinedHeight
-{
-    return _items.count * _itemHeight + _items.count  * _separatorHeight + 40 + _cornerRadius;
 }
 
 #pragma mark -
