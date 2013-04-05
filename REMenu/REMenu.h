@@ -31,7 +31,7 @@
 @class REMenuItem;
 
 @interface REMenu : NSObject {
-    UIView *_menuView;
+    UITableView *_menuView;
     UIView *_menuWrapperView;
     REMenuContainerView *_containerView;
     NSMutableArray *_itemViews;
