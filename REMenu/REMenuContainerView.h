@@ -25,7 +25,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface REMenuContainerView : UIView
+@interface REMenuContainerView : UIScrollView
 
 @property (strong, nonatomic) UINavigationBar *navigationBar;
 
