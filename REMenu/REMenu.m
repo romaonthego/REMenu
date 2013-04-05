@@ -184,6 +184,9 @@
                                       rect.origin.y,
                                       rect.size.width,
                                       rect.size.height);
+
+    _containerView.contentSize = CGSizeMake(_menuWrapperView.frame.size.width, _menuWrapperView.frame.size.height - 40);
+    _containerView.bounces = NO;
     
     _backgroundButton.frame = _containerView.bounds;
     
