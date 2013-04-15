@@ -219,27 +219,54 @@
 - (void)closeWithCompletion:(void (^)(void))completion
 {
     __typeof (&*self) __weak weakSelf = self;
-    [UIView animateWithDuration:0.2 animations:^{
+    if(self.doubleAnimationOnClose) {
+        [self doubleAnimationCloseWithCompletion:completion weakSelf:weakSelf];
+    } else {
+        [self singleAnimationCloseWithCompletion:completion weakSelf:weakSelf];
+    }
+}
+
+- (void)singleAnimationCloseWithCompletion:(void (^)())completion weakSelf:(REMenu *)weakSelf {
+    [UIView animateWithDuration:0.3 animations:^{
         CGRect frame = _menuView.frame;
-        frame.origin.y = -20;
+        frame.origin.y = -weakSelf.combinedHeight;
         weakSelf.menuWrapperView.frame = frame;
     } completion:^(BOOL finished) {
-        [UIView animateWithDuration:_animationDuration animations:^{
-            CGRect frame = _menuView.frame;
-            frame.origin.y = - weakSelf.combinedHeight;
-            weakSelf.menuWrapperView.frame = frame;
-        } completion:^(BOOL finished) {
             [weakSelf.menuView removeFromSuperview];
             [weakSelf.menuWrapperView removeFromSuperview];
             [weakSelf.backgroundButton removeFromSuperview];
             [weakSelf.containerView removeFromSuperview];
             weakSelf.isOpen = NO;
-            if (completion)
+            if(completion)
                 completion();
-          
-            if (weakSelf.closeCompletionHandler)
+
+            if(weakSelf.closeCompletionHandler)
                 weakSelf.closeCompletionHandler();
-        }];
+    }];
+}
+
+- (void)doubleAnimationCloseWithCompletion:(void (^)())completion weakSelf:(REMenu *)weakSelf {
+    [UIView animateWithDuration:0.2 animations:^{
+        CGRect frame = _menuView.frame;
+        frame.origin.y = -40;
+        weakSelf.menuWrapperView.frame = frame;
+    } completion:^(BOOL finished) {
+         [UIView animateWithDuration:_animationDuration animations:^{
+             CGRect frame = _menuView.frame;
+             frame.origin.y = -weakSelf.combinedHeight;
+             weakSelf.menuWrapperView.frame = frame;
+         }                completion:^(BOOL finished) {
+             [weakSelf.menuView removeFromSuperview];
+             [weakSelf.menuWrapperView removeFromSuperview];
+             [weakSelf.backgroundButton removeFromSuperview];
+             [weakSelf.containerView removeFromSuperview];
+             weakSelf.isOpen = NO;
+             if(completion)
+                 completion();
+
+             if(weakSelf.closeCompletionHandler)
+                 weakSelf.closeCompletionHandler();
+         }];
     }];
 }
 
