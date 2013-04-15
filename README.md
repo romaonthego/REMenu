@@ -40,7 +40,7 @@ Edit your Podfile and add REMenu:
 
 ``` bash
 platform :ios, '5.0'
-pod 'REMenu', '~> 1.3.1'
+pod 'REMenu', '~> 1.3.2'
 ```
 
 Install into your Xcode project:
@@ -155,6 +155,8 @@ You can customize the following properties of `REMenu`:
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlighedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
+@property (assign, readwrite, nonatomic) NSTimeInterval bounceAnimationDuration;
+@property (assign, readwrite, nonatomic) BOOL bounce;
 ```
 
 ## Contact
