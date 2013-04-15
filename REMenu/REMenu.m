@@ -85,6 +85,8 @@
     self.borderWidth = 1;
     self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
     self.animationDuration = 0.3;
+    self.bounce = YES;
+    self.bounceAnimationDuration = 0.2;
     
     return self;
 }
@@ -219,11 +221,7 @@
 - (void)closeWithCompletion:(void (^)(void))completion
 {
     __typeof (&*self) __weak weakSelf = self;
-    [UIView animateWithDuration:0.2 animations:^{
-        CGRect frame = _menuView.frame;
-        frame.origin.y = -20;
-        weakSelf.menuWrapperView.frame = frame;
-    } completion:^(BOOL finished) {
+    void (^closeMenu)(void) = ^{
         [UIView animateWithDuration:_animationDuration animations:^{
             CGRect frame = _menuView.frame;
             frame.origin.y = - weakSelf.combinedHeight;
@@ -236,11 +234,23 @@
             weakSelf.isOpen = NO;
             if (completion)
                 completion();
-          
+            
             if (weakSelf.closeCompletionHandler)
                 weakSelf.closeCompletionHandler();
         }];
-    }];
+    };
+    
+    if (_bounce) {
+        [UIView animateWithDuration:_bounceAnimationDuration animations:^{
+            CGRect frame = _menuView.frame;
+            frame.origin.y = -20;
+            weakSelf.menuWrapperView.frame = frame;
+        } completion:^(BOOL finished) {
+            closeMenu();
+        }];
+    } else {
+        closeMenu();
+    }
 }
 
 - (void)close
