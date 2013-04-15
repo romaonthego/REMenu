@@ -248,7 +248,7 @@
 - (void)doubleAnimationCloseWithCompletion:(void (^)())completion weakSelf:(REMenu *)weakSelf {
     [UIView animateWithDuration:0.2 animations:^{
         CGRect frame = _menuView.frame;
-        frame.origin.y = -40;
+        frame.origin.y = -20;
         weakSelf.menuWrapperView.frame = frame;
     } completion:^(BOOL finished) {
          [UIView animateWithDuration:_animationDuration animations:^{
