@@ -43,6 +43,7 @@
 @property (strong, readwrite, nonatomic) NSArray *items;
 @property (assign, readonly, nonatomic) BOOL isOpen;
 @property (assign, readwrite, nonatomic) BOOL waitUntilAnimationIsComplete;
+@property (assign, readwrite, nonatomic) BOOL doubleAnimationOnClose;
 @property (copy, readwrite, nonatomic) void (^closeCompletionHandler)(void);
 
 // Style
