@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30142833172053EB002C7A33 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30142832172053EB002C7A33 /* HomeViewController.m */; };
+		301428371720552C002C7A33 /* ExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 301428361720552C002C7A33 /* ExploreViewController.m */; };
+		3014283A17205535002C7A33 /* ActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3014283917205535002C7A33 /* ActivityViewController.m */; };
+		3014283D17205542002C7A33 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3014283C17205541002C7A33 /* ProfileViewController.m */; };
+		3014284017205691002C7A33 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3014283F17205691002C7A33 /* NavigationViewController.m */; };
 		30E0F77E16D545F7001949EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F77D16D545F7001949EA /* UIKit.framework */; };
 		30E0F78016D545F7001949EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F77F16D545F7001949EA /* Foundation.framework */; };
 		30E0F78216D545F7001949EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F78116D545F7001949EA /* CoreGraphics.framework */; };
@@ -32,6 +37,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30142831172053EB002C7A33 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		30142832172053EB002C7A33 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		301428351720552C002C7A33 /* ExploreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreViewController.h; sourceTree = "<group>"; };
+		301428361720552C002C7A33 /* ExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreViewController.m; sourceTree = "<group>"; };
+		3014283817205535002C7A33 /* ActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityViewController.h; sourceTree = "<group>"; };
+		3014283917205535002C7A33 /* ActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityViewController.m; sourceTree = "<group>"; };
+		3014283B17205541002C7A33 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		3014283C17205541002C7A33 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		3014283E17205691002C7A33 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
+		3014283F17205691002C7A33 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		30E0F77A16D545F7001949EA /* REMenuExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMenuExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E0F77D16D545F7001949EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		30E0F77F16D545F7001949EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -79,6 +94,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3014283417205519002C7A33 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3014283E17205691002C7A33 /* NavigationViewController.h */,
+				3014283F17205691002C7A33 /* NavigationViewController.m */,
+				30E0F7A216D5462E001949EA /* RootViewController.h */,
+				30E0F7A316D5462E001949EA /* RootViewController.m */,
+				30142831172053EB002C7A33 /* HomeViewController.h */,
+				30142832172053EB002C7A33 /* HomeViewController.m */,
+				301428351720552C002C7A33 /* ExploreViewController.h */,
+				301428361720552C002C7A33 /* ExploreViewController.m */,
+				3014283817205535002C7A33 /* ActivityViewController.h */,
+				3014283917205535002C7A33 /* ActivityViewController.m */,
+				3014283B17205541002C7A33 /* ProfileViewController.h */,
+				3014283C17205541002C7A33 /* ProfileViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		30E0F77116D545F7001949EA = {
 			isa = PBXGroup;
 			children = (
@@ -112,8 +146,7 @@
 			children = (
 				30E0F78C16D545F7001949EA /* AppDelegate.h */,
 				30E0F78D16D545F7001949EA /* AppDelegate.m */,
-				30E0F7A216D5462E001949EA /* RootViewController.h */,
-				30E0F7A316D5462E001949EA /* RootViewController.m */,
+				3014283417205519002C7A33 /* Controllers */,
 				30E0F78416D545F7001949EA /* Supporting Files */,
 			);
 			path = REMenuExample;
@@ -237,6 +270,11 @@
 				30E0F7AD16D54641001949EA /* REMenuItem.m in Sources */,
 				30E0F7AE16D54641001949EA /* REMenuItemView.m in Sources */,
 				30E0F7B116D54CE0001949EA /* REMenuContainerView.m in Sources */,
+				30142833172053EB002C7A33 /* HomeViewController.m in Sources */,
+				301428371720552C002C7A33 /* ExploreViewController.m in Sources */,
+				3014283A17205535002C7A33 /* ActivityViewController.m in Sources */,
+				3014283D17205542002C7A33 /* ProfileViewController.m in Sources */,
+				3014284017205691002C7A33 /* NavigationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
