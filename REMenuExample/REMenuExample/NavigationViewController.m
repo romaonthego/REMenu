@@ -5,6 +5,8 @@
 //  Created by Roman Efimov on 4/18/13.
 //  Copyright (c) 2013 Roman Efimov. All rights reserved.
 //
+//  Sample icons from http://icons8.com/download-free-icons-for-ios-tab-bar
+//
 
 #import "NavigationViewController.h"
 #import "HomeViewController.h"
@@ -23,7 +25,12 @@
     [super viewDidLoad];
     self.navigationBar.tintColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
     
-    // Sample icons from http://icons8.com/download-free-icons-for-ios-tab-bar
+    // Blocks maintain strong references to any captured objects, including self,
+    // which means that it’s easy to end up with a strong reference cycle if, for example,
+    // an object maintains a copy property for a block that captures self
+    // (which is the case for REMenu action blocks).
+    //
+    // To avoid this problem, it’s best practice to capture a weak reference to self:
     //
     __typeof (&*self) __weak weakSelf = self;
     
