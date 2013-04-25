@@ -263,6 +263,14 @@
     return _items.count * _itemHeight + _items.count  * _separatorHeight + 40 + _cornerRadius;
 }
 
+- (void)setNeedsLayout
+{
+    __typeof (&*self) __weak weakSelf = self;
+    [UIView animateWithDuration:0.35 animations:^{
+        [weakSelf.containerView layoutSubviews];
+    }];
+}
+
 #pragma mark -
 #pragma mark Setting style
 

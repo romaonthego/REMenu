@@ -11,6 +11,7 @@
 #import "ExploreViewController.h"
 #import "ActivityViewController.h"
 #import "ProfileViewController.h"
+#import "NavigationViewController.h"
 
 @implementation RootViewController
 
@@ -32,6 +33,13 @@
     label.textColor = [UIColor lightGrayColor];
     label.font = [UIFont boldSystemFontOfSize:21];
     [self.view addSubview:label];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    NavigationViewController *navigationController = (NavigationViewController *)self.navigationController;
+    [navigationController.menu setNeedsLayout];
 }
 
 #pragma mark -
