@@ -24,6 +24,7 @@
 //
 
 #import "REMenuItemView.h"
+#import "REMenuItem.h"
 
 @implementation REMenuItemView
 
@@ -95,6 +96,8 @@
     self.accessibilityLabel = _titleLabel.text;
     if (_subtitleLabel.text)
         self.accessibilityLabel = [NSString stringWithFormat:@"%@, %@", _titleLabel.text, _subtitleLabel.text];
+    
+    _item.customView.frame = CGRectMake(0, 0, _titleLabel.frame.size.width, self.frame.size.height);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
