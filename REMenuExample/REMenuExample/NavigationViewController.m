@@ -84,7 +84,7 @@
     REMenuItem *customViewItem = [[REMenuItem alloc] initWithCustomView:customView action:^(REMenuItem *item) {
         NSLog(@"Tap on customView");
     }];
-     */
+    */
     
     homeItem.tag = 0;
     exploreItem.tag = 1;
