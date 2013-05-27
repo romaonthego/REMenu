@@ -2,7 +2,7 @@
 
 Dropdown menu inspired by Vine.
 
-![Screenshot of REMenu](https://github.com/romaonthego/REMenu/raw/master/Screenshot.png "REMenu Screenshot")
+<img src="https://github.com/romaonthego/REMenu/raw/master/Screenshot.png" alt="REMenu Screenshot" width="320" height="480" />
 
 ## Requirements
 * Xcode 4.5 or higher
