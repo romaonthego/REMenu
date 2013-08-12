@@ -29,6 +29,7 @@
 
 @property (copy, readwrite, nonatomic) NSString *title;
 @property (copy, readwrite, nonatomic) NSString *subtitle;
+@property (copy, readwrite, nonatomic) NSString *badge;
 @property (strong, readwrite, nonatomic) UIImage *image;
 @property (strong, readwrite, nonatomic) UIImage *higlightedImage;
 @property (copy, readwrite, nonatomic) void (^action)(REMenuItem *item);

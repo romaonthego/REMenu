@@ -68,6 +68,17 @@
 
         _imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
         [self addSubview:_imageView];
+        
+        self.badgeLabel = [[UILabel alloc] init];
+        self.badgeLabel.backgroundColor = [UIColor colorWithWhite:0.559 alpha:1.000];
+        self.badgeLabel.font = [UIFont systemFontOfSize:11];
+        self.badgeLabel.textAlignment = NSTextAlignmentCenter;
+        self.badgeLabel.textColor = [UIColor whiteColor];
+        self.badgeLabel.hidden = YES;
+        self.badgeLabel.layer.cornerRadius = 4;
+        self.badgeLabel.layer.borderColor =  [UIColor colorWithWhite:0.630 alpha:1.000].CGColor;
+        self.badgeLabel.layer.borderWidth = 1.0;
+        [self addSubview:self.badgeLabel];
     }
 
     return self;
@@ -81,6 +92,13 @@
     _imageView.image = _item.image;
     CGFloat x = (_menu.imageAlignment == REMenuImageAlignmentLeft) ? horizontalOffset + _menu.imageOffset.width : _titleLabel.frame.size.width - (horizontalOffset + _menu.imageOffset.width + _item.image.size.width);
     _imageView.frame = CGRectMake(x, verticalOffset + _menu.imageOffset.height, _item.image.size.width, _item.image.size.height);
+    
+    self.badgeLabel.hidden = !self.item.badge;
+    if (self.item.badge) {
+        self.badgeLabel.text = self.item.badge;
+        CGSize size = [self.item.badge sizeWithFont:self.badgeLabel.font];
+        self.badgeLabel.frame = CGRectMake(CGRectGetMaxX(_imageView.frame) - 2.0, _imageView.frame.origin.y - 2.0, size.width + 6, size.height + 2);
+    }
     
     _titleLabel.font = _menu.font;
     _titleLabel.text = _item.title;

@@ -64,6 +64,8 @@
                                                               [weakSelf setViewControllers:@[controller] animated:NO];
                                                           }];
     
+    activityItem.badge = @"12";
+    
     REMenuItem *profileItem = [[REMenuItem alloc] initWithTitle:@"Profile"
                                                           image:[UIImage imageNamed:@"Icon_Profile"]
                                                highlightedImage:nil
