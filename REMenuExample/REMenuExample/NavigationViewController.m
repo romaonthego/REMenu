@@ -92,6 +92,8 @@
     profileItem.tag = 3;
     
     _menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
+    //_menu.imageAlignment = REMenuImageAlignmentRight;
+    //_menu.closeOnSelection = NO;
     _menu.cornerRadius = 4;
     _menu.shadowRadius = 4;
     _menu.shadowColor = [UIColor blackColor];

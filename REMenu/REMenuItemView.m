@@ -79,8 +79,9 @@
     CGFloat verticalOffset = floor((self.frame.size.height - _item.image.size.height) / 2.0);
     CGFloat horizontalOffset = floor((_menu.itemHeight - _item.image.size.height) / 2.0);
     _imageView.image = _item.image;
-    _imageView.frame = CGRectMake(horizontalOffset + _menu.imageOffset.width, verticalOffset + _menu.imageOffset.height, _item.image.size.width, _item.image.size.height);
-
+    CGFloat x = (_menu.imageAlignment == REMenuImageAlignmentLeft) ? horizontalOffset + _menu.imageOffset.width : _titleLabel.frame.size.width - (horizontalOffset + _menu.imageOffset.width + _item.image.size.width);
+    _imageView.frame = CGRectMake(x, verticalOffset + _menu.imageOffset.height, _item.image.size.width, _item.image.size.height);
+    
     _titleLabel.font = _menu.font;
     _titleLabel.text = _item.title;
     _titleLabel.textColor = _menu.textColor;

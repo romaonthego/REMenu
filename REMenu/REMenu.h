@@ -30,6 +30,11 @@
 
 @class REMenuItem;
 
+typedef NS_ENUM(NSInteger, REMenuImageAlignment) {
+    REMenuImageAlignmentLeft,
+    REMenuImageAlignmentRight
+};
+
 @interface REMenu : NSObject {
     UIView *_menuView;
     UIView *_menuWrapperView;
@@ -82,6 +87,7 @@
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) NSTimeInterval bounceAnimationDuration;
+@property (assign, readwrite, nonatomic) REMenuImageAlignment imageAlignment;
 @property (assign, readwrite, nonatomic) BOOL bounce;
 
 - (id)initWithItems:(NSArray *)items;

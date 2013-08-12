@@ -52,6 +52,7 @@
     if (!self)
         return nil;
     
+    self.imageAlignment = REMenuImageAlignmentLeft;
     self.closeOnSelection = YES;
     self.itemHeight = 48;
     self.separatorHeight = 2;
