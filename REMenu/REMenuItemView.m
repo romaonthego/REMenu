@@ -142,16 +142,21 @@
     CGPoint endedPoint = [[touches anyObject] locationInView:self];
     if (endedPoint.y < 0 || endedPoint.y > CGRectGetHeight(self.bounds))
         return;
-
-    if (self.item.action) {
-        if (_menu.waitUntilAnimationIsComplete) {
-            __typeof (&*self) __weak weakSelf = self;
-            [_menu closeWithCompletion:^{
-                weakSelf.item.action(weakSelf.item);
-            }];
-        } else {
-            [_menu close];
+    
+    if (!self.menu.closeOnCompletion) {
+        if (self.item.action)
             self.item.action(self.item);
+    } else {
+        if (self.item.action) {
+            if (_menu.waitUntilAnimationIsComplete) {
+                __typeof (&*self) __weak weakSelf = self;
+                [_menu closeWithCompletion:^{
+                    weakSelf.item.action(weakSelf.item);
+                }];
+            } else {
+                [_menu close];
+                self.item.action(self.item);
+            }
         }
     }
 }
