@@ -98,6 +98,9 @@
         self.badgeLabel.text = self.item.badge;
         CGSize size = [self.item.badge sizeWithFont:self.badgeLabel.font];
         self.badgeLabel.frame = CGRectMake(CGRectGetMaxX(_imageView.frame) - 2.0, _imageView.frame.origin.y - 2.0, size.width + 6, size.height + 2);
+        
+        if (self.menu.badgeLabelConfigurationBlock)
+            self.menu.badgeLabelConfigurationBlock(self.badgeLabel, self.item);
     }
     
     _titleLabel.font = _menu.font;

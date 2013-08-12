@@ -103,6 +103,10 @@
     _menu.shadowOpacity = 1;
     _menu.imageOffset = CGSizeMake(5, -1);
     _menu.waitUntilAnimationIsComplete = NO;
+    _menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {
+        badgeLabel.backgroundColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
+        badgeLabel.layer.borderColor = [UIColor colorWithRed:0.000 green:0.648 blue:0.507 alpha:1.000].CGColor;
+    };
 }
 
 - (void)toggleMenu
