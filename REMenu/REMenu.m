@@ -52,7 +52,7 @@
     if (!self)
         return nil;
     
-    self.closeOnCompletion = YES;
+    self.closeOnSelection = YES;
     self.itemHeight = 48;
     self.separatorHeight = 2;
     self.waitUntilAnimationIsComplete = YES;

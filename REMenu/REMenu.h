@@ -44,7 +44,7 @@
 @property (assign, readonly, nonatomic) BOOL isOpen;
 @property (assign, readwrite, nonatomic) BOOL waitUntilAnimationIsComplete;
 @property (copy, readwrite, nonatomic) void (^closeCompletionHandler)(void);
-@property (assign, readwrite, nonatomic) BOOL closeOnCompletion;
+@property (assign, readwrite, nonatomic) BOOL closeOnSelection;
 
 // Style
 //

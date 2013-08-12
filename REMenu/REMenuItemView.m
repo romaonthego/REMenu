@@ -143,7 +143,7 @@
     if (endedPoint.y < 0 || endedPoint.y > CGRectGetHeight(self.bounds))
         return;
     
-    if (!self.menu.closeOnCompletion) {
+    if (!self.menu.closeOnSelection) {
         if (self.item.action)
             self.item.action(self.item);
     } else {
