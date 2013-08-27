@@ -110,7 +110,9 @@
     if (self.item.badge) {
         self.badgeLabel.text = self.item.badge;
         CGSize size = [self.item.badge sizeWithFont:self.badgeLabel.font];
-        self.badgeLabel.frame = CGRectMake(CGRectGetMaxX(self.imageView.frame) - 2.0, self.imageView.frame.origin.y - 2.0, size.width + 6.0, size.height + 2.0);
+        CGFloat x = self.menu.imageAlignment == REMenuImageAlignmentLeft ? CGRectGetMaxX(self.imageView.frame) - 2.0 :
+                                                                           CGRectGetMinX(self.imageView.frame) - size.width - 4.0;
+        self.badgeLabel.frame = CGRectMake(x, self.imageView.frame.origin.y - 2.0, size.width + 6.0, size.height + 2.0);
         
         if (self.menu.badgeLabelConfigurationBlock)
             self.menu.badgeLabelConfigurationBlock(self.badgeLabel, self.item);
