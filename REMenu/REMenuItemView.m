@@ -31,78 +31,99 @@
 - (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hasSubtitle:(BOOL)hasSubtitle
 {
     self = [super initWithFrame:frame];
-
     if (self) {
+        self.menu = menu;
         self.isAccessibilityElement = YES;
         self.accessibilityTraits = UIAccessibilityTraitButton;
         self.accessibilityHint = NSLocalizedString(@"Double tap to choose", @"Double tap to choose");
-
-        self.menu = menu;
-
+        
+        CGRect titleFrame;
         if (hasSubtitle) {
             // Dividing lines at 1/1.725 (vs 1/2.000) results in labels about 28-top 20-bottom or 60/40 title/subtitle (for a 48 frame height)
             //
-            CGRect titleFrame = CGRectMake(self.menu.textOffset.width, self.menu.textOffset.height, 0, floorf(frame.size.height / 1.725));
-            self.titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
+            titleFrame = CGRectMake(self.menu.textOffset.width, self.menu.textOffset.height, 0, floorf(frame.size.height / 1.725));
 
-            CGRect subtitleFrame = CGRectMake(self.menu.subtitleTextOffset.width, self.menu.subtitleTextOffset.height + self.titleLabel.frame.size.height, 0, floorf(frame.size.height * (1.0 - 1.0 / 1.725)));
-            self.subtitleLabel = [[UILabel alloc] initWithFrame:subtitleFrame];
-
-            self.subtitleLabel.contentMode = UIViewContentModeCenter;
-            self.subtitleLabel.textAlignment = self.menu.subtitleTextAlignment;
-            self.subtitleLabel.backgroundColor = [UIColor clearColor];
-            self.subtitleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-            self.subtitleLabel.isAccessibilityElement = NO;
+            CGRect subtitleFrame = CGRectMake(self.menu.subtitleTextOffset.width, self.menu.subtitleTextOffset.height + titleFrame.size.height, 0, floorf(frame.size.height * (1.0 - 1.0 / 1.725)));
+            self.subtitleLabel = ({
+                UILabel *label =[[UILabel alloc] initWithFrame:subtitleFrame];
+                label.contentMode = UIViewContentModeCenter;
+                label.textAlignment = self.menu.subtitleTextAlignment;
+                label.backgroundColor = [UIColor clearColor];
+                label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+                label.isAccessibilityElement = NO;
+                label;
+            });
             [self addSubview:self.subtitleLabel];
         } else {
-            CGRect titleFrame = CGRectMake(self.menu.textOffset.width, self.menu.textOffset.height, 0, frame.size.height);
-            self.titleLabel = [[UILabel alloc] initWithFrame:titleFrame];
+            titleFrame = CGRectMake(self.menu.textOffset.width, self.menu.textOffset.height, 0, frame.size.height);
         }
 
-        self.titleLabel.isAccessibilityElement = NO;
-        self.titleLabel.contentMode = UIViewContentModeCenter;
-        self.titleLabel.textAlignment = self.menu.textAlignment;
-        self.titleLabel.backgroundColor = [UIColor clearColor];
-        self.titleLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [self addSubview:self.titleLabel];
+        self.titleLabel = ({
+            UILabel *label = [[UILabel alloc] initWithFrame:titleFrame];
+            label.isAccessibilityElement = NO;
+            label.contentMode = UIViewContentModeCenter;
+            label.textAlignment = self.menu.textAlignment;
+            label.backgroundColor = [UIColor clearColor];
+            label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            label;
+        });
 
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
-        [self addSubview:self.imageView];
         
-        self.badgeLabel = [[UILabel alloc] init];
-        self.badgeLabel.backgroundColor = [UIColor colorWithWhite:0.559 alpha:1.000];
-        self.badgeLabel.font = [UIFont systemFontOfSize:11];
-        self.badgeLabel.textAlignment = NSTextAlignmentCenter;
-        self.badgeLabel.textColor = [UIColor whiteColor];
-        self.badgeLabel.hidden = YES;
-        self.badgeLabel.layer.cornerRadius = 4;
-        self.badgeLabel.layer.borderColor =  [UIColor colorWithWhite:0.630 alpha:1.000].CGColor;
-        self.badgeLabel.layer.borderWidth = 1.0;
+        self.badgeLabel = ({
+            UILabel *label = [[UILabel alloc] init];
+            label.backgroundColor = [UIColor colorWithWhite:0.559 alpha:1.000];
+            label.font = [UIFont systemFontOfSize:11];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = [UIColor whiteColor];
+            label.hidden = YES;
+            label.layer.cornerRadius = 4.0;
+            label.layer.borderColor =  [UIColor colorWithWhite:0.630 alpha:1.000].CGColor;
+            label.layer.borderWidth = 1.0;
+            label;
+        });
+        
+        [self addSubview:self.titleLabel];
+        [self addSubview:self.imageView];
         [self addSubview:self.badgeLabel];
     }
-
     return self;
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    self.imageView.image = self.item.image;
+    
+    // Adjust frames
+    //
     CGFloat verticalOffset = floor((self.frame.size.height - self.item.image.size.height) / 2.0);
     CGFloat horizontalOffset = floor((self.menu.itemHeight - self.item.image.size.height) / 2.0);
-    self.imageView.image = self.item.image;
-    CGFloat x = (self.menu.imageAlignment == REMenuImageAlignmentLeft) ? horizontalOffset + self.menu.imageOffset.width : self.titleLabel.frame.size.width - (horizontalOffset + self.menu.imageOffset.width + self.item.image.size.width);
+    CGFloat x = (self.menu.imageAlignment == REMenuImageAlignmentLeft) ? horizontalOffset + self.menu.imageOffset.width :
+                                                                         self.titleLabel.frame.size.width - (horizontalOffset + self.menu.imageOffset.width + self.item.image.size.width);
     self.imageView.frame = CGRectMake(x, verticalOffset + self.menu.imageOffset.height, self.item.image.size.width, self.item.image.size.height);
     
+    // Set up badge
+    //
     self.badgeLabel.hidden = !self.item.badge;
     if (self.item.badge) {
         self.badgeLabel.text = self.item.badge;
         CGSize size = [self.item.badge sizeWithFont:self.badgeLabel.font];
-        self.badgeLabel.frame = CGRectMake(CGRectGetMaxX(self.imageView.frame) - 2.0, self.imageView.frame.origin.y - 2.0, size.width + 6, size.height + 2);
+        self.badgeLabel.frame = CGRectMake(CGRectGetMaxX(self.imageView.frame) - 2.0, self.imageView.frame.origin.y - 2.0, size.width + 6.0, size.height + 2.0);
         
         if (self.menu.badgeLabelConfigurationBlock)
             self.menu.badgeLabelConfigurationBlock(self.badgeLabel, self.item);
     }
     
+    // Accessibility
+    //
+    self.accessibilityLabel = self.item.title;
+    if (self.subtitleLabel.text)
+        self.accessibilityLabel = [NSString stringWithFormat:@"%@, %@", self.item.title, self.item.subtitle];
+    
+    // Adjust styles
+    //
     self.titleLabel.font = self.menu.font;
     self.titleLabel.text = self.item.title;
     self.titleLabel.textColor = self.menu.textColor;
@@ -115,9 +136,6 @@
     self.subtitleLabel.shadowColor = self.menu.subtitleTextShadowColor;
     self.subtitleLabel.shadowOffset = self.menu.subtitleTextShadowOffset;
     self.subtitleLabel.textAlignment = self.menu.subtitleTextAlignment;
-    self.accessibilityLabel = self.titleLabel.text;
-    if (self.subtitleLabel.text)
-        self.accessibilityLabel = [NSString stringWithFormat:@"%@, %@", self.titleLabel.text, self.subtitleLabel.text];
     
     self.item.customView.frame = CGRectMake(0, 0, self.titleLabel.frame.size.width, self.frame.size.height);
 }
@@ -146,7 +164,6 @@
     self.subtitleLabel.textColor = self.menu.subtitleTextColor;
     self.subtitleLabel.shadowColor = self.menu.subtitleTextShadowColor;
     self.subtitleLabel.shadowOffset = self.menu.subtitleTextShadowOffset;
-
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -161,7 +178,7 @@
     self.subtitleLabel.shadowColor = self.menu.subtitleTextShadowColor;
     self.subtitleLabel.shadowOffset = self.menu.subtitleTextShadowOffset;
 
-    CGPoint endedPoint = [[touches anyObject] locationInView:self];
+    CGPoint endedPoint = [touches.anyObject locationInView:self];
     if (endedPoint.y < 0 || endedPoint.y > CGRectGetHeight(self.bounds))
         return;
     
