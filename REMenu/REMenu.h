@@ -46,6 +46,7 @@ typedef NS_ENUM(NSInteger, REMenuImageAlignment) {
 // Data
 //
 @property (strong, readwrite, nonatomic) NSArray *items;
+@property (strong, readwrite, nonatomic) UIView *backgroundView;
 @property (assign, readonly, nonatomic) BOOL isOpen;
 @property (assign, readwrite, nonatomic) BOOL waitUntilAnimationIsComplete;
 @property (copy, readwrite, nonatomic) void (^closeCompletionHandler)(void);

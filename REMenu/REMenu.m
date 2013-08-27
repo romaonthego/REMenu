@@ -111,6 +111,12 @@
     // Create views
     //
     _containerView = [[REMenuContainerView alloc] init];
+    
+    if (self.backgroundView) {
+        _backgroundView.alpha = 0;
+        [_containerView addSubview:_backgroundView];
+    }
+    
     _menuView = [[UIView alloc] init];
     _menuWrapperView = [[UIView alloc] init];
     
@@ -199,11 +205,11 @@
     
     // Animate appearance
     //
-    __typeof (&*self) __weak weakSelf = self;
     [UIView animateWithDuration:_animationDuration animations:^{
-        CGRect frame = weakSelf.menuView.frame;
+        self.backgroundView.alpha = 1.0;
+        CGRect frame = self.menuView.frame;
         frame.origin.y = -40 - _separatorHeight;
-        weakSelf.menuWrapperView.frame = frame;
+        self.menuWrapperView.frame = frame;
     } completion:nil];
 }
 
@@ -221,23 +227,23 @@
 
 - (void)closeWithCompletion:(void (^)(void))completion
 {
-    __typeof (&*self) __weak weakSelf = self;
     void (^closeMenu)(void) = ^{
         [UIView animateWithDuration:_animationDuration animations:^{
             CGRect frame = _menuView.frame;
-            frame.origin.y = - weakSelf.combinedHeight;
-            weakSelf.menuWrapperView.frame = frame;
+            frame.origin.y = - self.combinedHeight;
+            self.menuWrapperView.frame = frame;
+            self.backgroundView.alpha = 0;
         } completion:^(BOOL finished) {
-            [weakSelf.menuView removeFromSuperview];
-            [weakSelf.menuWrapperView removeFromSuperview];
-            [weakSelf.backgroundButton removeFromSuperview];
-            [weakSelf.containerView removeFromSuperview];
-            weakSelf.isOpen = NO;
+            [self.menuView removeFromSuperview];
+            [self.menuWrapperView removeFromSuperview];
+            [self.backgroundButton removeFromSuperview];
+            [self.containerView removeFromSuperview];
+            self.isOpen = NO;
             if (completion)
                 completion();
             
-            if (weakSelf.closeCompletionHandler)
-                weakSelf.closeCompletionHandler();
+            if (self.closeCompletionHandler)
+                self.closeCompletionHandler();
         }];
     };
     
@@ -245,7 +251,7 @@
         [UIView animateWithDuration:_bounceAnimationDuration animations:^{
             CGRect frame = _menuView.frame;
             frame.origin.y = -20;
-            weakSelf.menuWrapperView.frame = frame;
+            self.menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
             closeMenu();
         }];

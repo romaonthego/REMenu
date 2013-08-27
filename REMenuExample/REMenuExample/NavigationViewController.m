@@ -94,6 +94,13 @@
     profileItem.tag = 3;
     
     _menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
+    
+    // Background view
+    //
+    //_menu.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    //_menu.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //_menu.backgroundView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.600];
+
     //_menu.imageAlignment = REMenuImageAlignmentRight;
     //_menu.closeOnSelection = NO;
     _menu.cornerRadius = 4;
