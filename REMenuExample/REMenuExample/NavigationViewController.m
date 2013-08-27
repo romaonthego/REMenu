@@ -16,6 +16,8 @@
 
 @interface NavigationViewController ()
 
+@property (strong, readwrite, nonatomic) REMenu *menu;
+
 @end
 
 @implementation NavigationViewController
@@ -25,15 +27,6 @@
     [super viewDidLoad];
     self.navigationBar.tintColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
     
-    // Blocks maintain strong references to any captured objects, including self,
-    // which means that it’s easy to end up with a strong reference cycle if, for example,
-    // an object maintains a copy property for a block that captures self
-    // (which is the case for REMenu action blocks).
-    //
-    // To avoid this problem, it’s best practice to capture a weak reference to self:
-    //
-    __typeof (&*self) __weak weakSelf = self;
-    
     REMenuItem *homeItem = [[REMenuItem alloc] initWithTitle:@"Home"
                                                     subtitle:@"Return to Home Screen"
                                                        image:[UIImage imageNamed:@"Icon_Home"]
@@ -41,7 +34,7 @@
                                                       action:^(REMenuItem *item) {
                                                           NSLog(@"Item: %@", item);
                                                           HomeViewController *controller = [[HomeViewController alloc] init];
-                                                          [weakSelf setViewControllers:@[controller] animated:NO];
+                                                          [self setViewControllers:@[controller] animated:NO];
                                                       }];
     
     REMenuItem *exploreItem = [[REMenuItem alloc] initWithTitle:@"Explore"
@@ -51,7 +44,7 @@
                                                          action:^(REMenuItem *item) {
                                                              NSLog(@"Item: %@", item);
                                                              ExploreViewController *controller = [[ExploreViewController alloc] init];
-                                                             [weakSelf setViewControllers:@[controller] animated:NO];
+                                                             [self setViewControllers:@[controller] animated:NO];
                                                          }];
     
     REMenuItem *activityItem = [[REMenuItem alloc] initWithTitle:@"Activity"
@@ -61,7 +54,7 @@
                                                           action:^(REMenuItem *item) {
                                                               NSLog(@"Item: %@", item);
                                                               ActivityViewController *controller = [[ActivityViewController alloc] init];
-                                                              [weakSelf setViewControllers:@[controller] animated:NO];
+                                                              [self setViewControllers:@[controller] animated:NO];
                                                           }];
     
     activityItem.badge = @"12";
@@ -72,7 +65,7 @@
                                                          action:^(REMenuItem *item) {
                                                              NSLog(@"Item: %@", item);
                                                              ProfileViewController *controller = [[ProfileViewController alloc] init];
-                                                             [weakSelf setViewControllers:@[controller] animated:NO];
+                                                             [self setViewControllers:@[controller] animated:NO];
                                                          }];
     
     // You can also assign custom view for items
@@ -93,24 +86,24 @@
     activityItem.tag = 2;
     profileItem.tag = 3;
     
-    _menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
+    self.menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
     
     // Background view
     //
-    //_menu.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-    //_menu.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    //_menu.backgroundView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.600];
+    //self.menu.backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    //self.menu.backgroundView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //self.menu.backgroundView.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.600];
 
-    //_menu.imageAlignment = REMenuImageAlignmentRight;
-    //_menu.closeOnSelection = NO;
-    _menu.cornerRadius = 4;
-    _menu.shadowRadius = 4;
-    _menu.shadowColor = [UIColor blackColor];
-    _menu.shadowOffset = CGSizeMake(0, 1);
-    _menu.shadowOpacity = 1;
-    _menu.imageOffset = CGSizeMake(5, -1);
-    _menu.waitUntilAnimationIsComplete = NO;
-    _menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {
+    //self.menu.imageAlignment = REMenuImageAlignmentRight;
+    //self.menu.closeOnSelection = NO;
+    self.menu.cornerRadius = 4;
+    self.menu.shadowRadius = 4;
+    self.menu.shadowColor = [UIColor blackColor];
+    self.menu.shadowOffset = CGSizeMake(0, 1);
+    self.menu.shadowOpacity = 1;
+    self.menu.imageOffset = CGSizeMake(5, -1);
+    self.menu.waitUntilAnimationIsComplete = NO;
+    self.menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {
         badgeLabel.backgroundColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
         badgeLabel.layer.borderColor = [UIColor colorWithRed:0.000 green:0.648 blue:0.507 alpha:1.000].CGColor;
     };
@@ -118,10 +111,10 @@
 
 - (void)toggleMenu
 {
-    if (_menu.isOpen)
-        return [_menu close];
+    if (self.menu.isOpen)
+        return [self.menu close];
     
-    [_menu showFromNavigationController:self];
+    [self.menu showFromNavigationController:self];
 }
 
 @end
