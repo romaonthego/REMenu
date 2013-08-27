@@ -49,59 +49,53 @@
 
 - (id)init
 {
-    self = [super init];
-    if (!self)
-        return nil;
-    
-    self.imageAlignment = REMenuImageAlignmentLeft;
-    self.closeOnSelection = YES;
-    self.itemHeight = 48;
-    self.separatorHeight = 2;
-    self.waitUntilAnimationIsComplete = YES;
-    
-    self.textOffset = CGSizeMake(0, 0);
-    self.subtitleTextOffset = CGSizeMake(0, 0);
-    self.font = [UIFont boldSystemFontOfSize:21];
-    self.subtitleFont = [UIFont systemFontOfSize:14];
-    
-    self.backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1];
-    self.separatorColor = [UIColor colorWithPatternImage:self.separatorImage];
-    self.textColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1];
-    self.textShadowColor = [UIColor blackColor];
-    self.textShadowOffset = CGSizeMake(0, -1);
-    self.textAlignment = NSTextAlignmentCenter;
-    
-    self.highlightedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
-    self.highlightedSeparatorColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
-    self.highlightedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1];
-    self.highlightedTextShadowColor = [UIColor blackColor];
-    self.highlightedTextShadowOffset = CGSizeMake(0, -1);
-    
-    self.subtitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
-    self.subtitleTextShadowColor = [UIColor blackColor];
-    self.subtitleTextShadowOffset = CGSizeMake(0, -1);
-    self.subtitleHighlightedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
-    self.subtitleHighlightedTextShadowColor = [UIColor blackColor];
-    self.subtitleHighlightedTextShadowOffset = CGSizeMake(0, -1);
-    self.subtitleTextAlignment = NSTextAlignmentCenter;
-    
-    self.borderWidth = 1;
-    self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1];
-    self.animationDuration = 0.3;
-    self.bounce = YES;
-    self.bounceAnimationDuration = 0.2;
-    
+    if ((self = [super init])) {
+        self.imageAlignment = REMenuImageAlignmentLeft;
+        self.closeOnSelection = YES;
+        self.itemHeight = 48.0;
+        self.separatorHeight = 2.0;
+        self.waitUntilAnimationIsComplete = YES;
+        
+        self.textOffset = CGSizeMake(0, 0);
+        self.subtitleTextOffset = CGSizeMake(0, 0);
+        self.font = [UIFont boldSystemFontOfSize:21.0];
+        self.subtitleFont = [UIFont systemFontOfSize:14.0];
+        
+        self.backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1.0];
+        self.separatorColor = [UIColor colorWithPatternImage:self.separatorImage];
+        self.textColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
+        self.textShadowColor = [UIColor blackColor];
+        self.textShadowOffset = CGSizeMake(0, -1.0);
+        self.textAlignment = NSTextAlignmentCenter;
+        
+        self.highlightedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
+        self.highlightedSeparatorColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
+        self.highlightedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
+        self.highlightedTextShadowColor = [UIColor blackColor];
+        self.highlightedTextShadowOffset = CGSizeMake(0, -1.0);
+        
+        self.subtitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
+        self.subtitleTextShadowColor = [UIColor blackColor];
+        self.subtitleTextShadowOffset = CGSizeMake(0, -1.0);
+        self.subtitleHighlightedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
+        self.subtitleHighlightedTextShadowColor = [UIColor blackColor];
+        self.subtitleHighlightedTextShadowOffset = CGSizeMake(0, -1.0);
+        self.subtitleTextAlignment = NSTextAlignmentCenter;
+        
+        self.borderWidth = 1.0;
+        self.borderColor =  [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
+        self.animationDuration = 0.3;
+        self.bounce = YES;
+        self.bounceAnimationDuration = 0.2;
+    }
     return self;
 }
 
 - (id)initWithItems:(NSArray *)items
 {
-    self = [self init];
-    if (!self)
-        return nil;
-    
-    self.items = items;
-
+    if ((self = [self init])) {
+        self.items = items;
+    }
     return self;
 }
 
@@ -175,7 +169,7 @@
         [self.menuView addSubview:separatorView];
         
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
-                                                                                    index * self.itemHeight + (index + 1) * self.separatorHeight + 40.0,
+                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0,
                                                                                     rect.size.width,
                                                                                     itemHeight)
                                                                     menu:self
@@ -239,6 +233,7 @@
             [self.menuView removeFromSuperview];
             [self.menuWrapperView removeFromSuperview];
             [self.backgroundButton removeFromSuperview];
+            [self.backgroundView removeFromSuperview];
             [self.containerView removeFromSuperview];
             self.isOpen = NO;
             if (completion)
@@ -252,7 +247,7 @@
     if (self.bounce) {
         [UIView animateWithDuration:self.bounceAnimationDuration animations:^{
             CGRect frame = self.menuView.frame;
-            frame.origin.y = -20;
+            frame.origin.y = -20.0;
             self.menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
             closeMenu();
@@ -269,7 +264,7 @@
 
 - (CGFloat)combinedHeight
 {
-    return self.items.count * self.itemHeight + self.items.count  * self.separatorHeight + 40 + self.cornerRadius;
+    return self.items.count * self.itemHeight + self.items.count  * self.separatorHeight + 40.0 + self.cornerRadius;
 }
 
 - (void)setNeedsLayout
@@ -284,13 +279,13 @@
 
 - (UIImage *)separatorImage
 {
-    UIGraphicsBeginImageContext(CGSizeMake(1, 4));
+    UIGraphicsBeginImageContext(CGSizeMake(1, 4.0));
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIGraphicsPushContext(context);
-    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1].CGColor);
-    CGContextFillRect(context, CGRectMake(0, 0, 1, 2));
-    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:79/255.0 green:79/255.0 blue:77/255.0 alpha:1].CGColor);
-    CGContextFillRect(context, CGRectMake(0, 3, 1, 2));
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0].CGColor);
+    CGContextFillRect(context, CGRectMake(0, 0, 1.0, 2.0));
+    CGContextSetFillColorWithColor(context, [UIColor colorWithRed:79/255.0 green:79/255.0 blue:77/255.0 alpha:1.0].CGColor);
+    CGContextFillRect(context, CGRectMake(0, 3.0, 1.0, 2.0));
     UIGraphicsPopContext();
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
