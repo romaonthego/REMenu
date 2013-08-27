@@ -93,21 +93,21 @@
 - (void)setTitle:(NSString *)title
 {
     _title = title;
-    _itemView.titleLabel.text = title;
-    _itemView.accessibilityLabel = title;
+    self.itemView.titleLabel.text = title;
+    self.itemView.accessibilityLabel = title;
 }
 
 - (void)setSubtitle:(NSString *)subtitle
 {
     _subtitle = subtitle;
-    _itemView.subtitleLabel.text = subtitle;
-    _itemView.accessibilityLabel = [NSString stringWithFormat:@"%@, %@", _itemView.titleLabel.text, subtitle];
+    self.itemView.subtitleLabel.text = subtitle;
+    self.itemView.accessibilityLabel = [NSString stringWithFormat:@"%@, %@", self.itemView.titleLabel.text, subtitle];
 }
 
 - (void)setImage:(UIImage *)image
 {
     _image = image;
-    _itemView.imageView.image = image;
+    self.itemView.imageView.image = image;
 }
 
 

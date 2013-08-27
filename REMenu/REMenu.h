@@ -35,13 +35,7 @@ typedef NS_ENUM(NSInteger, REMenuImageAlignment) {
     REMenuImageAlignmentRight
 };
 
-@interface REMenu : NSObject {
-    UIView *_menuView;
-    UIView *_menuWrapperView;
-    REMenuContainerView *_containerView;
-    NSMutableArray *_itemViews;
-    UIButton *_backgroundButton;
-}
+@interface REMenu : NSObject 
 
 // Data
 //
