@@ -19,7 +19,7 @@ Build and run the `REMenuExample` project in Xcode to see `REMenu` in action.
 ### CocoaPods
 
 The recommended approach for installating `REMenu` is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation.
-For best results, it is recommended that you install via CocoaPods >= **0.15.2** using Git >= **1.8.0** installed via Homebrew.
+For best results, it is recommended that you install via CocoaPods >= **0.23.0** using Git >= **1.8.0** installed via Homebrew.
 
 Install CocoaPods if not already available:
 
@@ -95,8 +95,8 @@ REMenuItem *profileItem = [[REMenuItem alloc] initWithTitle:@"Profile"
                                                          NSLog(@"Item: %@", item);
                                                      }];
 
-_menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
-[_menu showFromNavigationController:self.navigationController];
+self.menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
+[self.menu showFromNavigationController:self.navigationController];
 ```
 
 You can also present `REMenu` from a custom view, there are 2 specific tasks for that:
