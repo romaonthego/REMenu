@@ -35,53 +35,41 @@
 
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action
 {
-    self = [super init];
-    if (!self)
-        return nil;
-    
-    self.title = title;
-    self.image = image;
-    self.higlightedImage = higlightedImage;
-    self.action = action;
-    
+    if ((self = [super init])) {
+        self.title = title;
+        self.image = image;
+        self.higlightedImage = higlightedImage;
+        self.action = action;
+    }
     return self;
 }
 
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action
 {
-    self = [super init];
-    if (!self)
-        return nil;
-    
-    self.title = title;
-    self.subtitle = subtitle;
-    self.image = image;
-    self.higlightedImage = higlightedImage;
-    self.action = action;
-    
+    if ((self = [super init])) {
+        self.title = title;
+        self.subtitle = subtitle;
+        self.image = image;
+        self.higlightedImage = higlightedImage;
+        self.action = action;
+    }
     return self;
 }
 
 - (id)initWithCustomView:(UIView *)customView action:(void (^)(REMenuItem *item))action
 {
-    self = [super init];
-    if (!self)
-        return nil;
-    
-    self.customView = customView;
-    self.action = action;
-    
+    if ((self = [super init])) {
+        self.customView = customView;
+        self.action = action;
+    }
     return self;
 }
 
 - (id)initWithCustomView:(UIView *)customView
 {
-    self = [super init];
-    if (!self)
-        return nil;
-    
-    self.customView = customView;
-    
+    if ((self = [super init])) {
+        self.customView = customView;
+    }
     return self;
 }
 
