@@ -68,9 +68,9 @@
                                                              [self setViewControllers:@[controller] animated:NO];
                                                          }];
     
-    // You can also assign custom view for items
-    // Uncomment the code below and add customViewItem to `initWithItems` array, e.g.
-    // [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem, customViewItem]]
+    // You can also assign a custom view for any particular item
+    // Uncomment the code below and add `customViewItem` to `initWithItems` array, for example:
+    // self.menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem, customViewItem]]
     //
     /*
     UIView *customView = [[UIView alloc] init];
