@@ -98,5 +98,10 @@
     self.itemView.imageView.image = image;
 }
 
+- (void)setHiglightedImage:(UIImage *)higlightedImage
+{
+    _higlightedImage = higlightedImage;
+    self.itemView.imageView.highlightedImage = higlightedImage;
+}
 
 @end
