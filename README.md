@@ -2,10 +2,8 @@
 
 Dropdown menu inspired by Vine.
 
-<img src="https://github.com/romaonthego/REMenu/raw/master/Screenshot.png" alt="REMenu Screenshot" width="320" height="480" />
-
-<img src="https://github.com/romaonthego/REMenu/raw/master/Screenshot.png" alt="REMenu Screenshot" width="400" height="480" />
-<img src="https://github.com/romaonthego/REMenu/raw/master/Demo.gif" alt="REMenu Screenshot" width="320" height="480" />
+<img src="https://github.com/romaonthego/REMenu/raw/master/Screenshot.png" alt="REMenu Screenshot" width="400" height="568" />
+<img src="https://github.com/romaonthego/REMenu/raw/master/Demo.gif" alt="REMenu Screenshot" width="320" height="568" />
 
 ## Requirements
 * Xcode 4.5 or higher
