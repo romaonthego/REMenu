@@ -96,11 +96,13 @@
 
     //self.menu.imageAlignment = REMenuImageAlignmentRight;
     //self.menu.closeOnSelection = NO;
-    self.menu.cornerRadius = 4;
-    self.menu.shadowRadius = 4;
-    self.menu.shadowColor = [UIColor blackColor];
-    self.menu.shadowOffset = CGSizeMake(0, 1);
-    self.menu.shadowOpacity = 1;
+    if (!REUIKitIsFlatMode()) {
+        self.menu.cornerRadius = 4;
+        self.menu.shadowRadius = 4;
+        self.menu.shadowColor = [UIColor blackColor];
+        self.menu.shadowOffset = CGSizeMake(0, 1);
+        self.menu.shadowOpacity = 1;
+    }
     self.menu.imageOffset = CGSizeMake(5, -1);
     self.menu.waitUntilAnimationIsComplete = NO;
     self.menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {

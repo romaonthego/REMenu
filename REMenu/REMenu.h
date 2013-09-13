@@ -35,6 +35,24 @@ typedef NS_ENUM(NSInteger, REMenuImageAlignment) {
     REMenuImageAlignmentRight
 };
 
+static BOOL REUIKitIsFlatMode()
+{
+    static BOOL isUIKitFlatMode = NO;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+            // If your app is running in legacy mode, tintColor will be nil - else it must be set to some color.
+            if (UIApplication.sharedApplication.keyWindow) {
+                isUIKitFlatMode = [UIApplication.sharedApplication.delegate.window performSelector:@selector(tintColor)] != nil;
+            } else {
+                // Possible that we're called early on (e.g. when used in a Storyboard). Adapt and use a temporary window.
+                isUIKitFlatMode = [[UIWindow new] performSelector:@selector(tintColor)] != nil;
+            }
+        }
+    });
+    return isUIKitFlatMode;
+}
+
 @interface REMenu : NSObject 
 
 // Data
@@ -83,6 +101,7 @@ typedef NS_ENUM(NSInteger, REMenuImageAlignment) {
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) NSTimeInterval bounceAnimationDuration;
 @property (assign, readwrite, nonatomic) REMenuImageAlignment imageAlignment;
+@property (assign, readwrite, nonatomic) BOOL appearsBeyondNavigationBar;
 @property (assign, readwrite, nonatomic) BOOL bounce;
 @property (copy, readwrite, nonatomic) void (^badgeLabelConfigurationBlock)(UILabel *badgeLabel, REMenuItem *item);
 

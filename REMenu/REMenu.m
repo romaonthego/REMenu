@@ -42,6 +42,7 @@
 @property (strong, readwrite, nonatomic) UIButton *backgroundButton;
 @property (assign, readwrite, nonatomic) BOOL isOpen;
 @property (strong, readwrite, nonatomic) NSMutableArray *itemViews;
+@property (weak, readwrite, nonatomic) UINavigationBar *navigationBar;
 
 @end
 
@@ -87,6 +88,8 @@
         self.animationDuration = 0.3;
         self.bounce = YES;
         self.bounceAnimationDuration = 0.2;
+        
+        self.appearsBeyondNavigationBar = REUIKitIsFlatMode() ? YES : NO;
     }
     return self;
 }
@@ -151,6 +154,8 @@
         button;
     });
     
+    CGFloat navigationBarOffset = self.appearsBeyondNavigationBar && self.navigationBar ? 64 : 0;
+    
     // Append new item views to REMenuView
     //
     for (REMenuItem *item in self.items) {
@@ -161,7 +166,7 @@
             itemHeight += self.cornerRadius;
         
         UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                         index * self.itemHeight + index * self.separatorHeight + 40.0,
+                                                                         index * self.itemHeight + index * self.separatorHeight + 40.0 + navigationBarOffset,
                                                                          rect.size.width,
                                                                          self.separatorHeight)];
         separatorView.backgroundColor = self.separatorColor;
@@ -169,7 +174,7 @@
         [self.menuView addSubview:separatorView];
         
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
-                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0,
+                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0 + navigationBarOffset,
                                                                                     rect.size.width,
                                                                                     itemHeight)
                                                                     menu:self
@@ -185,10 +190,11 @@
         }
         [self.menuView addSubview:itemView];
     }
+  //  self.menuWrapperView.backgroundColor = [UIColor redColor];
     
     // Set up frames
     //
-    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight, rect.size.width, self.combinedHeight);
+    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight, rect.size.width, self.combinedHeight + navigationBarOffset);
     self.menuView.frame = self.menuWrapperView.bounds;
     self.containerView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     self.backgroundButton.frame = self.containerView.bounds;
@@ -217,8 +223,13 @@
 
 - (void)showFromNavigationController:(UINavigationController *)navigationController
 {
+    self.navigationBar = navigationController.navigationBar;
     [self showFromRect:CGRectMake(0, 0, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height) inView:navigationController.view];
+    self.containerView.appearsBeyondNavigationBar = self.appearsBeyondNavigationBar;
     self.containerView.navigationBar = navigationController.navigationBar;
+    if (self.appearsBeyondNavigationBar) {
+        [navigationController.view bringSubviewToFront:navigationController.navigationBar];
+    }
 }
 
 - (void)closeWithCompletion:(void (^)(void))completion
@@ -242,7 +253,14 @@
             if (self.closeCompletionHandler)
                 self.closeCompletionHandler();
         }];
+        
+        if (self.appearsBeyondNavigationBar) {
+            [UIView animateWithDuration:self.animationDuration / 2.0 delay:self.animationDuration / 2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.menuWrapperView.alpha = 0;
+            } completion:nil];
+        }
     };
+    
     
     if (self.bounce) {
         [UIView animateWithDuration:self.bounceAnimationDuration animations:^{

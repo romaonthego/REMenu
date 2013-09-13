@@ -31,10 +31,17 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    if (self.navigationBar) {
+    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    if (self.navigationBar && !self.appearsBeyondNavigationBar) {
         CGRect frame = self.frame;
-        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         frame.origin.y = self.navigationBar.frame.origin.y + (UIDeviceOrientationIsPortrait(orientation) ? 44.0 : 32.0);
+        self.frame = frame;
+    }
+    
+    if (self.appearsBeyondNavigationBar) {
+        CGRect frame = self.frame;
+        frame.origin.y = (UIDeviceOrientationIsPortrait(orientation) ? 44.0 : 32.0) - 44;
         self.frame = frame;
     }
 }
