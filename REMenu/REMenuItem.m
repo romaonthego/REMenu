@@ -75,7 +75,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<title: %@; subtitle: %@; tag: %i>", self.title, self.subtitle, self.tag];
+    return [NSString stringWithFormat:@"<title: %@; subtitle: %@; tag: %li>", self.title, self.subtitle, (long)self.tag];
 }
 
 - (void)setTitle:(NSString *)title
