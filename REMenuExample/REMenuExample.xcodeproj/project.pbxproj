@@ -24,6 +24,7 @@
 		30B00DDE17CCFD280010D439 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B00DD617CCFD280010D439 /* NavigationViewController.m */; };
 		30B00DDF17CCFD280010D439 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B00DD817CCFD280010D439 /* ProfileViewController.m */; };
 		30B00DE017CCFD280010D439 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B00DDA17CCFD280010D439 /* RootViewController.m */; };
+		30B35CF217E54BFA0082CE0E /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B35CF117E54BFA0082CE0E /* RECommonFunctions.m */; };
 		30E0F77E16D545F7001949EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F77D16D545F7001949EA /* UIKit.framework */; };
 		30E0F78016D545F7001949EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F77F16D545F7001949EA /* Foundation.framework */; };
 		30E0F78216D545F7001949EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E0F78116D545F7001949EA /* CoreGraphics.framework */; };
@@ -60,6 +61,8 @@
 		30B00DD817CCFD280010D439 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		30B00DD917CCFD280010D439 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		30B00DDA17CCFD280010D439 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		30B35CF017E54BFA0082CE0E /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		30B35CF117E54BFA0082CE0E /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		30E0F77A16D545F7001949EA /* REMenuExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = REMenuExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E0F77D16D545F7001949EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		30E0F77F16D545F7001949EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -186,6 +189,8 @@
 		30E0F7A516D54641001949EA /* REMenu */ = {
 			isa = PBXGroup;
 			children = (
+				30B35CF017E54BFA0082CE0E /* RECommonFunctions.h */,
+				30B35CF117E54BFA0082CE0E /* RECommonFunctions.m */,
 				30E0F7A616D54641001949EA /* REMenu.h */,
 				30E0F7A716D54641001949EA /* REMenu.m */,
 				30E0F7A816D54641001949EA /* REMenuItem.h */,
@@ -274,6 +279,7 @@
 			files = (
 				30E0F78A16D545F7001949EA /* main.m in Sources */,
 				30E0F78E16D545F7001949EA /* AppDelegate.m in Sources */,
+				30B35CF217E54BFA0082CE0E /* RECommonFunctions.m in Sources */,
 				30E0F7AC16D54641001949EA /* REMenu.m in Sources */,
 				30E0F7AD16D54641001949EA /* REMenuItem.m in Sources */,
 				30E0F7AE16D54641001949EA /* REMenuItemView.m in Sources */,
