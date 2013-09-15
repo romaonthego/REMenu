@@ -32,6 +32,7 @@
         self.navigationBar.tintColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
     }
     
+    __typeof (self) __weak weakSelf = self;
     REMenuItem *homeItem = [[REMenuItem alloc] initWithTitle:@"Home"
                                                     subtitle:@"Return to Home Screen"
                                                        image:[UIImage imageNamed:@"Icon_Home"]
@@ -39,7 +40,7 @@
                                                       action:^(REMenuItem *item) {
                                                           NSLog(@"Item: %@", item);
                                                           HomeViewController *controller = [[HomeViewController alloc] init];
-                                                          [self setViewControllers:@[controller] animated:NO];
+                                                          [weakSelf setViewControllers:@[controller] animated:NO];
                                                       }];
     
     REMenuItem *exploreItem = [[REMenuItem alloc] initWithTitle:@"Explore"
@@ -49,7 +50,7 @@
                                                          action:^(REMenuItem *item) {
                                                              NSLog(@"Item: %@", item);
                                                              ExploreViewController *controller = [[ExploreViewController alloc] init];
-                                                             [self setViewControllers:@[controller] animated:NO];
+                                                             [weakSelf setViewControllers:@[controller] animated:NO];
                                                          }];
     
     REMenuItem *activityItem = [[REMenuItem alloc] initWithTitle:@"Activity"
@@ -59,7 +60,7 @@
                                                           action:^(REMenuItem *item) {
                                                               NSLog(@"Item: %@", item);
                                                               ActivityViewController *controller = [[ActivityViewController alloc] init];
-                                                              [self setViewControllers:@[controller] animated:NO];
+                                                              [weakSelf setViewControllers:@[controller] animated:NO];
                                                           }];
     
     activityItem.badge = @"12";
@@ -70,7 +71,7 @@
                                                          action:^(REMenuItem *item) {
                                                              NSLog(@"Item: %@", item);
                                                              ProfileViewController *controller = [[ProfileViewController alloc] init];
-                                                             [self setViewControllers:@[controller] animated:NO];
+                                                             [weakSelf setViewControllers:@[controller] animated:NO];
                                                          }];
     
     // You can also assign a custom view for any particular item
