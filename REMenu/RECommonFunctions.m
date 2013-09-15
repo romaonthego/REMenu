@@ -1,6 +1,6 @@
 //
 // RECommonFunctions.m
-// RETableViewManager
+// REMenu
 //
 // Copyright (c) 2013 Roman Efimov (https://github.com/romaonthego)
 //
