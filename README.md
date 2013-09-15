@@ -8,7 +8,7 @@ Dropdown menu inspired by Vine.
 ## Requirements
 * Xcode 4.5 or higher
 * Apple LLVM compiler
-* iOS 5.0 or higher
+* iOS 6.0 or higher
 * ARC
 
 ## Demo
@@ -40,7 +40,7 @@ $ edit Podfile
 Edit your Podfile and add REMenu:
 
 ``` bash
-platform :ios, '5.0'
+platform :ios, '6.0'
 pod 'REMenu', '~> 1.4.2'
 ```
 
