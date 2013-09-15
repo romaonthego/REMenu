@@ -11,6 +11,4 @@
 
 @interface RootViewController : UIViewController
 
-@property (strong, nonatomic) REMenu *menu;
-
 @end
