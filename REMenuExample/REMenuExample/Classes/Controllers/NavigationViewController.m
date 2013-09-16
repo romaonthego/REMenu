@@ -102,6 +102,7 @@
 
     //self.menu.imageAlignment = REMenuImageAlignmentRight;
     //self.menu.closeOnSelection = NO;
+    //self.menu.appearsBehindNavigationBar = NO; // Affects only iOS 7
     if (!REUIKitIsFlatMode()) {
         self.menu.cornerRadius = 4;
         self.menu.shadowRadius = 4;
@@ -109,7 +110,6 @@
         self.menu.shadowOffset = CGSizeMake(0, 1);
         self.menu.shadowOpacity = 1;
     }
-    self.menu.appearsBehindNavigationBar = YES; // Affects only iOS 7
     self.menu.imageOffset = CGSizeMake(5, -1);
     self.menu.waitUntilAnimationIsComplete = NO;
     self.menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {
