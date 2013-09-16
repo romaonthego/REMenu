@@ -89,7 +89,7 @@
         self.bounce = YES;
         self.bounceAnimationDuration = 0.2;
         
-        self.appearsBeyondNavigationBar = REUIKitIsFlatMode() ? YES : NO;
+        self.appearsBehindNavigationBar = REUIKitIsFlatMode() ? YES : NO;
     }
     return self;
 }
@@ -154,7 +154,7 @@
         button;
     });
     
-    CGFloat navigationBarOffset = self.appearsBeyondNavigationBar && self.navigationBar ? 64 : 0;
+    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
     
     // Append new item views to REMenuView
     //
@@ -224,9 +224,9 @@
 {
     self.navigationBar = navigationController.navigationBar;
     [self showFromRect:CGRectMake(0, 0, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height) inView:navigationController.view];
-    self.containerView.appearsBeyondNavigationBar = self.appearsBeyondNavigationBar;
+    self.containerView.appearsBehindNavigationBar = self.appearsBehindNavigationBar;
     self.containerView.navigationBar = navigationController.navigationBar;
-    if (self.appearsBeyondNavigationBar) {
+    if (self.appearsBehindNavigationBar) {
         [navigationController.view bringSubviewToFront:navigationController.navigationBar];
     }
 }
@@ -253,7 +253,7 @@
                 self.closeCompletionHandler();
         }];
         
-        if (self.appearsBeyondNavigationBar) {
+        if (self.appearsBehindNavigationBar) {
             [UIView animateWithDuration:self.animationDuration / 2.0 delay:self.animationDuration / 2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self.menuWrapperView.alpha = 0;
             } completion:nil];

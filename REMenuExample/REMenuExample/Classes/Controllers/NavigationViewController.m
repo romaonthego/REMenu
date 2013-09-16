@@ -109,7 +109,7 @@
         self.menu.shadowOffset = CGSizeMake(0, 1);
         self.menu.shadowOpacity = 1;
     }
-    self.menu.appearsBeyondNavigationBar = YES; // Affects only iOS 7
+    self.menu.appearsBehindNavigationBar = YES; // Affects only iOS 7
     self.menu.imageOffset = CGSizeMake(5, -1);
     self.menu.waitUntilAnimationIsComplete = NO;
     self.menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {
