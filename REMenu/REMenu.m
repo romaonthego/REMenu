@@ -194,7 +194,8 @@
     
     // Set up frames
     //
-    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight, rect.size.width, self.combinedHeight + navigationBarOffset);
+    CGFloat wrapperHeight = self.combinedHeight + navigationBarOffset;
+    self.menuWrapperView.frame = CGRectMake(0, -wrapperHeight, rect.size.width, wrapperHeight);
     self.menuView.frame = self.menuWrapperView.bounds;
     self.containerView.frame = rect;
     self.backgroundButton.frame = self.containerView.bounds;
@@ -235,7 +236,7 @@
     void (^closeMenu)(void) = ^{
         [UIView animateWithDuration:self.animationDuration animations:^{
             CGRect frame = self.menuView.frame;
-            frame.origin.y = - self.combinedHeight;
+            frame.origin.y = - frame.size.height;
             self.menuWrapperView.frame = frame;
             self.backgroundView.alpha = 0;
         } completion:^(BOOL finished) {
