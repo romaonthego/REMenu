@@ -190,7 +190,6 @@
         }
         [self.menuView addSubview:itemView];
     }
-  //  self.menuWrapperView.backgroundColor = [UIColor redColor];
     
     // Set up frames
     //
