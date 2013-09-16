@@ -166,7 +166,7 @@
             itemHeight += self.cornerRadius;
         
         UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                         index * self.itemHeight + index * self.separatorHeight + 40.0 + navigationBarOffset,
+                                                                         index * self.itemHeight + index * self.separatorHeight + navigationBarOffset,
                                                                          rect.size.width,
                                                                          self.separatorHeight)];
         separatorView.backgroundColor = self.separatorColor;
@@ -174,7 +174,7 @@
         [self.menuView addSubview:separatorView];
         
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
-                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0 + navigationBarOffset,
+                                                                                    index * self.itemHeight + (index + 1) * self.separatorHeight + navigationBarOffset,
                                                                                     rect.size.width,
                                                                                     itemHeight)
                                                                     menu:self
@@ -196,7 +196,7 @@
     //
     self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight, rect.size.width, self.combinedHeight + navigationBarOffset);
     self.menuView.frame = self.menuWrapperView.bounds;
-    self.containerView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    self.containerView.frame = rect;
     self.backgroundButton.frame = self.containerView.bounds;
     
     // Add subviews
@@ -205,14 +205,12 @@
     [self.containerView addSubview:self.backgroundButton];
     [self.containerView addSubview:self.menuWrapperView];
     [view addSubview:self.containerView];
-    
+
     // Animate appearance
     //
     [UIView animateWithDuration:self.animationDuration animations:^{
         self.backgroundView.alpha = 1.0;
-        CGRect frame = self.menuView.frame;
-        frame.origin.y = -40.0 - self.separatorHeight;
-        self.menuWrapperView.frame = frame;
+        self.menuWrapperView.frame = self.menuView.frame;
     } completion:nil];
 }
 
@@ -282,7 +280,7 @@
 
 - (CGFloat)combinedHeight
 {
-    return self.items.count * self.itemHeight + self.items.count  * self.separatorHeight + 40.0 + self.cornerRadius;
+    return self.items.count * (self.itemHeight + self.separatorHeight) + self.cornerRadius;
 }
 
 - (void)setNeedsLayout
