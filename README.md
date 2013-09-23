@@ -158,7 +158,7 @@ You can customize the following properties of `REMenu`:
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) NSTimeInterval bounceAnimationDuration;
 @property (assign, readwrite, nonatomic) REMenuImageAlignment imageAlignment;
-@property (assign, readwrite, nonatomic) BOOL appearsBeyondNavigationBar;
+@property (assign, readwrite, nonatomic) BOOL appearsBehindNavigationBar;
 @property (assign, readwrite, nonatomic) BOOL bounce;
 @property (copy, readwrite, nonatomic) void (^badgeLabelConfigurationBlock)(UILabel *badgeLabel, REMenuItem *item);
 ```
