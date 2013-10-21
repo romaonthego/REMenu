@@ -160,6 +160,9 @@ You can customize the following properties of `REMenu`:
 @property (assign, readwrite, nonatomic) REMenuImageAlignment imageAlignment;
 @property (assign, readwrite, nonatomic) BOOL appearsBehindNavigationBar;
 @property (assign, readwrite, nonatomic) BOOL bounce;
+@property (assign, readwrite, nonatomic) BOOL liveBlur; // Available only in iOS 7
+@property (strong, readwrite, nonatomic) UIColor *liveBlurTintColor; // Available only in iOS 7
+@property (assign, readwrite, nonatomic) REMenuLiveBackgroundStyle liveBlurBackgroundStyle; // Available only in iOS 7
 @property (copy, readwrite, nonatomic) void (^badgeLabelConfigurationBlock)(UILabel *badgeLabel, REMenuItem *item);
 ```
 
