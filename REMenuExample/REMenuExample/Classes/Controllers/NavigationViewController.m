@@ -110,6 +110,12 @@
         self.menu.shadowOffset = CGSizeMake(0, 1);
         self.menu.shadowOpacity = 1;
     }
+    if (REUIKitIsFlatMode()) {
+        self.menu.liveBlur = YES;
+        self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleDark;
+        //self.menu.liveBlurTintColor = [UIColor redColor];
+    }
+    
     self.menu.imageOffset = CGSizeMake(5, -1);
     self.menu.waitUntilAnimationIsComplete = NO;
     self.menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {

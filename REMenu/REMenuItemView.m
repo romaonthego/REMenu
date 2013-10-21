@@ -26,6 +26,12 @@
 #import "REMenuItemView.h"
 #import "REMenuItem.h"
 
+@interface REMenuItemView ()
+
+@property (strong, readwrite, nonatomic) UIView *backgroundView;
+
+@end
+
 @implementation REMenuItemView
 
 - (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hasSubtitle:(BOOL)hasSubtitle
@@ -36,6 +42,15 @@
         self.isAccessibilityElement = YES;
         self.accessibilityTraits = UIAccessibilityTraitButton;
         self.accessibilityHint = NSLocalizedString(@"Double tap to choose", @"Double tap to choose");
+        
+        _backgroundView = ({
+            UIView *view = [[UIView alloc] initWithFrame:self.bounds];
+            view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            if (menu.liveBlur && REUIKitIsFlatMode())
+                view.alpha = 0.5f;
+            view;
+        });
+        [self addSubview:_backgroundView];
         
         CGRect titleFrame;
         if (hasSubtitle) {
@@ -53,12 +68,12 @@
                 label.isAccessibilityElement = NO;
                 label;
             });
-            [self addSubview:self.subtitleLabel];
+            [self addSubview:_subtitleLabel];
         } else {
             titleFrame = CGRectMake(self.menu.textOffset.width, self.menu.textOffset.height, 0, frame.size.height);
         }
 
-        self.titleLabel = ({
+        _titleLabel = ({
             UILabel *label = [[UILabel alloc] initWithFrame:titleFrame];
             label.isAccessibilityElement = NO;
             label.contentMode = UIViewContentModeCenter;
@@ -68,9 +83,9 @@
             label;
         });
 
-        self.imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectNull];
         
-        self.badgeLabel = ({
+        _badgeLabel = ({
             UILabel *label = [[UILabel alloc] init];
             label.backgroundColor = [UIColor colorWithWhite:0.559 alpha:1.000];
             label.font = [UIFont systemFontOfSize:11];
@@ -83,9 +98,9 @@
             label;
         });
         
-        [self addSubview:self.titleLabel];
-        [self addSubview:self.imageView];
-        [self addSubview:self.badgeLabel];
+        [self addSubview:_titleLabel];
+        [self addSubview:_imageView];
+        [self addSubview:_badgeLabel];
     }
     return self;
 }
@@ -144,7 +159,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.backgroundColor = self.menu.highlightedBackgroundColor;
+    self.backgroundView.backgroundColor = self.menu.highlightedBackgroundColor;
     self.separatorView.backgroundColor = self.menu.highlightedSeparatorColor;
     self.imageView.image = self.item.higlightedImage ? self.item.higlightedImage : self.item.image;
     self.titleLabel.textColor = self.menu.highlightedTextColor;
@@ -157,7 +172,7 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundView.backgroundColor = [UIColor clearColor];
     self.separatorView.backgroundColor = self.menu.separatorColor;
     self.imageView.image = self.item.image;
     self.titleLabel.textColor = self.menu.textColor;
@@ -170,7 +185,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundView.backgroundColor = [UIColor clearColor];
     self.separatorView.backgroundColor = self.menu.separatorColor;
     self.imageView.image = self.item.image;
     self.titleLabel.textColor = self.menu.textColor;

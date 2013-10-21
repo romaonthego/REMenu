@@ -36,6 +36,11 @@ typedef NS_ENUM(NSInteger, REMenuImageAlignment) {
     REMenuImageAlignmentRight
 };
 
+typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
+    REMenuLiveBackgroundStyleLight,
+    REMenuLiveBackgroundStyleDark
+};
+
 @interface REMenu : NSObject 
 
 // Data
@@ -86,6 +91,9 @@ typedef NS_ENUM(NSInteger, REMenuImageAlignment) {
 @property (assign, readwrite, nonatomic) REMenuImageAlignment imageAlignment;
 @property (assign, readwrite, nonatomic) BOOL appearsBehindNavigationBar;
 @property (assign, readwrite, nonatomic) BOOL bounce;
+@property (assign, readwrite, nonatomic) BOOL liveBlur; // Available only in iOS 7
+@property (strong, readwrite, nonatomic) UIColor *liveBlurTintColor; // Available only in iOS 7
+@property (assign, readwrite, nonatomic) REMenuLiveBackgroundStyle liveBlurBackgroundStyle; // Available only in iOS 7
 @property (copy, readwrite, nonatomic) void (^badgeLabelConfigurationBlock)(UILabel *badgeLabel, REMenuItem *item);
 
 - (id)initWithItems:(NSArray *)items;

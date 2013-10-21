@@ -35,6 +35,7 @@
 		30E0F7AD16D54641001949EA /* REMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7A916D54641001949EA /* REMenuItem.m */; };
 		30E0F7AE16D54641001949EA /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7AB16D54641001949EA /* REMenuItemView.m */; };
 		30E0F7B116D54CE0001949EA /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30E0F7B016D54CE0001949EA /* REMenuContainerView.m */; };
+		30E405CC181581B200C6B0F4 /* Balloon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 30E405CB181581B200C6B0F4 /* Balloon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +82,7 @@
 		30E0F7AB16D54641001949EA /* REMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = REMenuItemView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		30E0F7AF16D54CE0001949EA /* REMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuContainerView.h; sourceTree = "<group>"; };
 		30E0F7B016D54CE0001949EA /* REMenuContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuContainerView.m; sourceTree = "<group>"; };
+		30E405CB181581B200C6B0F4 /* Balloon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Balloon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 		30B00DB717CCFD200010D439 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				30E405CB181581B200C6B0F4 /* Balloon@2x.png */,
 				30B00DB817CCFD200010D439 /* Default-568h@2x.png */,
 				30B00DB917CCFD200010D439 /* Default.png */,
 				30B00DBA17CCFD200010D439 /* Default@2x.png */,
@@ -259,6 +262,7 @@
 				30B00DC317CCFD200010D439 /* Default-568h@2x.png in Resources */,
 				30B00DC417CCFD200010D439 /* Default.png in Resources */,
 				30B00DC517CCFD200010D439 /* Default@2x.png in Resources */,
+				30E405CC181581B200C6B0F4 /* Balloon@2x.png in Resources */,
 				30B00DC617CCFD200010D439 /* Icon_Activity.png in Resources */,
 				30B00DC717CCFD200010D439 /* Icon_Activity@2x.png in Resources */,
 				30B00DC817CCFD200010D439 /* Icon_Explore.png in Resources */,

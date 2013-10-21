@@ -43,6 +43,7 @@
 @property (assign, readwrite, nonatomic) BOOL isOpen;
 @property (strong, readwrite, nonatomic) NSMutableArray *itemViews;
 @property (weak, readwrite, nonatomic) UINavigationBar *navigationBar;
+@property (strong, readwrite, nonatomic) UIToolbar *toolbar;
 
 @end
 
@@ -122,7 +123,9 @@
     
     self.menuView = ({
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = self.backgroundColor;
+        if (!self.liveBlur || !REUIKitIsFlatMode()) {
+            view.backgroundColor = self.backgroundColor;
+        }
         view.layer.cornerRadius = self.cornerRadius;
         view.layer.borderColor = self.borderColor.CGColor;
         view.layer.borderWidth = self.borderWidth;
@@ -133,15 +136,28 @@
         view;
     });
     
+    if (REUIKitIsFlatMode()) {
+        self.toolbar = ({
+            UIToolbar *toolbar = [[UIToolbar alloc] init];
+            toolbar.barStyle = self.liveBlurBackgroundStyle;
+            if ([toolbar respondsToSelector:@selector(setBarTintColor:)])
+                [toolbar performSelector:@selector(setBarTintColor:) withObject:self.liveBlurTintColor];
+            toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            toolbar;
+        });
+    }
+    
     self.menuWrapperView = ({
         UIView *view = [[UIView alloc] init];
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        view.layer.shadowColor = self.shadowColor.CGColor;
-        view.layer.shadowOffset = self.shadowOffset;
-        view.layer.shadowOpacity = self.shadowOpacity;
-        view.layer.shadowRadius = self.shadowRadius;
-        view.layer.shouldRasterize = YES;
-        view.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        if (!self.liveBlur || !REUIKitIsFlatMode()) {
+            view.layer.shadowColor = self.shadowColor.CGColor;
+            view.layer.shadowOffset = self.shadowOffset;
+            view.layer.shadowOpacity = self.shadowOpacity;
+            view.layer.shadowRadius = self.shadowRadius;
+            view.layer.shouldRasterize = YES;
+            view.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        }
         view;
     });
     
@@ -195,11 +211,17 @@
     //
     self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, rect.size.width, self.combinedHeight + navigationBarOffset);
     self.menuView.frame = self.menuWrapperView.bounds;
+    if (REUIKitIsFlatMode() && self.liveBlur) {
+        self.toolbar.frame = self.menuWrapperView.bounds;
+    }
     self.containerView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     self.backgroundButton.frame = self.containerView.bounds;
     
     // Add subviews
     //
+    if (REUIKitIsFlatMode() && self.liveBlur) {
+        [self.menuWrapperView addSubview:self.toolbar];
+    }
     [self.menuWrapperView addSubview:self.menuView];
     [self.containerView addSubview:self.backgroundButton];
     [self.containerView addSubview:self.menuWrapperView];
@@ -233,10 +255,12 @@
 
 - (void)closeWithCompletion:(void (^)(void))completion
 {
+    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
+    
     void (^closeMenu)(void) = ^{
         [UIView animateWithDuration:self.animationDuration animations:^{
             CGRect frame = self.menuView.frame;
-            frame.origin.y = - self.combinedHeight;
+            frame.origin.y = - self.combinedHeight - navigationBarOffset;
             self.menuWrapperView.frame = frame;
             self.backgroundView.alpha = 0;
         } completion:^(BOOL finished) {
@@ -253,13 +277,7 @@
                 self.closeCompletionHandler();
         }];
         
-        if (self.appearsBehindNavigationBar) {
-            [UIView animateWithDuration:self.animationDuration / 2.0 delay:self.animationDuration / 2.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                self.menuWrapperView.alpha = 0;
-            } completion:nil];
-        }
     };
-    
     
     if (self.bounce) {
         [UIView animateWithDuration:self.bounceAnimationDuration animations:^{
