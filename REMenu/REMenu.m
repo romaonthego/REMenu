@@ -105,10 +105,7 @@
 
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view
 {
-    if (self.isAnimating)
-    {
-        return;
-    }
+    if (self.isAnimating) return;
     
     self.isOpen = YES;
     self.isAnimating = YES;
