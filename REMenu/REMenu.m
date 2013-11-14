@@ -27,7 +27,6 @@
 #import "REMenuItem.h"
 #import "REMenuItemView.h"
 
-
 @interface REMenuItem ()
 
 @property (assign, readwrite, nonatomic) REMenuItemView *itemView;
@@ -229,12 +228,45 @@
     
     // Animate appearance
     //
-    [UIView animateWithDuration:self.animationDuration animations:^{
-        self.backgroundView.alpha = 1.0;
-        CGRect frame = self.menuView.frame;
-        frame.origin.y = -40.0 - self.separatorHeight;
-        self.menuWrapperView.frame = frame;
-    } completion:nil];
+    if (self.bounce)
+    {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
+        [UIView animateWithDuration:self.animationDuration+self.bounceAnimationDuration
+                              delay:0.0
+             usingSpringWithDamping:0.6
+              initialSpringVelocity:4.0
+#else
+        [UIView animateWithDuration:self.animationDuration
+                              delay:0.0
+#endif
+                            options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+        {
+            self.backgroundView.alpha = 1.0;
+            CGRect frame = self.menuView.frame;
+            frame.origin.y = -40.0 - self.separatorHeight;
+            self.menuWrapperView.frame = frame;
+        }
+        completion:^(BOOL finished)
+        {
+        }];
+    }
+    else
+    {
+        [UIView animateWithDuration:self.animationDuration
+                              delay:0.0
+                            options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+        {
+            self.backgroundView.alpha = 1.0;
+            CGRect frame = self.menuView.frame;
+            frame.origin.y = -40.0 - self.separatorHeight;
+            self.menuWrapperView.frame = frame;
+        }
+        completion:^(BOOL finished)
+        {
+        }];
+    }
 }
 
 - (void)showInView:(UIView *)view
@@ -244,6 +276,7 @@
 
 - (void)showFromNavigationController:(UINavigationController *)navigationController
 {
+    
     self.navigationBar = navigationController.navigationBar;
     [self showFromRect:CGRectMake(0, 0, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height) inView:navigationController.view];
     self.containerView.appearsBehindNavigationBar = self.appearsBehindNavigationBar;
@@ -258,23 +291,34 @@
     CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
     
     void (^closeMenu)(void) = ^{
-        [UIView animateWithDuration:self.animationDuration animations:^{
+        [UIView animateWithDuration:self.animationDuration
+                              delay:0.0
+                            options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
+                         animations:^
+        {
             CGRect frame = self.menuView.frame;
             frame.origin.y = - self.combinedHeight - navigationBarOffset;
             self.menuWrapperView.frame = frame;
             self.backgroundView.alpha = 0;
-        } completion:^(BOOL finished) {
+        }
+        completion:^(BOOL finished)
+        {
+            self.isOpen = NO;
             [self.menuView removeFromSuperview];
             [self.menuWrapperView removeFromSuperview];
             [self.backgroundButton removeFromSuperview];
             [self.backgroundView removeFromSuperview];
             [self.containerView removeFromSuperview];
-            self.isOpen = NO;
+            
             if (completion)
+            {
                 completion();
+            }
             
             if (self.closeCompletionHandler)
+            {
                 self.closeCompletionHandler();
+            }
         }];
         
     };
