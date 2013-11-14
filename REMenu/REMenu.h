@@ -48,6 +48,7 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (strong, readwrite, nonatomic) NSArray *items;
 @property (strong, readwrite, nonatomic) UIView *backgroundView;
 @property (assign, readonly, nonatomic) BOOL isOpen;
+@property (assign, readonly, nonatomic) BOOL isAnimating;
 @property (assign, readwrite, nonatomic) BOOL waitUntilAnimationIsComplete;
 @property (copy, readwrite, nonatomic) void (^closeCompletionHandler)(void);
 @property (assign, readwrite, nonatomic) BOOL closeOnSelection;

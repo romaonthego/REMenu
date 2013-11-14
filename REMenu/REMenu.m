@@ -40,6 +40,7 @@
 @property (strong, readwrite, nonatomic) REMenuContainerView *containerView;
 @property (strong, readwrite, nonatomic) UIButton *backgroundButton;
 @property (assign, readwrite, nonatomic) BOOL isOpen;
+@property (assign, readwrite, nonatomic) BOOL isAnimating;
 @property (strong, readwrite, nonatomic) NSMutableArray *itemViews;
 @property (weak, readwrite, nonatomic) UINavigationBar *navigationBar;
 @property (strong, readwrite, nonatomic) UIToolbar *toolbar;
@@ -104,7 +105,13 @@
 
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view
 {
+    if (self.isAnimating)
+    {
+        return;
+    }
+    
     self.isOpen = YES;
+    self.isAnimating = YES;
     
     // Create views
     //
@@ -230,6 +237,7 @@
     //
     if (self.bounce)
     {
+        self.isAnimating = YES;
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
         [UIView animateWithDuration:self.animationDuration+self.bounceAnimationDuration
                               delay:0.0
@@ -249,6 +257,7 @@
         }
         completion:^(BOOL finished)
         {
+            self.isAnimating = NO;
         }];
     }
     else
@@ -265,6 +274,7 @@
         }
         completion:^(BOOL finished)
         {
+            self.isAnimating = NO;
         }];
     }
 }
@@ -276,6 +286,7 @@
 
 - (void)showFromNavigationController:(UINavigationController *)navigationController
 {
+    if (self.isAnimating) return;
     
     self.navigationBar = navigationController.navigationBar;
     [self showFromRect:CGRectMake(0, 0, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height) inView:navigationController.view];
@@ -288,6 +299,10 @@
 
 - (void)closeWithCompletion:(void (^)(void))completion
 {
+    if (self.isAnimating) return;
+    
+    self.isAnimating = YES;
+    
     CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
     
     void (^closeMenu)(void) = ^{
@@ -304,6 +319,8 @@
         completion:^(BOOL finished)
         {
             self.isOpen = NO;
+            self.isAnimating = NO;
+            
             [self.menuView removeFromSuperview];
             [self.menuWrapperView removeFromSuperview];
             [self.backgroundButton removeFromSuperview];
