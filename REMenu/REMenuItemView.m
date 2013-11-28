@@ -124,11 +124,15 @@
     self.badgeLabel.hidden = !self.item.badge;
     if (self.item.badge) {
         self.badgeLabel.text = self.item.badge;
-        CGSize size = [self.item.badge sizeWithFont:self.badgeLabel.font];
+        NSAttributedString *badgeAttributedString = [[NSAttributedString alloc] initWithString:self.item.badge
+                                                                                    attributes:@{NSFontAttributeName:self.badgeLabel.font}];
+        CGRect rect = [badgeAttributedString boundingRectWithSize:CGSizeMake(CGRectGetMaxX(self.frame), CGRectGetMaxY(self.frame))
+                                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                                          context:nil];
         CGFloat x = self.menu.imageAlignment == REMenuImageAlignmentLeft ? CGRectGetMaxX(self.imageView.frame) - 2.0 :
-                                                                           CGRectGetMinX(self.imageView.frame) - size.width - 4.0;
-        self.badgeLabel.frame = CGRectMake(x, self.imageView.frame.origin.y - 2.0, size.width + 6.0, size.height + 2.0);
-        
+        CGRectGetMinX(self.imageView.frame) - rect.size.height - 4.0;
+        self.badgeLabel.frame = CGRectMake(x, self.imageView.frame.origin.y - 2.0, rect.size.width + 6.0, rect.size.height + 2.0);
+       
         if (self.menu.badgeLabelConfigurationBlock)
             self.menu.badgeLabelConfigurationBlock(self.badgeLabel, self.item);
     }
