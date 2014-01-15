@@ -196,10 +196,9 @@
                                                                                     index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0 + navigationBarOffset,
                                                                                     rect.size.width,
                                                                                     itemHeight)
-                                                                    menu:self
+                                                                    menu:self item:item
                                                              hasSubtitle:item.subtitle.length > 0];
         itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        itemView.item = item;
         item.itemView = itemView;
         itemView.separatorView = separatorView;
         itemView.autoresizesSubviews = YES;
