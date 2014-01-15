@@ -37,6 +37,6 @@
 @property (strong, readwrite, nonatomic) UILabel *badgeLabel;
 @property (strong, readwrite, nonatomic) REMenuItem *item;
 
-- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu hasSubtitle:(BOOL)hasSubtitle;
+- (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu item:(REMenuItem*) item hasSubtitle:(BOOL)hasSubtitle;
 
 @end
