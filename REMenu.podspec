@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'REMenu'
-  s.version     = '1.7.1'
+  s.version     = '1.8'
   s.authors     = { 'Roman Efimov' => 'romefimov@gmail.com' }
   s.homepage    = 'https://github.com/romaonthego/REMenu'
   s.summary     = 'Dropdown menu inspired by Vine.'
@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.source_files = 'REMenu'
   s.public_header_files = 'REMenu/*.h'
 
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '6.0'
   s.ios.frameworks = 'QuartzCore'
 end
