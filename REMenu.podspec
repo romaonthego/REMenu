@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
                     :tag => '1.7.1' }
   s.license     = { :type => "MIT", :file => "LICENSE" }
 
-  s.platform = :ios, '5.0'
+  s.platform = :ios, '6.0'
   s.requires_arc = true
   s.source_files = 'REMenu'
   s.public_header_files = 'REMenu/*.h'
