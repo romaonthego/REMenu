@@ -108,4 +108,9 @@
     self.itemView.imageView.highlightedImage = higlightedImage;
 }
 
+- (void)setNeedsLayout
+{
+    [self.itemView layoutSubviews];
+}
+
 @end
