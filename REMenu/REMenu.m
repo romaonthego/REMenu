@@ -351,8 +351,7 @@
         
     };
     
-    if (self.closePreparationBlock)
-    {
+    if (self.closePreparationBlock) {
         self.closePreparationBlock();
     }
     
