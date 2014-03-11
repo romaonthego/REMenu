@@ -63,7 +63,7 @@
             self.subtitleLabel = ({
                 UILabel *label =[[UILabel alloc] initWithFrame:subtitleFrame];
                 label.contentMode = UIViewContentModeCenter;
-                label.textAlignment = self.item.subtitleTextAlignment == -1 ? self.menu.subtitleTextAlignment : self.item.subtitleTextAlignment;
+                label.textAlignment = (NSInteger)self.item.subtitleTextAlignment == -1 ? self.menu.subtitleTextAlignment : self.item.subtitleTextAlignment;
                 label.backgroundColor = [UIColor clearColor];
                 label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
                 label.isAccessibilityElement = NO;
@@ -78,7 +78,7 @@
             UILabel *label = [[UILabel alloc] initWithFrame:titleFrame];
             label.isAccessibilityElement = NO;
             label.contentMode = UIViewContentModeCenter;
-            label.textAlignment = self.item.textAlignment == -1 ? self.menu.textAlignment : self.item.subtitleTextAlignment;
+            label.textAlignment = (NSInteger)self.item.textAlignment == -1 ? self.menu.textAlignment : self.item.subtitleTextAlignment;
             label.backgroundColor = [UIColor clearColor];
             label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
             label;
@@ -152,14 +152,14 @@
     self.titleLabel.textColor = self.item.textColor == nil ? self.menu.textColor : self.item.textColor;
     self.titleLabel.shadowColor = self.item.textShadowColor ? self.menu.textShadowColor : self.item.textShadowColor;
     self.titleLabel.shadowOffset = self.item.textShadowOffset.width == 0 && self.item.textShadowOffset.height == 0 ? self.menu.textShadowOffset : self.item.textShadowOffset;
-    self.titleLabel.textAlignment = self.item.textAlignment == -1 ? self.menu.textAlignment : self.item.textAlignment;
+    self.titleLabel.textAlignment = (NSInteger)self.item.textAlignment == -1 ? self.menu.textAlignment : self.item.textAlignment;
     self.subtitleLabel.font = self.item.subtitleFont == nil ? self.menu.subtitleFont : self.item.subtitleFont
 ;
     self.subtitleLabel.text = self.item.subtitle;
     self.subtitleLabel.textColor = self.item.subtitleTextColor == nil ? self.menu.subtitleTextColor : self.item.subtitleTextColor;
     self.subtitleLabel.shadowColor = self.item.subtitleTextShadowColor == nil ? self.menu.subtitleTextShadowColor : self.item.subtitleTextShadowColor;
     self.subtitleLabel.shadowOffset = self.item.subtitleTextShadowOffset.width == 0 && self.item.subtitleTextShadowOffset.height == 0 ? self.menu.subtitleTextShadowOffset : self.item.subtitleTextShadowOffset;
-    self.subtitleLabel.textAlignment = self.item.subtitleTextAlignment == -1 ? self.menu.subtitleTextAlignment : self.item.subtitleTextAlignment;
+    self.subtitleLabel.textAlignment = (NSInteger)self.item.subtitleTextAlignment == -1 ? self.menu.subtitleTextAlignment : self.item.subtitleTextAlignment;
     
     self.item.customView.frame = CGRectMake(0, 0, self.titleLabel.frame.size.width, self.frame.size.height);
 }

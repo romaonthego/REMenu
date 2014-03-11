@@ -115,7 +115,6 @@
     //
     //self.menu.liveBlur = YES;
     //self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleDark;
-    //self.menu.liveBlurTintColor = [UIColor redColor];
     
     self.menu.imageOffset = CGSizeMake(5, -1);
     self.menu.waitUntilAnimationIsComplete = NO;

@@ -142,7 +142,7 @@
     if (REUIKitIsFlatMode()) {
         self.toolbar = ({
             UIToolbar *toolbar = [[UIToolbar alloc] init];
-            toolbar.barStyle = self.liveBlurBackgroundStyle;
+            toolbar.barStyle = (UIBarStyle)self.liveBlurBackgroundStyle;
             if ([toolbar respondsToSelector:@selector(setBarTintColor:)])
                 [toolbar performSelector:@selector(setBarTintColor:) withObject:self.liveBlurTintColor];
             toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
