@@ -40,7 +40,7 @@
         self.image = image;
         self.higlightedImage = higlightedImage;
         self.action = action;
-        self.textAlignment = g;
+        self.textAlignment = -1;
         self.subtitleTextAlignment = -1;
     }
     return self;
