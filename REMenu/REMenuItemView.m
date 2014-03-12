@@ -96,6 +96,7 @@
             label.layer.cornerRadius = 4.0;
             label.layer.borderColor =  [UIColor colorWithWhite:0.630 alpha:1.000].CGColor;
             label.layer.borderWidth = 1.0;
+            label.layer.masksToBounds = YES;
             label;
         });
         
