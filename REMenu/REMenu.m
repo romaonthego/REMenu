@@ -146,6 +146,10 @@
             if ([toolbar respondsToSelector:@selector(setBarTintColor:)])
                 [toolbar performSelector:@selector(setBarTintColor:) withObject:self.liveBlurTintColor];
             toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            toolbar.layer.cornerRadius = self.cornerRadius;
+            toolbar.layer.borderColor = self.borderColor.CGColor;
+            toolbar.layer.borderWidth = self.borderWidth;
+            toolbar.layer.masksToBounds = YES;
             toolbar;
         });
     }
