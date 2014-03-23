@@ -62,6 +62,7 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (assign, readwrite, nonatomic) CGFloat shadowOpacity;
 @property (assign, readwrite, nonatomic) CGFloat shadowRadius;
 @property (assign, readwrite, nonatomic) CGFloat itemHeight;
+@property (assign, readwrite, nonatomic) CGFloat backgroundViewAlpha;
 @property (strong, readwrite, nonatomic) UIColor *backgroundColor;
 @property (strong, readwrite, nonatomic) UIColor *separatorColor;
 @property (assign, readwrite, nonatomic) CGFloat separatorHeight;
