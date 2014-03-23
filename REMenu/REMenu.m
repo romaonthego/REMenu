@@ -63,7 +63,7 @@
         self.font = [UIFont boldSystemFontOfSize:21.0];
         self.subtitleFont = [UIFont systemFontOfSize:14.0];
         
-        self.backgroundViewAlpha = 1.0;
+        self.backgroundAlpha = 1.0;
         self.backgroundColor = [UIColor colorWithRed:53/255.0 green:53/255.0 blue:52/255.0 alpha:1.0];
         self.separatorColor = [UIColor colorWithPatternImage:self.separatorImage];
         self.textColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
@@ -246,9 +246,8 @@
                  usingSpringWithDamping:0.6
                   initialSpringVelocity:4.0
                                 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
-                             animations:^
-             {
-                 self.backgroundView.alpha = self.backgroundViewAlpha;
+                             animations:^{
+                 self.backgroundView.alpha = self.backgroundAlpha;
                  CGRect frame = self.menuView.frame;
                  frame.origin.y = -40.0 - self.separatorHeight;
                  self.menuWrapperView.frame = frame;
@@ -262,9 +261,8 @@
             [UIView animateWithDuration:self.animationDuration
                                   delay:0.0
                                 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
-                             animations:^
-             {
-                 self.backgroundView.alpha = self.backgroundViewAlpha;
+                             animations:^{
+                 self.backgroundView.alpha = self.backgroundAlpha;
                  CGRect frame = self.menuView.frame;
                  frame.origin.y = -40.0 - self.separatorHeight;
                  self.menuWrapperView.frame = frame;
@@ -281,9 +279,8 @@
         [UIView animateWithDuration:self.animationDuration
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
-                         animations:^
-        {
-            self.backgroundView.alpha = self.backgroundViewAlpha;
+                         animations:^{
+            self.backgroundView.alpha = self.backgroundAlpha;
             CGRect frame = self.menuView.frame;
             frame.origin.y = -40.0 - self.separatorHeight;
             self.menuWrapperView.frame = frame;
