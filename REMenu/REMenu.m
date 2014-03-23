@@ -51,7 +51,8 @@
 
 - (id)init
 {
-    if ((self = [super init])) {
+    self = [super init];
+    if (self) {
         self.imageAlignment = REMenuImageAlignmentLeft;
         self.closeOnSelection = YES;
         self.itemHeight = 48.0;
@@ -98,7 +99,8 @@
 
 - (id)initWithItems:(NSArray *)items
 {
-    if ((self = [self init])) {
+    self = [super init];
+    if (self) {
         self.items = items;
     }
     return self;
