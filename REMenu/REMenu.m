@@ -242,7 +242,6 @@
     //
     if (self.bounce) {
         self.isAnimating = YES;
-
         if ([UIView respondsToSelector:@selector(animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:)]) {
             [UIView animateWithDuration:self.animationDuration+self.bounceAnimationDuration
                                   delay:0.0
@@ -257,7 +256,6 @@
              } completion:^(BOOL finished) {
                  self.isAnimating = NO;
              }];
-
         } else {
             [UIView animateWithDuration:self.animationDuration
                                   delay:0.0
@@ -272,9 +270,7 @@
              }];
 
         }
-    }
-    else
-    {
+    } else {
         [UIView animateWithDuration:self.animationDuration
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
@@ -296,7 +292,9 @@
 
 - (void)showFromNavigationController:(UINavigationController *)navigationController
 {
-    if (self.isAnimating) return;
+    if (self.isAnimating) {
+        return;
+    }
     
     self.navigationBar = navigationController.navigationBar;
     [self showFromRect:CGRectMake(0, 0, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height) inView:navigationController.view];
@@ -369,7 +367,7 @@
 
 - (CGFloat)combinedHeight
 {
-    return self.items.count * self.itemHeight + self.items.count  * self.separatorHeight + 40.0 + self.cornerRadius;
+    return self.items.count * self.itemHeight + self.items.count * self.separatorHeight + 40.0 + self.cornerRadius;
 }
 
 - (void)setNeedsLayout
