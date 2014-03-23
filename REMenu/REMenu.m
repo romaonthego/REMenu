@@ -108,7 +108,9 @@
 
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view
 {
-    if (self.isAnimating) return;
+    if (self.isAnimating) {
+        return;
+    }
     
     self.isOpen = YES;
     self.isAnimating = YES;
@@ -238,8 +240,7 @@
     
     // Animate appearance
     //
-    if (self.bounce)
-    {
+    if (self.bounce) {
         self.isAnimating = YES;
 
         if ([UIView respondsToSelector:@selector(animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:)]) {
@@ -253,9 +254,7 @@
                  CGRect frame = self.menuView.frame;
                  frame.origin.y = -40.0 - self.separatorHeight;
                  self.menuWrapperView.frame = frame;
-             }
-                             completion:^(BOOL finished)
-             {
+             } completion:^(BOOL finished) {
                  self.isAnimating = NO;
              }];
 
@@ -268,9 +267,7 @@
                  CGRect frame = self.menuView.frame;
                  frame.origin.y = -40.0 - self.separatorHeight;
                  self.menuWrapperView.frame = frame;
-             }
-                             completion:^(BOOL finished)
-             {
+             } completion:^(BOOL finished) {
                  self.isAnimating = NO;
              }];
 
@@ -286,9 +283,7 @@
             CGRect frame = self.menuView.frame;
             frame.origin.y = -40.0 - self.separatorHeight;
             self.menuWrapperView.frame = frame;
-        }
-        completion:^(BOOL finished)
-        {
+        } completion:^(BOOL finished) {
             self.isAnimating = NO;
         }];
     }
@@ -324,15 +319,12 @@
         [UIView animateWithDuration:self.animationDuration
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
-                         animations:^
-        {
+                         animations:^ {
             CGRect frame = self.menuView.frame;
             frame.origin.y = - self.combinedHeight - navigationBarOffset;
             self.menuWrapperView.frame = frame;
             self.backgroundView.alpha = 0;
-        }
-        completion:^(BOOL finished)
-        {
+        } completion:^(BOOL finished) {
             self.isOpen = NO;
             self.isAnimating = NO;
             
@@ -342,13 +334,11 @@
             [self.backgroundView removeFromSuperview];
             [self.containerView removeFromSuperview];
             
-            if (completion)
-            {
+            if (completion) {
                 completion();
             }
             
-            if (self.closeCompletionHandler)
-            {
+            if (self.closeCompletionHandler) {
                 self.closeCompletionHandler();
             }
         }];
