@@ -16,8 +16,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     self.title = @"Activity";
+    [super viewDidLoad];
 }
 
 @end

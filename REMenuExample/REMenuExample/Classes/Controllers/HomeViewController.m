@@ -16,8 +16,8 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     self.title = @"Home";
+    [super viewDidLoad];
 }
 
 @end
