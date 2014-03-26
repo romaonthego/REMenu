@@ -112,6 +112,7 @@
 {
     [super layoutSubviews];
     
+	self.imageView.tintColor = self.menu.imageColor;
     self.imageView.image = self.item.image;
     
     // Adjust frames
