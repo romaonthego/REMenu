@@ -69,6 +69,7 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
 @property (strong, readwrite, nonatomic) UIColor *textShadowColor;
+@property (strong, readwrite, nonatomic) UIColor *imageColor;
 @property (assign, readwrite, nonatomic) CGSize imageOffset;
 @property (assign, readwrite, nonatomic) CGSize textOffset;
 @property (assign, readwrite, nonatomic) CGSize textShadowOffset;
