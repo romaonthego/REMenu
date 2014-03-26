@@ -38,6 +38,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+		self.maxImageSize = CGSizeMake(25.0, 25.0);
         self.menu = menu;
         self.item = item;
         self.isAccessibilityElement = YES;
@@ -115,11 +116,13 @@
     
     // Adjust frames
     //
-    CGFloat verticalOffset = floor((self.frame.size.height - self.item.image.size.height) / 2.0);
-    CGFloat horizontalOffset = floor((self.menu.itemHeight - self.item.image.size.height) / 2.0);
+	CGSize imageSize = CGSizeMake(fminf(self.item.image.size.width, self.maxImageSize.width), fminf(self.item.image.size.height, self.maxImageSize.height));
+	
+    CGFloat verticalOffset = floor((self.frame.size.height - imageSize.height) / 2.0);
+    CGFloat horizontalOffset = floor((self.menu.itemHeight - imageSize.height) / 2.0);
     CGFloat x = (self.menu.imageAlignment == REMenuImageAlignmentLeft) ? horizontalOffset + self.menu.imageOffset.width :
-                                                                         self.titleLabel.frame.size.width - (horizontalOffset + self.menu.imageOffset.width + self.item.image.size.width);
-    self.imageView.frame = CGRectMake(x, verticalOffset + self.menu.imageOffset.height, self.item.image.size.width, self.item.image.size.height);
+                                                                         self.titleLabel.frame.size.width - (horizontalOffset + self.menu.imageOffset.width + imageSize.width);
+    self.imageView.frame = CGRectMake(x, verticalOffset + self.menu.imageOffset.height, imageSize.width, imageSize.height);
     if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
         self.imageView.tintColor = self.menu.imageTintColor;
     }
