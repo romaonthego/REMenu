@@ -69,13 +69,16 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
 @property (strong, readwrite, nonatomic) UIColor *textShadowColor;
-@property (assign, readwrite, nonatomic) CGSize imageOffset;
 @property (assign, readwrite, nonatomic) CGSize textOffset;
 @property (assign, readwrite, nonatomic) CGSize textShadowOffset;
+@property (assign, readwrite, nonatomic) REMenuImageAlignment imageAlignment;
+@property (strong, readwrite, nonatomic) UIColor *imageTintColor;
+@property (assign, readwrite, nonatomic) CGSize imageOffset;
 @property (strong, readwrite, nonatomic) UIColor *highlightedBackgroundColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedSeparatorColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextShadowColor;
+@property (strong, readwrite, nonatomic) UIColor *highlightedImageTintColor;
 @property (assign, readwrite, nonatomic) CGSize highlightedTextShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
@@ -91,7 +94,6 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) NSTimeInterval bounceAnimationDuration;
-@property (assign, readwrite, nonatomic) REMenuImageAlignment imageAlignment;
 @property (assign, readwrite, nonatomic) BOOL appearsBehindNavigationBar;
 @property (assign, readwrite, nonatomic) BOOL bounce;
 @property (assign, readwrite, nonatomic) BOOL liveBlur; // Available only in iOS 7

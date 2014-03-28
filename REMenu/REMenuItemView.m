@@ -120,6 +120,9 @@
     CGFloat x = (self.menu.imageAlignment == REMenuImageAlignmentLeft) ? horizontalOffset + self.menu.imageOffset.width :
                                                                          self.titleLabel.frame.size.width - (horizontalOffset + self.menu.imageOffset.width + self.item.image.size.width);
     self.imageView.frame = CGRectMake(x, verticalOffset + self.menu.imageOffset.height, self.item.image.size.width, self.item.image.size.height);
+    if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
+        self.imageView.tintColor = self.menu.imageTintColor;
+    }
     
     // Set up badge
     //
@@ -170,6 +173,9 @@
     self.backgroundView.backgroundColor = self.item.highlightedBackgroundColor == nil ? self.menu.highlightedBackgroundColor : self.item.highlightedBackgroundColor;
     self.separatorView.backgroundColor = self.item.highlightedSeparatorColor == nil ? self.menu.highlightedSeparatorColor : self.item.highlightedSeparatorColor;
     self.imageView.image = self.item.higlightedImage ? self.item.higlightedImage : self.item.image;
+    if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
+        self.imageView.tintColor = self.menu.highlightedImageTintColor;
+    }
     self.titleLabel.textColor = self.item.highlightedTextColor == nil ? self.menu.highlightedTextColor : self.item.highlightedTextColor;
     self.titleLabel.shadowColor = self.item.highlightedTextShadowColor == nil ? self.menu.highlightedTextShadowColor : self.item.highlightedTextShadowColor;
     self.titleLabel.shadowOffset = self.item.highlightedTextShadowOffset.width == 0 && self.item.highlightedTextShadowOffset.height == 0 ? self.menu.highlightedTextShadowOffset : self.item.highlightedTextShadowOffset;
@@ -183,6 +189,9 @@
     self.backgroundView.backgroundColor = self.item.backgroundColor == nil ? [UIColor clearColor] : self.item.backgroundColor;
     self.separatorView.backgroundColor = self.menu.separatorColor;
     self.imageView.image = self.item.image;
+    if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
+        self.imageView.tintColor = self.menu.imageTintColor;
+    }
     self.titleLabel.textColor = self.item.textColor == nil ? self.menu.textColor : self.item.textColor;
     self.titleLabel.shadowColor = self.item.textShadowColor == nil ?self.menu.textShadowColor : self.item.textShadowColor;
     self.titleLabel.shadowOffset = self.item.textShadowOffset.width == 0  && self.item.textShadowOffset.height == 0 ? self.menu.textShadowOffset : self.item.textShadowOffset;
@@ -196,6 +205,9 @@
     self.backgroundView.backgroundColor = self.item.backgroundColor == nil ? [UIColor clearColor] : self.item.backgroundColor;
     self.separatorView.backgroundColor = self.item.separatorColor == nil ? self.menu.separatorColor : self.item.separatorColor;
     self.imageView.image = self.item.image;
+    if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
+        self.imageView.tintColor = self.menu.imageTintColor;
+    }
     self.titleLabel.textColor = self.item.textColor == nil ? self.menu.textColor : self.item.textColor;
     self.titleLabel.shadowColor = self.item.textShadowColor == nil ? self.menu.textShadowColor : self.item.textShadowColor;
     self.titleLabel.shadowOffset = self.item.textShadowOffset.width == 0 && self.item.textShadowOffset.height ? self.menu.textShadowOffset : self.item.textShadowOffset;
