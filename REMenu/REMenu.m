@@ -396,12 +396,4 @@
     return [UIImage imageWithCGImage:outputImage.CGImage scale:2.0 orientation:UIImageOrientationUp];
 }
 
-- (UIColor *)imageColor {
-	if (!_imageColor) {
-		return self.textColor ?: [UIColor blackColor];
-	}
-	
-	return _imageColor;
-}
-
 @end
