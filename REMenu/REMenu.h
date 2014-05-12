@@ -66,6 +66,7 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (strong, readwrite, nonatomic) UIColor *backgroundColor;
 @property (strong, readwrite, nonatomic) UIColor *separatorColor;
 @property (assign, readwrite, nonatomic) CGFloat separatorHeight;
+@property (assign, readwrite, nonatomic) CGSize separatorOffset;
 @property (strong, readwrite, nonatomic) UIFont *font;
 @property (strong, readwrite, nonatomic) UIColor *textColor;
 @property (strong, readwrite, nonatomic) UIColor *textShadowColor;
