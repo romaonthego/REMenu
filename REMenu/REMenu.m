@@ -108,6 +108,11 @@
 
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view
 {
+    [self showFromRect:rect inView:view offsetX:0 width:rect.size.width];
+}
+
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view offsetX:(CGFloat)offsetX width:(CGFloat)width
+{
     if (self.isAnimating) {
         return;
     }
@@ -220,7 +225,18 @@
     
     // Set up frames
     //
-    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, rect.size.width, self.combinedHeight + navigationBarOffset);
+    self.menuWrapperView.frame = CGRectMake(offsetX, -self.combinedHeight - navigationBarOffset, width, self.combinedHeight + navigationBarOffset);
+    if(width != rect.size.width)
+    {
+        if(self.menuWrapperView.center.x < rect.size.width/2)
+        {
+            self.menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
+        }
+        else
+        {
+            self.menuWrapperView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+        }
+    }
     self.menuView.frame = self.menuWrapperView.bounds;
     if (REUIKitIsFlatMode() && self.liveBlur) {
         self.toolbar.frame = self.menuWrapperView.bounds;
@@ -250,7 +266,7 @@
                                 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
                              animations:^{
                  self.backgroundView.alpha = self.backgroundAlpha;
-                 CGRect frame = self.menuView.frame;
+                 CGRect frame = self.menuWrapperView.frame;
                  frame.origin.y = -40.0 - self.separatorHeight;
                  self.menuWrapperView.frame = frame;
              } completion:^(BOOL finished) {
@@ -262,7 +278,7 @@
                                 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
                              animations:^{
                  self.backgroundView.alpha = self.backgroundAlpha;
-                 CGRect frame = self.menuView.frame;
+                 CGRect frame = self.menuWrapperView.frame;
                  frame.origin.y = -40.0 - self.separatorHeight;
                  self.menuWrapperView.frame = frame;
              } completion:^(BOOL finished) {
@@ -276,7 +292,7 @@
                             options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
                          animations:^{
             self.backgroundView.alpha = self.backgroundAlpha;
-            CGRect frame = self.menuView.frame;
+            CGRect frame = self.menuWrapperView.frame;
             frame.origin.y = -40.0 - self.separatorHeight;
             self.menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
@@ -302,16 +318,11 @@
     }
     
     self.navigationBar = navigationController.navigationBar;
-    [self showFromRect:CGRectMake(offsetX, 0, width, navigationController.view.frame.size.height) inView:navigationController.view];
+    [self showFromRect:CGRectMake(0, 0, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height) inView:navigationController.view offsetX:offsetX width:width];
     self.containerView.appearsBehindNavigationBar = self.appearsBehindNavigationBar;
     self.containerView.navigationBar = navigationController.navigationBar;
     if (self.appearsBehindNavigationBar) {
         [navigationController.view bringSubviewToFront:navigationController.navigationBar];
-    }
-    
-    if(width != navigationController.navigationBar.frame.size.width)
-    {
-        self.containerView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     }
 }
 
@@ -328,7 +339,7 @@
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
                          animations:^ {
-            CGRect frame = self.menuView.frame;
+            CGRect frame = self.menuWrapperView.frame;
             frame.origin.y = - self.combinedHeight - navigationBarOffset;
             self.menuWrapperView.frame = frame;
             self.backgroundView.alpha = 0;
@@ -359,7 +370,7 @@
     
     if (self.bounce) {
         [UIView animateWithDuration:self.bounceAnimationDuration animations:^{
-            CGRect frame = self.menuView.frame;
+            CGRect frame = self.menuWrapperView.frame;
             frame.origin.y = -20.0;
             self.menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
