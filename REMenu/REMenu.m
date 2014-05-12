@@ -292,16 +292,26 @@
 
 - (void)showFromNavigationController:(UINavigationController *)navigationController
 {
+    [self showFromNavigationController:navigationController offsetX:0 width:navigationController.navigationBar.frame.size.width];
+}
+
+- (void)showFromNavigationController:(UINavigationController *)navigationController offsetX:(CGFloat)offsetX width:(CGFloat)width
+{
     if (self.isAnimating) {
         return;
     }
     
     self.navigationBar = navigationController.navigationBar;
-    [self showFromRect:CGRectMake(0, 0, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height) inView:navigationController.view];
+    [self showFromRect:CGRectMake(offsetX, 0, width, navigationController.view.frame.size.height) inView:navigationController.view];
     self.containerView.appearsBehindNavigationBar = self.appearsBehindNavigationBar;
     self.containerView.navigationBar = navigationController.navigationBar;
     if (self.appearsBehindNavigationBar) {
         [navigationController.view bringSubviewToFront:navigationController.navigationBar];
+    }
+    
+    if(width != navigationController.navigationBar.frame.size.width)
+    {
+        self.containerView.autoresizingMask = UIViewAutoresizingFlexibleRightMargin;
     }
 }
 

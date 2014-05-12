@@ -105,6 +105,7 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 - (void)showFromRect:(CGRect)rect inView:(UIView *)view;
 - (void)showInView:(UIView *)view;
 - (void)showFromNavigationController:(UINavigationController *)navigationController;
+- (void)showFromNavigationController:(UINavigationController *)navigationController offsetX:(CGFloat)offsetX width:(CGFloat)width;
 - (void)setNeedsLayout;
 - (void)closeWithCompletion:(void (^)(void))completion;
 - (void)close;
