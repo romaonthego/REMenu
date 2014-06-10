@@ -33,13 +33,13 @@
 
 @implementation REMenuItem
 
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action
 {
     self = [super init];
     if (self) {
         _title = title;
         _image = image;
-        _higlightedImage = higlightedImage;
+        _highlightedImage = highlightedImage;
         _action = action;
         _textAlignment = -1;
         _subtitleTextAlignment = -1;
@@ -47,14 +47,14 @@
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image highlightedImage:(UIImage *)higlightedImage action:(void (^)(REMenuItem *item))action
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action
 {
     self = [super init];
     if (self) {
         _title = title;
         _subtitle = subtitle;
         _image = image;
-        _higlightedImage = higlightedImage;
+        _highlightedImage = highlightedImage;
         _action = action;
         _textAlignment = -1;
         _subtitleTextAlignment = -1;
@@ -106,10 +106,10 @@
     self.itemView.imageView.image = image;
 }
 
-- (void)setHiglightedImage:(UIImage *)higlightedImage
+- (void)setHighlightedImage:(UIImage *)highlightedImage
 {
-    _higlightedImage = higlightedImage;
-    self.itemView.imageView.highlightedImage = higlightedImage;
+    _highlightedImage = highlightedImage;
+    self.itemView.imageView.highlightedImage = highlightedImage;
 }
 
 - (void)setNeedsLayout
