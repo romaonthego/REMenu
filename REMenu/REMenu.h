@@ -80,6 +80,14 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextShadowColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedImageTintColor;
 @property (assign, readwrite, nonatomic) CGSize highlightedTextShadowOffset;
+@property (strong, readwrite, nonatomic) NSSet *showSelectedSet;
+@property (strong, readwrite, nonatomic) REMenuItem *selectedMenuItem;
+@property (strong, readwrite, nonatomic) UIColor *selectedBackgroundColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedSeparatorColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedTextShadowColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedImageTintColor;
+@property (assign, readwrite, nonatomic) CGSize selectedTextShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
 @property (assign, readwrite, nonatomic) NSTextAlignment textAlignment;
@@ -91,6 +99,9 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextColor;
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlightedTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIColor *subtitleSelectedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subtitleSelectedTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subtitleSelectedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) NSTimeInterval bounceAnimationDuration;

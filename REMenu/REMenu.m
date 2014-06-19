@@ -77,6 +77,15 @@
         _highlightedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
         _highlightedTextShadowColor = [UIColor blackColor];
         _highlightedTextShadowOffset = CGSizeMake(0, -1.0);
+
+        _showSelectedSet = nil;
+        _selectedMenuItem = nil;
+
+        _selectedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
+        _selectedSeparatorColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
+        _selectedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
+        _selectedTextShadowColor = [UIColor blackColor];
+        _selectedTextShadowOffset = CGSizeMake(0, -1.0);
         
         _subtitleTextColor = [UIColor colorWithWhite:0.425 alpha:1.000];
         _subtitleTextShadowColor = [UIColor blackColor];
@@ -84,6 +93,9 @@
         _subtitleHighlightedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
         _subtitleHighlightedTextShadowColor = [UIColor blackColor];
         _subtitleHighlightedTextShadowOffset = CGSizeMake(0, -1.0);
+        _subtitleSelectedTextColor = [UIColor colorWithRed:0.389 green:0.384 blue:0.379 alpha:1.000];
+        _subtitleSelectedTextShadowColor = [UIColor blackColor];
+        _subtitleSelectedTextShadowOffset = CGSizeMake(0, -1.0);
         _subtitleTextAlignment = NSTextAlignmentCenter;
         
         _borderWidth = 1.0;
@@ -215,7 +227,15 @@
             item.customView.frame = itemView.bounds;
             [itemView addSubview:item.customView];
         }
+
+        if (item == self.selectedMenuItem) {
+            [itemView setAsSelected:YES];
+        } else {
+            [itemView setAsSelected:NO];
+        }
+
         [self.menuView addSubview:itemView];
+
     }
     
     // Set up frames

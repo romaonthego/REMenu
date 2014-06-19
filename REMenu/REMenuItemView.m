@@ -150,7 +150,9 @@
     
     // Adjust styles
     //
-    self.backgroundView.backgroundColor = self.item.backgroundColor == nil ? [UIColor clearColor] : self.item.backgroundColor;
+    if(self.menu.selectedMenuItem != self.item) {
+        self.backgroundView.backgroundColor = self.item.backgroundColor == nil ? [UIColor clearColor] : self.item.backgroundColor;
+    }
     self.titleLabel.font = self.item.font == nil ? self.menu.font : self.item.font;
     self.titleLabel.text = self.item.title;
     self.titleLabel.textColor = self.item.textColor == nil ? self.menu.textColor : self.item.textColor;
@@ -172,7 +174,7 @@
 {
     self.backgroundView.backgroundColor = self.item.highlightedBackgroundColor == nil ? self.menu.highlightedBackgroundColor : self.item.highlightedBackgroundColor;
     self.separatorView.backgroundColor = self.item.highlightedSeparatorColor == nil ? self.menu.highlightedSeparatorColor : self.item.highlightedSeparatorColor;
-    self.imageView.image = self.item.higlightedImage ? self.item.higlightedImage : self.item.image;
+    self.imageView.image = self.item.highlightedImage ? self.item.highlightedImage : self.item.image;
     if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
         self.imageView.tintColor = self.menu.highlightedImageTintColor;
     }
@@ -202,18 +204,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.backgroundView.backgroundColor = self.item.backgroundColor == nil ? [UIColor clearColor] : self.item.backgroundColor;
-    self.separatorView.backgroundColor = self.item.separatorColor == nil ? self.menu.separatorColor : self.item.separatorColor;
-    self.imageView.image = self.item.image;
-    if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
-        self.imageView.tintColor = self.menu.imageTintColor;
-    }
-    self.titleLabel.textColor = self.item.textColor == nil ? self.menu.textColor : self.item.textColor;
-    self.titleLabel.shadowColor = self.item.textShadowColor == nil ? self.menu.textShadowColor : self.item.textShadowColor;
-    self.titleLabel.shadowOffset = self.item.textShadowOffset.width == 0 && self.item.textShadowOffset.height ? self.menu.textShadowOffset : self.item.textShadowOffset;
-    self.subtitleLabel.textColor = self.item.subtitleTextColor == nil ? self.menu.subtitleTextColor : self.item.subtitleTextColor;
-    self.subtitleLabel.shadowColor = self.menu.subtitleTextShadowColor == nil ? self.menu.subtitleTextShadowColor : self.item.subtitleTextShadowColor;
-    self.subtitleLabel.shadowOffset = self.item.subtitleTextShadowOffset.width == 0 && self.item.subtitleTextShadowOffset.height == 0 ? self.menu.subtitleTextShadowOffset : self.item.subtitleTextShadowOffset;
+    [self resetStyle];
 
     CGPoint endedPoint = [touches.anyObject locationInView:self];
     if (endedPoint.y < 0 || endedPoint.y > CGRectGetHeight(self.bounds))
@@ -234,6 +225,44 @@
                 self.item.action(self.item);
             }
         }
+    }
+
+    if ([self.menu.showSelectedSet containsObject:self.item]) {
+        self.menu.selectedMenuItem = self.item;
+    }
+}
+
+- (void)resetStyle {
+    self.backgroundView.backgroundColor = self.item.backgroundColor == nil ? [UIColor clearColor] : self.item.backgroundColor;
+    self.separatorView.backgroundColor = self.item.separatorColor == nil ? self.menu.separatorColor : self.item.separatorColor;
+    self.imageView.image = self.item.image;
+    if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
+        self.imageView.tintColor = self.menu.imageTintColor;
+    }
+    self.titleLabel.textColor = self.item.textColor == nil ? self.menu.textColor : self.item.textColor;
+    self.titleLabel.shadowColor = self.item.textShadowColor == nil ? self.menu.textShadowColor : self.item.textShadowColor;
+    self.titleLabel.shadowOffset = self.item.textShadowOffset.width == 0 && self.item.textShadowOffset.height ? self.menu.textShadowOffset : self.item.textShadowOffset;
+    self.subtitleLabel.textColor = self.item.subtitleTextColor == nil ? self.menu.subtitleTextColor : self.item.subtitleTextColor;
+    self.subtitleLabel.shadowColor = self.menu.subtitleTextShadowColor == nil ? self.menu.subtitleTextShadowColor : self.item.subtitleTextShadowColor;
+    self.subtitleLabel.shadowOffset = self.item.subtitleTextShadowOffset.width == 0 && self.item.subtitleTextShadowOffset.height == 0 ? self.menu.subtitleTextShadowOffset : self.item.subtitleTextShadowOffset;
+}
+
+- (void)setAsSelected:(BOOL)selected {
+    if (selected) {
+        self.backgroundView.backgroundColor = self.item.selectedBackgroundColor == nil ? self.menu.selectedBackgroundColor : self.item.selectedBackgroundColor;
+        self.separatorView.backgroundColor = self.item.selectedSeparatorColor == nil ? self.menu.selectedSeparatorColor : self.item.selectedSeparatorColor;
+        self.imageView.image = self.item.selectedImage ? self.item.selectedImage : self.item.image;
+        if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
+            self.imageView.tintColor = self.menu.selectedImageTintColor;
+        }
+        self.titleLabel.textColor = self.item.selectedTextColor == nil ? self.menu.selectedTextColor : self.item.selectedTextColor;
+        self.titleLabel.shadowColor = self.item.selectedTextShadowColor == nil ? self.menu.selectedTextShadowColor : self.item.selectedTextShadowColor;
+        self.titleLabel.shadowOffset = self.item.selectedTextShadowOffset.width == 0 && self.item.selectedTextShadowOffset.height == 0 ? self.menu.selectedTextShadowOffset : self.item.selectedTextShadowOffset;
+        self.subtitleLabel.textColor = self.item.subtitleSelectedTextColor == nil ? self.menu.subtitleSelectedTextColor : self.item.subtitleSelectedTextColor;
+        self.subtitleLabel.shadowColor = self.item.subtitleSelectedTextShadowColor == nil ? self.menu.subtitleSelectedTextShadowColor : self.item.subtitleSelectedTextShadowColor;
+        self.subtitleLabel.shadowOffset = self.item.subtitleSelectedTextShadowOffset.width == 0 && self.item.subtitleSelectedTextShadowOffset.height == 0 ? self.menu.subtitleSelectedTextShadowOffset : self.item.subtitleSelectedTextShadowOffset;
+    } else {
+        [self resetStyle];
     }
 }
 

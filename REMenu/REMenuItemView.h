@@ -38,5 +38,6 @@
 @property (strong, readwrite, nonatomic) REMenuItem *item;
 
 - (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu item:(REMenuItem*) item hasSubtitle:(BOOL)hasSubtitle;
+- (void)setAsSelected:(BOOL)selected;
 
 @end
