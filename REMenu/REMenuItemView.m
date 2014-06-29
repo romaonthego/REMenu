@@ -172,7 +172,7 @@
 {
     self.backgroundView.backgroundColor = self.item.highlightedBackgroundColor == nil ? self.menu.highlightedBackgroundColor : self.item.highlightedBackgroundColor;
     self.separatorView.backgroundColor = self.item.highlightedSeparatorColor == nil ? self.menu.highlightedSeparatorColor : self.item.highlightedSeparatorColor;
-    self.imageView.image = self.item.higlightedImage ? self.item.higlightedImage : self.item.image;
+    self.imageView.image = self.item.highlightedImage ? self.item.highlightedImage : self.item.image;
     if ([self.imageView respondsToSelector:@selector(setTintColor:)]) {
         self.imageView.tintColor = self.menu.highlightedImageTintColor;
     }
