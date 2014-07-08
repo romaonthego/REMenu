@@ -45,6 +45,8 @@
 @property (weak, readwrite, nonatomic) UINavigationBar *navigationBar;
 @property (strong, readwrite, nonatomic) UIToolbar *toolbar;
 
+@property (nonatomic, assign) CGFloat combinedHeight;
+
 @end
 
 @implementation REMenu
@@ -183,6 +185,40 @@
     });
     
     CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
+    CGFloat yOffset = navigationBarOffset + 40;
+    
+    // Add the header if any
+    //
+    if (self.headerItem) {
+        CGFloat itemHeight = CGRectGetHeight(self.headerItem.customView.frame);
+        UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
+                                                                         yOffset,
+                                                                         rect.size.width,
+                                                                         self.separatorHeight)];
+        yOffset += self.separatorHeight;
+        separatorView.backgroundColor = self.separatorColor;
+        separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        [self.menuView addSubview:separatorView];
+        
+        REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
+                                                                                    yOffset,
+                                                                                    rect.size.width,
+                                                                                    itemHeight)
+                                                                    menu:self item:self.headerItem
+                                                             hasSubtitle:self.headerItem.subtitle.length > 0];
+        
+        yOffset += itemHeight;
+        
+        itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        self.headerItem.itemView = itemView;
+        itemView.separatorView = separatorView;
+        itemView.autoresizesSubviews = YES;
+        if (self.headerItem.customView) {
+            self.headerItem.customView.frame = itemView.bounds;
+            [itemView addSubview:self.headerItem.customView];
+        }
+        [self.menuView addSubview:itemView];
+    }
     
     // Append new item views to REMenuView
     //
@@ -194,19 +230,23 @@
             itemHeight += self.cornerRadius;
         
         UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                         index * self.itemHeight + index * self.separatorHeight + 40.0 + navigationBarOffset,
+                                                                         yOffset,
                                                                          rect.size.width,
                                                                          self.separatorHeight)];
+        yOffset += self.separatorHeight;
+        
         separatorView.backgroundColor = self.separatorColor;
         separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [self.menuView addSubview:separatorView];
         
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
-                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0 + navigationBarOffset,
+                                                                                    yOffset,
                                                                                     rect.size.width,
                                                                                     itemHeight)
                                                                     menu:self item:item
                                                              hasSubtitle:item.subtitle.length > 0];
+        yOffset += itemHeight;
+        
         itemView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         item.itemView = itemView;
         itemView.separatorView = separatorView;
@@ -220,7 +260,8 @@
     
     // Set up frames
     //
-    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, rect.size.width, self.combinedHeight + navigationBarOffset);
+    self.combinedHeight = yOffset;
+    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, rect.size.width, self.combinedHeight);
     self.menuView.frame = self.menuWrapperView.bounds;
     if (REUIKitIsFlatMode() && self.liveBlur) {
         self.toolbar.frame = self.menuWrapperView.bounds;
@@ -363,11 +404,6 @@
 - (void)close
 {
     [self closeWithCompletion:nil];
-}
-
-- (CGFloat)combinedHeight
-{
-    return self.items.count * self.itemHeight + self.items.count * self.separatorHeight + 40.0 + self.cornerRadius;
 }
 
 - (void)setNeedsLayout

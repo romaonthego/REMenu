@@ -54,6 +54,8 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (copy, readwrite, nonatomic) void (^closePreparationBlock)(void);
 @property (assign, readwrite, nonatomic) BOOL closeOnSelection;
 
+@property (nonatomic, readwrite, strong) REMenuItem *headerItem;
+
 // Style
 //
 @property (assign, readwrite, nonatomic) CGFloat cornerRadius;
