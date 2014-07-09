@@ -115,7 +115,8 @@
     //
     //self.menu.liveBlur = YES;
     //self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleDark;
-    
+
+    self.menu.separatorOffset = CGSizeMake(15.0, 0.0);
     self.menu.imageOffset = CGSizeMake(5, -1);
     self.menu.waitUntilAnimationIsComplete = NO;
     self.menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {
