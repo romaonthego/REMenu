@@ -41,7 +41,7 @@ Edit your Podfile and add REMenu:
 
 ``` bash
 platform :ios, '6.0'
-pod 'REMenu', '~> 1.9'
+pod 'REMenu', '~> 1.10'
 ```
 
 Install into your Xcode project:

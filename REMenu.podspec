@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name        = 'REMenu'
-  s.version     = '1.9'
+  s.version     = '1.10'
   s.authors     = { 'Roman Efimov' => 'romefimov@gmail.com' }
   s.homepage    = 'https://github.com/romaonthego/REMenu'
   s.summary     = 'Dropdown menu inspired by Vine.'
