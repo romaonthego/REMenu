@@ -14,7 +14,7 @@
 #import "ActivityViewController.h"
 #import "ProfileViewController.h"
 
-@interface NavigationViewController ()
+@interface NavigationViewController () <REMenuDelegate>
 
 @property (strong, readwrite, nonatomic) REMenu *menu;
 
@@ -123,6 +123,7 @@
         badgeLabel.backgroundColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
         badgeLabel.layer.borderColor = [UIColor colorWithRed:0.000 green:0.648 blue:0.507 alpha:1.000].CGColor;
     };
+    self.menu.delegate = self;
     
     
     [self.menu setClosePreparationBlock:^{
@@ -141,6 +142,28 @@
         return [self.menu close];
     
     [self.menu showFromNavigationController:self];
+}
+
+#pragma mark - REMenu Delegate Methods
+
+-(void)willOpenMenu:(REMenu *)menu
+{
+    NSLog(@"Delegate method: %@", NSStringFromSelector(_cmd));
+}
+
+-(void)didOpenMenu:(REMenu *)menu
+{
+    NSLog(@"Delegate method: %@", NSStringFromSelector(_cmd));
+}
+
+-(void)willCloseMenu:(REMenu *)menu
+{
+    NSLog(@"Delegate method: %@", NSStringFromSelector(_cmd));
+}
+
+-(void)didCloseMenu:(REMenu *)menu
+{
+    NSLog(@"Delegate method: %@", NSStringFromSelector(_cmd));
 }
 
 @end
