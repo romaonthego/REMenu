@@ -184,7 +184,7 @@
         button;
     });
     
-    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
+    CGFloat navigationBarOffset = [self computeNavigationBarOffset];
     
     // Append new item views to REMenuView
     //
@@ -325,9 +325,8 @@
     if (self.isAnimating) return;
     
     self.isAnimating = YES;
-    
-    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
-    
+    CGFloat navigationBarOffset = [self computeNavigationBarOffset];
+
     void (^closeMenu)(void) = ^{
         [UIView animateWithDuration:self.closeAnimationDuration
                               delay:0.0
@@ -415,6 +414,12 @@
     UIGraphicsEndImageContext();
     
     return [UIImage imageWithCGImage:outputImage.CGImage scale:2.0 orientation:UIImageOrientationUp];
+}
+
+- (CGFloat)computeNavigationBarOffset
+{
+    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? ([UIApplication sharedApplication].statusBarHidden ? 44 : 64) : 0;
+    return navigationBarOffset;
 }
 
 @end
