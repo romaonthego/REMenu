@@ -77,10 +77,10 @@
         _highlightedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
         _highlightedTextShadowColor = [UIColor blackColor];
         _highlightedTextShadowOffset = CGSizeMake(0, -1.0);
-
+        
         _showSelectedSet = nil;
         _selectedMenuItem = nil;
-
+        
         _selectedBackgroundColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
         _selectedSeparatorColor = [UIColor colorWithRed:28/255.0 green:28/255.0 blue:27/255.0 alpha:1.0];
         _selectedTextColor = [UIColor colorWithRed:128/255.0 green:126/255.0 blue:124/255.0 alpha:1.0];
@@ -194,7 +194,7 @@
         button;
     });
     
-    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
+    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? CGRectGetMaxY(self.navigationBar.frame) : 0;
     
     // Append new item views to REMenuView
     //
@@ -206,7 +206,7 @@
             itemHeight += self.cornerRadius;
         
         UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                         index * self.itemHeight + index * self.separatorHeight + 40.0 + navigationBarOffset,
+                                                                         index * self.itemHeight + index * self.separatorHeight + 40 + navigationBarOffset,
                                                                          rect.size.width,
                                                                          self.separatorHeight)];
         separatorView.backgroundColor = self.separatorColor;
@@ -214,7 +214,7 @@
         [self.menuView addSubview:separatorView];
         
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
-                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0 + navigationBarOffset,
+                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40 + navigationBarOffset,
                                                                                     rect.size.width,
                                                                                     itemHeight)
                                                                     menu:self item:item
@@ -227,15 +227,15 @@
             item.customView.frame = itemView.bounds;
             [itemView addSubview:item.customView];
         }
-
+        
         if (item == self.selectedMenuItem) {
             [itemView setAsSelected:YES];
         } else {
             [itemView setAsSelected:NO];
         }
-
+        
         [self.menuView addSubview:itemView];
-
+        
     }
     
     // Set up frames
@@ -269,39 +269,39 @@
                   initialSpringVelocity:4.0
                                 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
                              animations:^{
-                 self.backgroundView.alpha = self.backgroundAlpha;
-                 CGRect frame = self.menuView.frame;
-                 frame.origin.y = -40.0 - self.separatorHeight;
-                 self.menuWrapperView.frame = frame;
-             } completion:^(BOOL finished) {
-                 self.isAnimating = NO;
-             }];
+                                 self.backgroundView.alpha = self.backgroundAlpha;
+                                 CGRect frame = self.menuView.frame;
+                                 frame.origin.y = -CGRectGetHeight(self.navigationBar.frame) - self.separatorHeight;
+                                 self.menuWrapperView.frame = frame;
+                             } completion:^(BOOL finished) {
+                                 self.isAnimating = NO;
+                             }];
         } else {
             [UIView animateWithDuration:self.animationDuration
                                   delay:0.0
                                 options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
                              animations:^{
-                 self.backgroundView.alpha = self.backgroundAlpha;
-                 CGRect frame = self.menuView.frame;
-                 frame.origin.y = -40.0 - self.separatorHeight;
-                 self.menuWrapperView.frame = frame;
-             } completion:^(BOOL finished) {
-                 self.isAnimating = NO;
-             }];
-
+                                 self.backgroundView.alpha = self.backgroundAlpha;
+                                 CGRect frame = self.menuView.frame;
+                                 frame.origin.y = -CGRectGetHeight(self.navigationBar.frame) - self.separatorHeight;
+                                 self.menuWrapperView.frame = frame;
+                             } completion:^(BOOL finished) {
+                                 self.isAnimating = NO;
+                             }];
+            
         }
     } else {
         [UIView animateWithDuration:self.animationDuration
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
                          animations:^{
-            self.backgroundView.alpha = self.backgroundAlpha;
-            CGRect frame = self.menuView.frame;
-            frame.origin.y = -40.0 - self.separatorHeight;
-            self.menuWrapperView.frame = frame;
-        } completion:^(BOOL finished) {
-            self.isAnimating = NO;
-        }];
+                             self.backgroundView.alpha = self.backgroundAlpha;
+                             CGRect frame = self.menuView.frame;
+                             frame.origin.y = -CGRectGetHeight(self.navigationBar.frame) - self.separatorHeight;
+                             self.menuWrapperView.frame = frame;
+                         } completion:^(BOOL finished) {
+                             self.isAnimating = NO;
+                         }];
     }
 }
 
@@ -338,28 +338,28 @@
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
                          animations:^ {
-            CGRect frame = self.menuView.frame;
-            frame.origin.y = - self.combinedHeight - navigationBarOffset;
-            self.menuWrapperView.frame = frame;
-            self.backgroundView.alpha = 0;
-        } completion:^(BOOL finished) {
-            self.isOpen = NO;
-            self.isAnimating = NO;
-            
-            [self.menuView removeFromSuperview];
-            [self.menuWrapperView removeFromSuperview];
-            [self.backgroundButton removeFromSuperview];
-            [self.backgroundView removeFromSuperview];
-            [self.containerView removeFromSuperview];
-            
-            if (completion) {
-                completion();
-            }
-            
-            if (self.closeCompletionHandler) {
-                self.closeCompletionHandler();
-            }
-        }];
+                             CGRect frame = self.menuView.frame;
+                             frame.origin.y = - self.combinedHeight - navigationBarOffset;
+                             self.menuWrapperView.frame = frame;
+                             self.backgroundView.alpha = 0;
+                         } completion:^(BOOL finished) {
+                             self.isOpen = NO;
+                             self.isAnimating = NO;
+                             
+                             [self.menuView removeFromSuperview];
+                             [self.menuWrapperView removeFromSuperview];
+                             [self.backgroundButton removeFromSuperview];
+                             [self.backgroundView removeFromSuperview];
+                             [self.containerView removeFromSuperview];
+                             
+                             if (completion) {
+                                 completion();
+                             }
+                             
+                             if (self.closeCompletionHandler) {
+                                 self.closeCompletionHandler();
+                             }
+                         }];
         
     };
     
@@ -387,7 +387,7 @@
 
 - (CGFloat)combinedHeight
 {
-    return self.items.count * self.itemHeight + self.items.count * self.separatorHeight + 40.0 + self.cornerRadius;
+    return self.items.count * self.itemHeight + self.items.count * self.separatorHeight + 40 + self.cornerRadius;
 }
 
 - (void)setNeedsLayout
