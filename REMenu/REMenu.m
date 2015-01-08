@@ -146,6 +146,7 @@
         view.layer.shouldRasterize = YES;
         view.layer.rasterizationScale = [UIScreen mainScreen].scale;
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        view.contentInset = self.contentInset;
         view;
     });
     

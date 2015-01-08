@@ -123,6 +123,7 @@ REMenuItem *customViewItem = [[REMenuItem alloc] initWithCustomView:customView a
 You can customize the following properties of `REMenu`:
 
 ``` objective-c
+@property (assign, readwrite, nonatomic) UIEdgeInsetsMake contentInset;
 @property (assign, readwrite, nonatomic) CGFloat cornerRadius;
 @property (strong, readwrite, nonatomic) UIColor *shadowColor;
 @property (assign, readwrite, nonatomic) CGSize shadowOffset;
