@@ -165,7 +165,7 @@
     self.subtitleLabel.shadowOffset = self.item.subtitleTextShadowOffset.width == 0 && self.item.subtitleTextShadowOffset.height == 0 ? self.menu.subtitleTextShadowOffset : self.item.subtitleTextShadowOffset;
     self.subtitleLabel.textAlignment = (NSInteger)self.item.subtitleTextAlignment == -1 ? self.menu.subtitleTextAlignment : self.item.subtitleTextAlignment;
     
-    self.item.customView.frame = CGRectMake(0, 0, self.titleLabel.frame.size.width, self.frame.size.height);
+    self.item.customView.frame = CGRectMake(0, 12, self.titleLabel.frame.size.width, self.frame.size.height);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
