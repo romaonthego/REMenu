@@ -60,7 +60,7 @@
         _separatorHeight = 2.0;
         _separatorOffset = CGSizeMake(0.0, 0.0);
         _waitUntilAnimationIsComplete = YES;
-        _contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        _contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
         
         _textOffset = CGSizeMake(0, 0);
         _subtitleTextOffset = CGSizeMake(0, 0);
