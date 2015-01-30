@@ -33,7 +33,7 @@
     [super layoutSubviews];
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
     
-    CGFloat landscapeOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 32.0 : 44.0;
+    CGFloat landscapeOffset = CGRectGetHeight(self.navigationBar.frame);
     
     if (self.navigationBar && !self.appearsBehindNavigationBar) {
         CGRect frame = self.frame;
