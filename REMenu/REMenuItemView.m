@@ -124,6 +124,10 @@
         self.imageView.tintColor = self.menu.imageTintColor;
     }
     
+    if ([self.imageView respondsToSelector:@selector(setBackgroundColor:)]) {
+        self.imageView.backgroundColor = self.item.imageBackgroundColor;
+    }
+    
     // Set up badge
     //
     self.badgeLabel.hidden = !self.item.badge;
