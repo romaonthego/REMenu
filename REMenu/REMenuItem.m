@@ -33,6 +33,35 @@
 
 @implementation REMenuItem
 
+- (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action
+{
+    self = [super init];
+    if (self) {
+        _title = title;
+        _image = image;
+        _highlightedImage = highlightedImage;
+        _action = action;
+        _textAlignment = -1;
+        _subtitleTextAlignment = -1;
+    }
+    return self;
+}
+
+- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action
+{
+    self = [super init];
+    if (self) {
+        _title = title;
+        _subtitle = subtitle;
+        _image = image;
+        _highlightedImage = highlightedImage;
+        _action = action;
+        _textAlignment = -1;
+        _subtitleTextAlignment = -1;
+    }
+    return self;
+}
+
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image backgroundColor:(UIColor *)bgColor highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action
 {
     self = [super init];
