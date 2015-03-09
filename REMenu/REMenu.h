@@ -27,7 +27,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RECommonFunctions.h"
 #import "REMenuItem.h"
-#import "REMenuContainerView.h"
 
 @class REMenu;
 @class REMenuItem;
@@ -67,6 +66,7 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 
 // Style
 //
+@property (assign, readwrite, nonatomic) UIEdgeInsets contentInset;
 @property (assign, readwrite, nonatomic) CGFloat cornerRadius;
 @property (strong, readwrite, nonatomic) UIColor *shadowColor;
 @property (assign, readwrite, nonatomic) CGSize shadowOffset;
