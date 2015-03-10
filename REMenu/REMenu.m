@@ -184,7 +184,7 @@
         button;
     });
     
-    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
+    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? self.navigationBar.frame.origin.y+self.navigationBar.frame.size.height : 0;
     
     // Append new item views to REMenuView
     //
