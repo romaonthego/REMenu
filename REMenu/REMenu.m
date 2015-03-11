@@ -35,14 +35,15 @@
 
 @interface REMenu ()
 
-@property (strong, readwrite, nonatomic) UIView *menuView;
+@property (strong, readwrite, nonatomic) UIScrollView *menuView;
 @property (strong, readwrite, nonatomic) UIView *menuWrapperView;
-@property (strong, readwrite, nonatomic) REMenuContainerView *containerView;
+@property (strong, readwrite, nonatomic) UIView *containerView;
 @property (strong, readwrite, nonatomic) UIButton *backgroundButton;
 @property (assign, readwrite, nonatomic) BOOL isOpen;
 @property (assign, readwrite, nonatomic) BOOL isAnimating;
 @property (strong, readwrite, nonatomic) NSMutableArray *itemViews;
 @property (weak, readwrite, nonatomic) UINavigationBar *navigationBar;
+@property (weak, readwrite, nonatomic) UIView *viewToShowFrom;
 @property (strong, readwrite, nonatomic) UIToolbar *toolbar;
 
 @end
@@ -59,6 +60,7 @@
         _separatorHeight = 2.0;
         _separatorOffset = CGSizeMake(0.0, 0.0);
         _waitUntilAnimationIsComplete = YES;
+        _contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0);
         
         _textOffset = CGSizeMake(0, 0);
         _subtitleTextOffset = CGSizeMake(0, 0);
@@ -116,11 +118,13 @@
     
     self.isOpen = YES;
     self.isAnimating = YES;
-    
+
+	self.viewToShowFrom = view;
+
     // Create views
     //
     self.containerView = ({
-        REMenuContainerView *view = [[REMenuContainerView alloc] init];
+        UIView *view = [[UIView alloc] init];
         view.clipsToBounds = YES;
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
@@ -130,9 +134,9 @@
         }
         view;
     });
-    
+
     self.menuView = ({
-        UIView *view = [[UIView alloc] init];
+	    UIScrollView *view = [[UIScrollView alloc] init];
         if (!self.liveBlur || !REUIKitIsFlatMode()) {
             view.backgroundColor = self.backgroundColor;
         }
@@ -143,6 +147,7 @@
         view.layer.shouldRasterize = YES;
         view.layer.rasterizationScale = [UIScreen mainScreen].scale;
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        view.contentInset = self.contentInset;
         view;
     });
     
@@ -184,8 +189,6 @@
         button;
     });
     
-    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
-    
     // Append new item views to REMenuView
     //
     for (REMenuItem *item in self.items) {
@@ -196,7 +199,7 @@
             itemHeight += self.cornerRadius;
         
         UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(self.separatorOffset.width,
-                                                                         index * self.itemHeight + index * self.separatorHeight + 40.0 + navigationBarOffset + self.separatorOffset.height,
+                                                                         index * self.itemHeight + index * self.separatorHeight + self.separatorOffset.height,
                                                                          rect.size.width - self.separatorOffset.width,
                                                                          self.separatorHeight)];
         separatorView.backgroundColor = self.separatorColor;
@@ -204,7 +207,7 @@
         [self.menuView addSubview:separatorView];
         
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
-                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0 + navigationBarOffset,
+                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight,
                                                                                     rect.size.width,
                                                                                     itemHeight)
                                                                     menu:self item:item
@@ -219,12 +222,15 @@
         }
         [self.menuView addSubview:itemView];
     }
-    
+
     // Set up frames
     //
-    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, rect.size.width, self.combinedHeight + navigationBarOffset);
-    self.menuView.frame = self.menuWrapperView.bounds;
-    if (REUIKitIsFlatMode() && self.liveBlur) {
+    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight, self.viewToShowFrom.bounds.size.width, self.combinedHeight);
+	CGFloat height = MIN(self.viewToShowFrom.bounds.size.height - self.navigationBarOffset, self.combinedHeight);
+	self.menuView.frame = CGRectMake(0, 0, self.viewToShowFrom.bounds.size.width, height);
+	self.menuView.contentSize = CGSizeMake(self.viewToShowFrom.bounds.size.width, self.combinedHeight);
+
+	if (REUIKitIsFlatMode() && self.liveBlur) {
         self.toolbar.frame = self.menuWrapperView.bounds;
     }
     self.containerView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
@@ -257,7 +263,7 @@
                              animations:^{
                  self.backgroundView.alpha = self.backgroundAlpha;
                  CGRect frame = self.menuView.frame;
-                 frame.origin.y = -40.0 - self.separatorHeight;
+                 frame.origin.y = self.navigationBarOffset;
                  self.menuWrapperView.frame = frame;
              } completion:^(BOOL finished) {
                  self.isAnimating = NO;
@@ -272,7 +278,7 @@
                              animations:^{
                  self.backgroundView.alpha = self.backgroundAlpha;
                  CGRect frame = self.menuView.frame;
-                 frame.origin.y = -40.0 - self.separatorHeight;
+                 frame.origin.y = self.navigationBarOffset;
                  self.menuWrapperView.frame = frame;
              } completion:^(BOOL finished) {
                  self.isAnimating = NO;
@@ -289,7 +295,7 @@
                          animations:^{
             self.backgroundView.alpha = self.backgroundAlpha;
             CGRect frame = self.menuView.frame;
-            frame.origin.y = -40.0 - self.separatorHeight;
+            frame.origin.y = self.navigationBarOffset;
             self.menuWrapperView.frame = frame;
         } completion:^(BOOL finished) {
             self.isAnimating = NO;
@@ -298,6 +304,25 @@
             }
         }];
     }
+
+	[[NSNotificationCenter defaultCenter]
+			addObserver:self
+			   selector:@selector(updateViewOnRotate:)
+				   name:UIDeviceOrientationDidChangeNotification
+				 object:nil];
+}
+
+-(CGFloat) navigationBarOffset {
+	CGFloat statusBarHeight = MIN([[UIApplication sharedApplication] statusBarFrame].size.width, [[UIApplication sharedApplication] statusBarFrame].size.height);
+
+	return self.navigationBar ? self.navigationBar.frame.size.height + statusBarHeight : 0;
+}
+
+-(void) updateViewOnRotate:(NSNotification*) notification {
+	CGFloat height = MIN(self.viewToShowFrom.bounds.size.height - self.navigationBarOffset, self.combinedHeight);
+	self.menuView.frame = CGRectMake(0, 0, self.viewToShowFrom.bounds.size.width, height);
+	self.menuView.contentSize = CGSizeMake(self.viewToShowFrom.bounds.size.width, self.combinedHeight);
+	self.menuWrapperView.frame = CGRectMake(0, self.navigationBarOffset, self.viewToShowFrom.bounds.size.width, height);
 }
 
 - (void)showInView:(UIView *)view
@@ -313,8 +338,6 @@
     
     self.navigationBar = navigationController.navigationBar;
     [self showFromRect:CGRectMake(0, 0, navigationController.navigationBar.frame.size.width, navigationController.view.frame.size.height) inView:navigationController.view];
-    self.containerView.appearsBehindNavigationBar = self.appearsBehindNavigationBar;
-    self.containerView.navigationBar = navigationController.navigationBar;
     if (self.appearsBehindNavigationBar) {
         [navigationController.view bringSubviewToFront:navigationController.navigationBar];
     }
@@ -325,16 +348,15 @@
     if (self.isAnimating) return;
     
     self.isAnimating = YES;
-    
-    CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
-    
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+
     void (^closeMenu)(void) = ^{
         [UIView animateWithDuration:self.closeAnimationDuration
                               delay:0.0
                             options:UIViewAnimationOptionBeginFromCurrentState|UIViewAnimationOptionCurveEaseInOut
                          animations:^ {
             CGRect frame = self.menuView.frame;
-            frame.origin.y = - self.combinedHeight - navigationBarOffset;
+            frame.origin.y = - self.combinedHeight - self.navigationBarOffset;
             self.menuWrapperView.frame = frame;
             self.backgroundView.alpha = 0;
         } completion:^(BOOL finished) {
@@ -388,7 +410,7 @@
 
 - (CGFloat)combinedHeight
 {
-    return self.items.count * self.itemHeight + self.items.count * self.separatorHeight + 40.0 + self.cornerRadius;
+    return self.items.count * self.itemHeight + self.items.count * self.separatorHeight + self.cornerRadius;
 }
 
 - (void)setNeedsLayout
