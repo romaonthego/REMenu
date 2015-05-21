@@ -31,7 +31,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
     
     CGFloat landscapeOffset = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? 32.0 : 44.0;
     
