@@ -128,6 +128,8 @@
             self.backgroundView.alpha = 0;
             [view addSubview:self.backgroundView];
         }
+
+        view.backgroundColor = self.contentTintColor;
         view;
     });
     

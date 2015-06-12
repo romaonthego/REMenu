@@ -109,6 +109,7 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (assign, readwrite, nonatomic) NSTimeInterval bounceAnimationDuration;
 @property (assign, readwrite, nonatomic) BOOL appearsBehindNavigationBar;
 @property (assign, readwrite, nonatomic) BOOL bounce;
+@property (strong, readwrite, nonatomic) UIColor *contentTintColor;
 @property (assign, readwrite, nonatomic) BOOL liveBlur; // Available only in iOS 7
 @property (strong, readwrite, nonatomic) UIColor *liveBlurTintColor; // Available only in iOS 7
 @property (assign, readwrite, nonatomic) REMenuLiveBackgroundStyle liveBlurBackgroundStyle; // Available only in iOS 7
