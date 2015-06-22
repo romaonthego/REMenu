@@ -44,6 +44,7 @@
 @property (strong, readwrite, nonatomic) NSMutableArray *itemViews;
 @property (weak, readwrite, nonatomic) UINavigationBar *navigationBar;
 @property (strong, readwrite, nonatomic) UIToolbar *toolbar;
+@property (strong, readwrite, nonatomic) UIVisualEffectView *blurView;
 
 @end
 
@@ -159,6 +160,31 @@
             toolbar.layer.masksToBounds = YES;
             toolbar;
         });
+        
+        // Add blur view for ios8
+        self.blurView = ({
+            UIBlurEffect *effect;
+            switch (self.liveBlurBackgroundStyle) {
+                case REMenuLiveBackgroundStyleDark:
+                    effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+                    break;
+                case REMenuLiveBackgroundStyleLight:
+                    effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+                    break;
+                default:
+                    effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+                    break;
+            }
+            UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithEffect:effect];
+            if ([blurView respondsToSelector:@selector(setBarTintColor:)])
+                [blurView performSelector:@selector(setBarTintColor:) withObject:self.liveBlurTintColor];
+            blurView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+            blurView.layer.cornerRadius = self.cornerRadius;
+            blurView.layer.borderColor = self.borderColor.CGColor;
+            blurView.layer.borderWidth = self.borderWidth;
+            blurView.layer.masksToBounds = YES;
+            blurView;
+        });
     }
     
     self.menuWrapperView = ({
@@ -226,6 +252,7 @@
     self.menuView.frame = self.menuWrapperView.bounds;
     if (REUIKitIsFlatMode() && self.liveBlur) {
         self.toolbar.frame = self.menuWrapperView.bounds;
+        self.blurView.frame = self.menuWrapperView.bounds;
     }
     self.containerView.frame = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     self.backgroundButton.frame = self.containerView.bounds;
@@ -233,7 +260,12 @@
     // Add subviews
     //
     if (REUIKitIsFlatMode() && self.liveBlur) {
-        [self.menuWrapperView addSubview:self.toolbar];
+        // If we're in iOS8 use the UIVisualEffectView else use toolbar
+        if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_7_1) {
+            [self.menuWrapperView addSubview:self.blurView];
+        } else {
+            [self.menuWrapperView addSubview:self.toolbar];
+        }
     }
     [self.menuWrapperView addSubview:self.menuView];
     [self.containerView addSubview:self.backgroundButton];

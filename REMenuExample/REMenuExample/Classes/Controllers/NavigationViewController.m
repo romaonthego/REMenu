@@ -114,7 +114,7 @@
     // Blurred background in iOS 7
     //
     //self.menu.liveBlur = YES;
-    //self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleDark;
+    //self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleLight;
 
     self.menu.separatorOffset = CGSizeMake(15.0, 0.0);
     self.menu.imageOffset = CGSizeMake(5, -1);
