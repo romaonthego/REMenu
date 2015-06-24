@@ -128,8 +128,10 @@
             self.backgroundView.alpha = 0;
             [view addSubview:self.backgroundView];
         }
-
-        view.backgroundColor = self.contentTintColor;
+        view.backgroundColor = [UIColor clearColor];
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            view.backgroundColor = self.contentTintColor;
+        }];
         view;
     });
     
@@ -339,6 +341,7 @@
             frame.origin.y = - self.combinedHeight - navigationBarOffset;
             self.menuWrapperView.frame = frame;
             self.backgroundView.alpha = 0;
+            self.containerView.backgroundColor = [UIColor clearColor];
         } completion:^(BOOL finished) {
             self.isOpen = NO;
             self.isAnimating = NO;
