@@ -121,5 +121,6 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 - (void)setNeedsLayout;
 - (void)closeWithCompletion:(void (^)(void))completion;
 - (void)close;
+- (void)forceClose;
 
 @end

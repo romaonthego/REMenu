@@ -386,6 +386,12 @@
     [self closeWithCompletion:nil];
 }
 
+- (void)forceClose
+{
+    self.isAnimating = NO;
+    [self closeWithCompletion:nil];
+}
+
 - (CGFloat)combinedHeight
 {
     return self.items.count * self.itemHeight + self.items.count * self.separatorHeight + 40.0 + self.cornerRadius;
