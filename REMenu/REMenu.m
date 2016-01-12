@@ -35,7 +35,7 @@
 
 @interface REMenu ()
 
-@property (strong, readwrite, nonatomic) UIView *menuView;
+@property (strong, readwrite, nonatomic) UIScrollView *menuView;
 @property (strong, readwrite, nonatomic) UIView *menuWrapperView;
 @property (strong, readwrite, nonatomic) REMenuContainerView *containerView;
 @property (strong, readwrite, nonatomic) UIButton *backgroundButton;
@@ -128,11 +128,15 @@
             self.backgroundView.alpha = 0;
             [view addSubview:self.backgroundView];
         }
+        view.backgroundColor = [UIColor clearColor];
+        [UIView animateWithDuration:self.animationDuration animations:^{
+            view.backgroundColor = self.contentTintColor;
+        }];
         view;
     });
     
     self.menuView = ({
-        UIView *view = [[UIView alloc] init];
+        UIScrollView *view = [[UIScrollView alloc] init];
         if (!self.liveBlur || !REUIKitIsFlatMode()) {
             view.backgroundColor = self.backgroundColor;
         }
@@ -143,6 +147,7 @@
         view.layer.shouldRasterize = YES;
         view.layer.rasterizationScale = [UIScreen mainScreen].scale;
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        view.backgroundColor = [UIColor whiteColor];
         view;
     });
     
@@ -222,7 +227,9 @@
     
     // Set up frames
     //
-    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, rect.size.width, self.combinedHeight + navigationBarOffset);
+    self.menuView.contentSize = CGSizeMake(rect.size.width, self.combinedHeight + navigationBarOffset);
+    CGFloat totalHeight = self.combinedHeight + navigationBarOffset > CGRectGetHeight([UIScreen mainScreen].bounds) ? CGRectGetHeight([UIScreen mainScreen].bounds) + 40 : self.combinedHeight + navigationBarOffset;
+    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, rect.size.width, totalHeight);
     self.menuView.frame = self.menuWrapperView.bounds;
     if (REUIKitIsFlatMode() && self.liveBlur) {
         self.toolbar.frame = self.menuWrapperView.bounds;
@@ -337,6 +344,7 @@
             frame.origin.y = - self.combinedHeight - navigationBarOffset;
             self.menuWrapperView.frame = frame;
             self.backgroundView.alpha = 0;
+            self.containerView.backgroundColor = [UIColor clearColor];
         } completion:^(BOOL finished) {
             self.isOpen = NO;
             self.isAnimating = NO;
