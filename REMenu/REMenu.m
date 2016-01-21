@@ -185,18 +185,24 @@
     });
     
     CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
-    
+    CGFloat itemOriginY = 40.0 + navigationBarOffset;
+    CGFloat separatorOriginY = 40.0 + navigationBarOffset + self.separatorOffset.height;
+
     // Append new item views to REMenuView
     //
     for (REMenuItem *item in self.items) {
         NSInteger index = [self.items indexOfObject:item];
         
         CGFloat itemHeight = self.itemHeight;
+        if (item.height > 0) {
+            itemHeight = item.height;
+        }
+
         if (index == self.items.count - 1)
             itemHeight += self.cornerRadius;
         
         UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(self.separatorOffset.width,
-                                                                         index * self.itemHeight + index * self.separatorHeight + 40.0 + navigationBarOffset + self.separatorOffset.height,
+                                                                         separatorOriginY,
                                                                          rect.size.width - self.separatorOffset.width,
                                                                          self.separatorHeight)];
         separatorView.backgroundColor = self.separatorColor;
@@ -204,7 +210,7 @@
         [self.menuView addSubview:separatorView];
         
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
-                                                                                    index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0 + navigationBarOffset,
+                                                                                    itemOriginY + (index + 1.0) * self.separatorHeight,
                                                                                     rect.size.width,
                                                                                     itemHeight)
                                                                     menu:self item:item
@@ -218,6 +224,9 @@
             [itemView addSubview:item.customView];
         }
         [self.menuView addSubview:itemView];
+
+        separatorOriginY += itemHeight + self.separatorHeight;
+        itemOriginY += itemHeight;
     }
     
     // Set up frames
@@ -388,7 +397,21 @@
 
 - (CGFloat)combinedHeight
 {
-    return self.items.count * self.itemHeight + self.items.count * self.separatorHeight + 40.0 + self.cornerRadius;
+    return [self totalItemsHeight] + self.items.count * self.separatorHeight + 40.0 + self.cornerRadius;
+}
+
+- (CGFloat)totalItemsHeight {
+    CGFloat itemsHeight = 0;
+
+    for (REMenuItem *item in self.items) {
+        if (item.height > 0) {
+            itemsHeight += item.height;
+        } else {
+            itemsHeight += self.itemHeight;
+        }
+    }
+
+    return itemsHeight;
 }
 
 - (void)setNeedsLayout

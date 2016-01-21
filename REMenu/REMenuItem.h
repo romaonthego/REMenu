@@ -50,6 +50,7 @@
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlightedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 @property (strong, readwrite, nonatomic) UIColor *imageBackgroundColor;
+@property (assign, readwrite, nonatomic) CGFloat height;
 
 @property (copy, readwrite, nonatomic) NSString *title;
 @property (copy, readwrite, nonatomic) NSString *subtitle;
