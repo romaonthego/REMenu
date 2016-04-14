@@ -116,15 +116,29 @@
     //self.menu.liveBlur = YES;
     //self.menu.liveBlurBackgroundStyle = REMenuLiveBackgroundStyleDark;
 
+    self.menu.borderWidth = 0;
+    self.menu.separatorHeight = 1;
+    self.menu.separatorColor = [UIColor whiteColor];
     self.menu.separatorOffset = CGSizeMake(15.0, 0.0);
     self.menu.imageOffset = CGSizeMake(5, -1);
+    self.menu.highlightedSeparatorColor = [UIColor whiteColor];
+    self.menu.itemHeight = 50;
+    self.menu.itemWidth = 300;
+    self.menu.backgroundColor = [UIColor colorWithRed:0 green:141.0/255 blue:1.0 alpha:1];
+    self.menu.highlightedBackgroundColor = self.menu.backgroundColor;
+    self.menu.textColor = [UIColor whiteColor];
+    self.menu.highlightedTextColor = [UIColor blackColor];
+    self.menu.textShadowColor = [UIColor clearColor];
+    self.menu.highlightedTextShadowColor = [UIColor clearColor];
+    self.menu.font = [UIFont systemFontOfSize:14];
+    
     self.menu.waitUntilAnimationIsComplete = NO;
     self.menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {
         badgeLabel.backgroundColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
         badgeLabel.layer.borderColor = [UIColor colorWithRed:0.000 green:0.648 blue:0.507 alpha:1.000].CGColor;
     };
     self.menu.delegate = self;
-    
+    homeItem.textColor = [UIColor whiteColor];
     
     [self.menu setClosePreparationBlock:^{
         NSLog(@"Menu will close");
@@ -140,8 +154,8 @@
 {
     if (self.menu.isOpen)
         return [self.menu close];
-    
-    [self.menu showFromNavigationController:self];
+    [self.menu showFromRect:CGRectMake(0, 64, 300, 480) inView:self.view];
+//    [self.menu showFromNavigationController:self];
 }
 
 #pragma mark - REMenu Delegate Methods
