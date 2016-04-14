@@ -56,6 +56,7 @@
         _imageAlignment = REMenuImageAlignmentLeft;
         _closeOnSelection = YES;
         _itemHeight = 48.0;
+        _itemWidth = -1;
         _separatorHeight = 2.0;
         _separatorOffset = CGSizeMake(0.0, 0.0);
         _waitUntilAnimationIsComplete = YES;
@@ -185,6 +186,7 @@
     });
     
     CGFloat navigationBarOffset = self.appearsBehindNavigationBar && self.navigationBar ? 64 : 0;
+    const CGFloat itemWidth = self.itemWidth < 0 ? rect.size.width : self.itemWidth;
     
     // Append new item views to REMenuView
     //
@@ -197,7 +199,7 @@
         
         UIView *separatorView = [[UIView alloc] initWithFrame:CGRectMake(self.separatorOffset.width,
                                                                          index * self.itemHeight + index * self.separatorHeight + 40.0 + navigationBarOffset + self.separatorOffset.height,
-                                                                         rect.size.width - self.separatorOffset.width,
+                                                                         itemWidth - self.separatorOffset.width,
                                                                          self.separatorHeight)];
         separatorView.backgroundColor = self.separatorColor;
         separatorView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -205,7 +207,7 @@
         
         REMenuItemView *itemView = [[REMenuItemView alloc] initWithFrame:CGRectMake(0,
                                                                                     index * self.itemHeight + (index + 1.0) * self.separatorHeight + 40.0 + navigationBarOffset,
-                                                                                    rect.size.width,
+                                                                                    itemWidth,
                                                                                     itemHeight)
                                                                     menu:self item:item
                                                              hasSubtitle:item.subtitle.length > 0];
@@ -222,7 +224,7 @@
     
     // Set up frames
     //
-    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, rect.size.width, self.combinedHeight + navigationBarOffset);
+    self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, itemWidth, self.combinedHeight + navigationBarOffset);
     self.menuView.frame = self.menuWrapperView.bounds;
     if (REUIKitIsFlatMode() && self.liveBlur) {
         self.toolbar.frame = self.menuWrapperView.bounds;
