@@ -29,7 +29,6 @@
 #import "REMenuItem.h"
 #import "REMenuContainerView.h"
 
-@class REMenu;
 @class REMenuItem;
 
 typedef NS_ENUM(NSInteger, REMenuImageAlignment) {
@@ -42,16 +41,7 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
     REMenuLiveBackgroundStyleDark
 };
 
-@protocol REMenuDelegate <NSObject>
-@optional
--(void)willOpenMenu:(REMenu *)menu;
--(void)didOpenMenu:(REMenu *)menu;
--(void)willCloseMenu:(REMenu *)menu;
--(void)didCloseMenu:(REMenu *)menu;
-
-@end
-
-@interface REMenu : NSObject 
+@interface REMenu : NSObject
 
 // Data
 //
@@ -63,7 +53,6 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (copy, readwrite, nonatomic) void (^closeCompletionHandler)(void);
 @property (copy, readwrite, nonatomic) void (^closePreparationBlock)(void);
 @property (assign, readwrite, nonatomic) BOOL closeOnSelection;
-@property (weak, readwrite, nonatomic) id <REMenuDelegate> delegate;
 
 // Style
 //
@@ -92,6 +81,14 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextShadowColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedImageTintColor;
 @property (assign, readwrite, nonatomic) CGSize highlightedTextShadowOffset;
+@property (strong, readwrite, nonatomic) NSSet *showSelectedSet;
+@property (strong, readwrite, nonatomic) REMenuItem *selectedMenuItem;
+@property (strong, readwrite, nonatomic) UIColor *selectedBackgroundColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedSeparatorColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedTextShadowColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedImageTintColor;
+@property (assign, readwrite, nonatomic) CGSize selectedTextShadowOffset;
 @property (assign, readwrite, nonatomic) CGFloat borderWidth;
 @property (strong, readwrite, nonatomic) UIColor *borderColor;
 @property (assign, readwrite, nonatomic) NSTextAlignment textAlignment;
@@ -103,6 +100,9 @@ typedef NS_ENUM(NSInteger, REMenuLiveBackgroundStyle) {
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextColor;
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlightedTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIColor *subtitleSelectedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subtitleSelectedTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subtitleSelectedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
 @property (assign, readwrite, nonatomic) NSTimeInterval animationDuration;
 @property (assign, readwrite, nonatomic) NSTimeInterval closeAnimationDuration;

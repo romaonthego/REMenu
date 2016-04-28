@@ -39,6 +39,11 @@
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextColor;
 @property (strong, readwrite, nonatomic) UIColor *highlightedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize highlightedTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIColor *selectedBackgroundColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedSeparatorColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *selectedTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize selectedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment textAlignment;
 @property (strong, readwrite, nonatomic) UIFont *subtitleFont;
 @property (strong, readwrite, nonatomic) UIColor *subtitleTextColor;
@@ -48,24 +53,27 @@
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextColor;
 @property (strong, readwrite, nonatomic) UIColor *subtitleHighlightedTextShadowColor;
 @property (assign, readwrite, nonatomic) CGSize subtitleHighlightedTextShadowOffset;
+@property (strong, readwrite, nonatomic) UIColor *subtitleSelectedTextColor;
+@property (strong, readwrite, nonatomic) UIColor *subtitleSelectedTextShadowColor;
+@property (assign, readwrite, nonatomic) CGSize subtitleSelectedTextShadowOffset;
 @property (assign, readwrite, nonatomic) NSTextAlignment subtitleTextAlignment;
-@property (strong, readwrite, nonatomic) UIColor *imageBackgroundColor;
 
 @property (copy, readwrite, nonatomic) NSString *title;
 @property (copy, readwrite, nonatomic) NSString *subtitle;
 @property (copy, readwrite, nonatomic) NSString *badge;
 @property (strong, readwrite, nonatomic) UIImage *image;
 @property (strong, readwrite, nonatomic) UIImage *highlightedImage;
+@property (strong, readwrite, nonatomic) UIImage *selectedImage;
 @property (copy, readwrite, nonatomic) void (^action)(REMenuItem *item);
 @property (assign, readwrite, nonatomic) NSInteger tag;
 @property (strong, readwrite, nonatomic) UIView *customView;
 
 - (id)initWithTitle:(NSString *)title image:(UIImage *)image highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action;
 - (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action;
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image backgroundColor:(UIColor *)bgColor highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action;
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image backgroundColor:(UIColor *)bgColor highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action;
 - (id)initWithCustomView:(UIView *)customView action:(void (^)(REMenuItem *item))action;
 - (id)initWithCustomView:(UIView *)customView;
 - (void)setNeedsLayout;
+
+- (void)setAsSelected:(BOOL)selected;
 
 @end

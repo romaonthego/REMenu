@@ -62,37 +62,6 @@
     return self;
 }
 
-- (id)initWithTitle:(NSString *)title image:(UIImage *)image backgroundColor:(UIColor *)bgColor highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action
-{
-    self = [super init];
-    if (self) {
-        _title = title;
-        _image = image;
-        _imageBackgroundColor = bgColor;
-        _highlightedImage = highlightedImage;
-        _action = action;
-        _textAlignment = -1;
-        _subtitleTextAlignment = -1;
-    }
-    return self;
-}
-
-- (id)initWithTitle:(NSString *)title subtitle:(NSString *)subtitle image:(UIImage *)image backgroundColor:(UIColor *)bgColor highlightedImage:(UIImage *)highlightedImage action:(void (^)(REMenuItem *item))action
-{
-    self = [super init];
-    if (self) {
-        _title = title;
-        _subtitle = subtitle;
-        _image = image;
-        _imageBackgroundColor = bgColor;
-        _highlightedImage = highlightedImage;
-        _action = action;
-        _textAlignment = -1;
-        _subtitleTextAlignment = -1;
-    }
-    return self;
-}
-
 - (id)initWithCustomView:(UIView *)customView action:(void (^)(REMenuItem *item))action
 {
     self = [super init];
@@ -137,12 +106,6 @@
     self.itemView.imageView.image = image;
 }
 
-- (void)setImageBackgroundColor:(UIColor *)imageBackgroundColor
-{
-    _imageBackgroundColor = imageBackgroundColor;
-    self.itemView.imageView.backgroundColor = imageBackgroundColor;
-}
-
 - (void)setHighlightedImage:(UIImage *)highlightedImage
 {
     _highlightedImage = highlightedImage;
@@ -152,6 +115,11 @@
 - (void)setNeedsLayout
 {
     [self.itemView layoutSubviews];
+}
+
+- (void)setAsSelected:(BOOL)selected
+{
+    [self.itemView setAsSelected:selected];
 }
 
 @end
