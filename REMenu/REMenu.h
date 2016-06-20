@@ -27,7 +27,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "RECommonFunctions.h"
 #import "REMenuItem.h"
-#import "REMenuContainerView.h"
 
 @class REMenu;
 @class REMenuItem;
