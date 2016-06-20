@@ -224,7 +224,7 @@
     // Set up frames
     //
     self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight, self.viewToShowFrom.bounds.size.width, self.combinedHeight);
-    CGFloat height = MIN(self.viewToShowFrom.bounds.size.height - self.navigationBarOffset, self.combinedHeight);
+    CGFloat height = MIN(rect.size.height, MIN(self.viewToShowFrom.bounds.size.height - self.navigationBarOffset, self.combinedHeight));
     self.menuView.frame = CGRectMake(0, 0, self.viewToShowFrom.bounds.size.width, height);
     self.menuView.contentSize = CGSizeMake(self.viewToShowFrom.bounds.size.width, self.combinedHeight);
     
@@ -303,7 +303,7 @@
         }];
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewOnRotate:) name:UIDeviceOrientationDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewOnRotate:) name:UIDeviceOrientationDidChangeNotification object:@(rect.size.height)];
 }
 
 - (CGFloat) navigationBarOffset {
@@ -313,7 +313,7 @@
 }
 
 - (void) updateViewOnRotate:(NSNotification*) notification {
-    CGFloat height = MIN(self.viewToShowFrom.bounds.size.height - self.navigationBarOffset, self.combinedHeight);
+    CGFloat height = MIN([notification.object floatValue], MIN(self.viewToShowFrom.bounds.size.height - self.navigationBarOffset, self.combinedHeight));
     self.menuView.frame = CGRectMake(0, 0, self.viewToShowFrom.bounds.size.width, height);
     self.menuView.contentSize = CGSizeMake(self.viewToShowFrom.bounds.size.width, self.combinedHeight);
     self.menuWrapperView.frame = CGRectMake(0, self.navigationBarOffset, self.viewToShowFrom.bounds.size.width, height);
