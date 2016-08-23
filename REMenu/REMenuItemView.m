@@ -69,7 +69,7 @@
             });
             [self addSubview:_subtitleLabel];
         } else {
-            titleFrame = CGRectMake(self.item.textOffset.width == 0.0 && self.item.textOffset.height == 0.0 ? self.menu.textOffset.width : self.item.textOffset.width, self.item.textOffset.width == 0.0 && self.item.textOffset.height == 0.0 ? self.menu.textOffset.height : self.item.textOffset.height, 0, frame.size.height);
+            titleFrame = CGRectMake(self.item.textOffset.width == 0.0 && self.item.textOffset.height == 0.0 ? self.menu.textOffset.width : self.item.textOffset.width, self.item.textOffset.width == 0.0 && self.item.textOffset.height == 0.0 ? self.menu.textOffset.height : self.item.textOffset.height, frame.size.width, frame.size.height);
         }
 
         _titleLabel = ({
