@@ -44,6 +44,7 @@
 @property (strong, readwrite, nonatomic) NSMutableArray *itemViews;
 @property (weak, readwrite, nonatomic) UINavigationBar *navigationBar;
 @property (strong, readwrite, nonatomic) UIToolbar *toolbar;
+@property (strong, nonatomic) UIView *firstItem;
 
 @end
 
@@ -218,12 +219,17 @@
             [itemView addSubview:item.customView];
         }
         [self.menuView addSubview:itemView];
+        if (!self.firstItem) {
+            self.firstItem = itemView;
+        }
     }
     
     // Set up frames
     //
     self.menuWrapperView.frame = CGRectMake(0, -self.combinedHeight - navigationBarOffset, rect.size.width, self.combinedHeight + navigationBarOffset);
+    self.menuView.autoresizesSubviews = NO;
     self.menuView.frame = self.menuWrapperView.bounds;
+    self.menuView.autoresizesSubviews = YES;
     if (REUIKitIsFlatMode() && self.liveBlur) {
         self.toolbar.frame = self.menuWrapperView.bounds;
     }
@@ -264,6 +270,7 @@
                  if ([self.delegate respondsToSelector:@selector(didOpenMenu:)]) {
                      [self.delegate didOpenMenu:self];
                  }
+                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.firstItem);
              }];
         } else {
             [UIView animateWithDuration:self.animationDuration
@@ -279,6 +286,7 @@
                  if ([self.delegate respondsToSelector:@selector(didOpenMenu:)]) {
                      [self.delegate didOpenMenu:self];
                  }
+                 UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.firstItem);
              }];
 
         }
@@ -296,6 +304,7 @@
             if ([self.delegate respondsToSelector:@selector(didOpenMenu:)]) {
                 [self.delegate didOpenMenu:self];
             }
+            UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, self.firstItem);
         }];
     }
 }
