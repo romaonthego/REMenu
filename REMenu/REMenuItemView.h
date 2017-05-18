@@ -37,6 +37,8 @@
 @property (strong, readwrite, nonatomic) UILabel *badgeLabel;
 @property (strong, readwrite, nonatomic) REMenuItem *item;
 
+@property (nonatomic, assign) CGSize maxImageSize; // Defaults to 25.0 x 25.0
+
 - (id)initWithFrame:(CGRect)frame menu:(REMenu *)menu item:(REMenuItem*) item hasSubtitle:(BOOL)hasSubtitle;
 
 @end
